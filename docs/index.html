@@ -561,6 +561,8 @@ html.present .pager{padding-block:10px 14px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--bone);color:var(--night);padding:10px 18px;border-radius:999px;font-weight:700;z-index:30;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.show{opacity:1}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* tips: show the whole picture, lantern included (no torn edge) */
+.split.flip .art img.keep.whole{-webkit-mask-image:none;mask-image:none;border-radius:var(--r);object-position:center 30%}
 </style>
 
 <header class="trail">
@@ -598,7 +600,7 @@ html.present .pager{padding-block:10px 14px}
         <a class="btn" href="#room">Start the expedition</a>
         <a class="btn ghost" href="#demo">Jump to the live demo</a>
       </div>
-      <button type="button" class="jungle" id="jungleBtn" aria-pressed="false" aria-label="Play dinosaur sounds" title="Play dinosaur sounds"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg></button>
+      <button type="button" class="jungle" id="jungleBtn" aria-pressed="false" aria-label="Play jungle sounds" title="Play jungle sounds"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg></button>
       <p class="muted" style="font-size:.9rem">Presenting? Press <span class="kbd">Present</span>, then use <span class="kbd">←</span> <span class="kbd">→</span> to move between pages.</p>
     </div>
   </div>
@@ -1132,7 +1134,7 @@ html.present .pager{padding-block:10px 14px}
 <!-- 12 -->
 <section id="tips" data-speaker="W" data-name="Tips & tricks">
   <div class="wrap split flip">
-    <div class="art"><img class="keep" src="img/lantern.webp" alt="An adult T. rex with a lantern guides a young dinosaur down a jungle path past signs reading Courage, Patience and Kindness" width="760" height="1221"></div>
+    <div class="art"><img class="keep whole" src="img/lantern.webp" alt="An adult T. rex with a lantern guides a young dinosaur down a jungle path past signs reading Courage, Patience and Kindness" width="760" height="1221"></div>
     <div class="stack">
       <p class="eyebrow">Field notes</p>
       <h2>Tips &amp; tricks: what we learned the hard way</h2>
@@ -1772,7 +1774,7 @@ html.present .pager{padding-block:10px 14px}
     finally{btn.disabled=false}
   });
 
-  /* ---------- dinosaur soundscape (generated live, no audio files) ---------- */
+  /* ---------- prehistoric jungle soundscape (generated live, no audio files) ---------- */
   const jb=$('#jungleBtn');
   const JOFF='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>', JON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
   let jctx=null,jmaster=null,jtimers=[],jon=false;
@@ -1780,50 +1782,57 @@ html.present .pager{padding-block:10px 14px}
   function startJungle(){
     if(!jctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){toast('Sound isn\'t available in this browser.');return false}jctx=new AC()}
     if(jctx.state==='suspended')jctx.resume();
-    const ctx=jctx,now=ctx.currentTime;
-    jmaster=ctx.createGain();jmaster.gain.setValueAtTime(0,now);jmaster.gain.linearRampToValueAtTime(1.3,now+2);jmaster.connect(ctx.destination);
-    const nb=noiseBuf(ctx,4);
-    const pan=(node,v)=>{if(ctx.createStereoPanner){const p=ctx.createStereoPanner();p.pan.value=v;node.connect(p);p.connect(jmaster)}else node.connect(jmaster)};
-    // low ground rumble under everything
-    const bed=ctx.createBufferSource();bed.buffer=nb;bed.loop=true;const blp=ctx.createBiquadFilter();blp.type='lowpass';blp.frequency.value=140;const bg=ctx.createGain();bg.gain.value=.18;
-    bed.connect(blp);blp.connect(bg);bg.connect(jmaster);bed.start();
-    jtimers.push({stop:()=>{try{bed.stop()}catch(e){}}});
-    const loop=(fn,min,max,first)=>{let id;const go=()=>{fn();id=setTimeout(go,min+Math.random()*(max-min))};id=setTimeout(go,first!=null?first:300+Math.random()*min);jtimers.push({stop:()=>clearTimeout(id)})};
-    // one heavy footstep: deep thump + ground crunch
-    function stomp(t,vol,p){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(90,t);o.frequency.exponentialRampToValueAtTime(32,t+.35);
-      g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.7);o.connect(g);pan(g,p);o.start(t);o.stop(t+.75);
-      const n=ctx.createBufferSource();n.buffer=nb;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=420;const ng=ctx.createGain();ng.gain.setValueAtTime(.0001,t);ng.gain.exponentialRampToValueAtTime(vol*.7,t+.015);ng.gain.exponentialRampToValueAtTime(.0001,t+.3);
-      n.connect(f);f.connect(ng);pan(ng,p);n.start(t,Math.random()*2);n.stop(t+.35)}
-    // footsteps walking past, louder then softer
-    loop(()=>{const t=ctx.currentTime,k=4+Math.floor(Math.random()*3),dir=Math.random()<.5?-1:1;for(let i=0;i<k;i++){const x=i/(k-1);stomp(t+i*.8,.25+.45*Math.sin(Math.PI*x),dir*(x*1.6-.8))}},7000,11000,600);
-    // big roar: rough voice through two mouth-like filters
-    function roar(t,scale,p){const d=2.4*scale;
-      const o=ctx.createOscillator();o.type='sawtooth';const base=95/scale;o.frequency.setValueAtTime(base*.8,t);o.frequency.linearRampToValueAtTime(base*1.5,t+.4*scale);o.frequency.linearRampToValueAtTime(base*1.1,t+d*.6);o.frequency.linearRampToValueAtTime(base*.6,t+d);
-      const vib=ctx.createOscillator();vib.frequency.value=7;const vg=ctx.createGain();vg.gain.value=9;vib.connect(vg);vg.connect(o.frequency);
-      const n=ctx.createBufferSource();n.buffer=nb;const ng=ctx.createGain();ng.gain.value=.9;
-      const mix=ctx.createGain();mix.gain.value=.5;o.connect(mix);n.connect(ng);ng.connect(mix);
-      const f1=ctx.createBiquadFilter();f1.type='bandpass';f1.Q.value=3;f1.frequency.setValueAtTime(320,t);f1.frequency.linearRampToValueAtTime(620,t+.5*scale);f1.frequency.linearRampToValueAtTime(260,t+d);
-      const f2=ctx.createBiquadFilter();f2.type='bandpass';f2.Q.value=4;f2.frequency.value=1100;
-      const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.9,t+.25*scale);g.gain.setValueAtTime(.9,t+d*.55);g.gain.exponentialRampToValueAtTime(.0001,t+d);
-      const g2=ctx.createGain();g2.gain.value=.35;
-      mix.connect(f1);mix.connect(f2);f1.connect(g);f2.connect(g2);g2.connect(g);pan(g,p);
-      o.start(t);vib.start(t);n.start(t,Math.random()*1.5);[o,vib,n].forEach(x=>x.stop(t+d+.1))}
-    loop(()=>roar(ctx.currentTime,1+Math.random()*.35,Math.random()*1.2-.6),9000,15000,2200);
-    // low growls and snorts
-    loop(()=>{const t=ctx.currentTime,d=.9+Math.random()*.6;const o=ctx.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(55,t);o.frequency.linearRampToValueAtTime(48,t+d);
-      const am=ctx.createOscillator();am.frequency.value=24;const amg=ctx.createGain();amg.gain.value=.5;const g=ctx.createGain();g.gain.value=.5;am.connect(amg);amg.connect(g.gain);
-      const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=380;const env=ctx.createGain();env.gain.setValueAtTime(.0001,t);env.gain.exponentialRampToValueAtTime(.45,t+.15);env.gain.exponentialRampToValueAtTime(.0001,t+d);
-      o.connect(g);g.connect(lp);lp.connect(env);pan(env,Math.random()*1.4-.7);o.start(t);am.start(t);o.stop(t+d+.05);am.stop(t+d+.05)},5000,9000,4500);
-    // pterosaur screech overhead now and then
-    loop(()=>{const t=ctx.currentTime,d=.9;const o=ctx.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(1400,t);o.frequency.linearRampToValueAtTime(2300,t+.15);o.frequency.exponentialRampToValueAtTime(900,t+d);
-      const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1900;bp.Q.value=2;const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+d);
-      o.connect(bp);bp.connect(g);if(ctx.createStereoPanner){const p=ctx.createStereoPanner();p.pan.setValueAtTime(-.9,t);p.pan.linearRampToValueAtTime(.9,t+d);g.connect(p);p.connect(jmaster)}else g.connect(jmaster);o.start(t);o.stop(t+d+.05)},14000,22000,8000);
+    const ctx=jctx,now=ctx.currentTime,R=(a,b)=>a+Math.random()*(b-a);
+    jmaster=ctx.createGain();jmaster.gain.setValueAtTime(0,now);jmaster.gain.linearRampToValueAtTime(2.2,now+3);jmaster.connect(ctx.destination);
+    // soft room of trees: a generated reverb tail that everything sends into
+    const rv=ctx.createConvolver(),len=Math.floor(ctx.sampleRate*3),ir=ctx.createBuffer(2,len,ctx.sampleRate);
+    for(let c=0;c<2;c++){const d=ir.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,3.2)}
+    rv.buffer=ir;const rvg=ctx.createGain();rvg.gain.value=.55;rv.connect(rvg);rvg.connect(jmaster);
+    const out=(node,p,wet)=>{let n=node;if(ctx.createStereoPanner){const s=ctx.createStereoPanner();s.pan.value=p||0;node.connect(s);n=s}
+      const dry=ctx.createGain();dry.gain.value=1-(wet||0)*.6;n.connect(dry);dry.connect(jmaster);
+      if(wet){const w=ctx.createGain();w.gain.value=wet;n.connect(w);w.connect(rv)}};
+    const nb=noiseBuf(ctx,6);
+    const white=ctx.createBuffer(1,ctx.sampleRate*4,ctx.sampleRate);{const d=white.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}
+    const keep=n=>jtimers.push({stop:()=>{try{n.stop()}catch(e){}}});
+    const lfo=(param,rate,depth)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=rate;g.gain.value=depth;o.connect(g);g.connect(param);o.start();keep(o)};
+    const loop=(fn,min,max,first)=>{let id;const go=()=>{fn();id=setTimeout(go,R(min,max))};id=setTimeout(go,first!=null?first:R(300,min));jtimers.push({stop:()=>clearTimeout(id)})};
+    // wind moving through the canopy, left and right drifting apart
+    [-.6,.6].forEach((p,k)=>{const s=ctx.createBufferSource();s.buffer=nb;s.loop=true;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=520;f.Q.value=.4;
+      lfo(f.frequency,.05+k*.03,260);const g=ctx.createGain();g.gain.value=.07;lfo(g.gain,.07+k*.02,.035);s.connect(f);f.connect(g);out(g,p,.2);s.start(0,k*2);keep(s)});
+    // a small stream: soft hiss plus a babbling band that wanders
+    {const s=ctx.createBufferSource();s.buffer=white;s.loop=true;const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.value=700;const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=3200;
+      const g=ctx.createGain();g.gain.value=.012;s.connect(hp);hp.connect(lp);lp.connect(g);out(g,.35,.15);s.start();keep(s);
+      const s2=ctx.createBufferSource();s2.buffer=white;s2.loop=true;const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.Q.value=6;bp.frequency.value=1200;const g2=ctx.createGain();g2.gain.value=.02;
+      s2.connect(bp);bp.connect(g2);out(g2,.45,.25);s2.start(0,1.3);keep(s2);
+      loop(()=>{const t=ctx.currentTime;bp.frequency.setTargetAtTime(R(500,2200),t,.03);g2.gain.setTargetAtTime(R(.008,.026),t,.05)},70,160,0)}
+    // crickets: short bright pulses in little trills
+    function cricket(t,p,v){const o=ctx.createOscillator();o.frequency.value=R(4300,4700);const g=ctx.createGain();g.gain.value=0;
+      for(let i=0;i<4;i++){const s=t+i*.045;g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(v,s+.008);g.gain.linearRampToValueAtTime(0,s+.03)}
+      o.connect(g);out(g,p,.35);o.start(t);o.stop(t+.25)}
+    [[-.8,.005],[.7,.004]].forEach(([p,v],k)=>loop(()=>{const t=ctx.currentTime;cricket(t,p,v*1.4);cricket(t+.42,p,v*1.25)},850,1300,400+k*350));
+    // birds: a few different calls
+    function note(t,f0,f1,d,v,p,type){const o=ctx.createOscillator();o.type=type||'sine';o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+d);
+      const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+Math.min(.02,d/3));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);out(g,p,.45);o.start(t);o.stop(t+d+.02)}
+    const birds=[
+      (t,p)=>{const n=3+Math.floor(R(0,4)),b=R(2600,3400);for(let i=0;i<n;i++)note(t+i*.13,b,b*1.35,.08,.1,p)},          // quick chips
+      (t,p)=>{note(t,R(1800,2100),R(3200,3600),.35,.09,p);note(t+.45,R(3300,3600),R(1700,1900),.4,.075,p)},          // two-note whistle
+      (t,p)=>{const b=R(3800,4400);for(let i=0;i<7;i++)note(t+i*.07,b*(1-i*.03),b*(.8-i*.03),.05,.06,p)},            // falling trill
+      (t,p)=>{const b=R(430,520);note(t,b,b*.92,.45,.08,p,'triangle');note(t+.6,b*1.05,b*.9,.7,.07,p,'triangle')}  // soft dove-like hoo
+    ];
+    loop(()=>{const k=Math.floor(R(0,birds.length));birds[k](ctx.currentTime,R(-.9,.9))},1800,4800,900);
+    // something big, far away: a long, low call that's mostly echo
+    loop(()=>{const t=ctx.currentTime,d=R(2.6,3.4),b=R(70,85);
+      const o=ctx.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(b,t);o.frequency.linearRampToValueAtTime(b*1.35,t+d*.35);o.frequency.linearRampToValueAtTime(b*.8,t+d);
+      const n=ctx.createBufferSource();n.buffer=nb;const ng=ctx.createGain();ng.gain.value=.6;
+      const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(260,t);lp.frequency.linearRampToValueAtTime(420,t+d*.35);lp.frequency.linearRampToValueAtTime(220,t+d);
+      const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.22,t+d*.3);g.gain.setValueAtTime(.22,t+d*.55);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+      o.connect(lp);n.connect(ng);ng.connect(lp);lp.connect(g);out(g,R(-.5,.5),.9);o.start(t);n.start(t,R(0,3));o.stop(t+d+.1);n.stop(t+d+.1)},24000,38000,6000);
     return true}
-  function stopJungle(){if(!jon)return;jon=false;jb.setAttribute('aria-pressed','false');jb.innerHTML=JOFF;jb.setAttribute('aria-label','Play dinosaur sounds');jb.title='Play dinosaur sounds';
+  function stopJungle(){if(!jon)return;jon=false;jb.setAttribute('aria-pressed','false');jb.innerHTML=JOFF;jb.setAttribute('aria-label','Play jungle sounds');jb.title='Play jungle sounds';
     const m=jmaster,ts=jtimers;jtimers=[];if(m&&jctx){const t=jctx.currentTime;m.gain.cancelScheduledValues(t);m.gain.setValueAtTime(m.gain.value,t);m.gain.linearRampToValueAtTime(0,t+1.2)}
     setTimeout(()=>{ts.forEach(x=>x.stop());try{m&&m.disconnect()}catch(e){}},1300)}
   if(jb){
-    jb.addEventListener('click',()=>{if(jon){stopJungle();return}if(startJungle()){jon=true;jb.setAttribute('aria-pressed','true');jb.innerHTML=JON;jb.setAttribute('aria-label','Stop dinosaur sounds');jb.title='Stop dinosaur sounds'}});
+    jb.addEventListener('click',()=>{if(jon){stopJungle();return}if(startJungle()){jon=true;jb.setAttribute('aria-pressed','true');jb.innerHTML=JON;jb.setAttribute('aria-label','Stop jungle sounds');jb.title='Stop jungle sounds'}});
     window.addEventListener('hashchange',()=>{const s=document.getElementById('start');if(!s.classList.contains('on'))stopJungle()});
   }
 
