@@ -909,13 +909,13 @@ html.present .pager{padding-block:10px 14px}
   <div class="wrap">
     <div class="stack" style="max-width:72ch">
       <p class="eyebrow">Teacher guide · hosting with Google Apps Script</p>
-      <h2>Transforming Gemini Artifacts into Live Canvas Assets</h2>
+      <h2>Transforming AI Artifacts into Live Canvas Assets</h2>
       <p class="credit">Guide by <b>Taylor Stevens, Ed.S.</b> · Instructional Designer, Forsyth Virtual Academy</p>
-      <p class="lede">When Gemini builds an interactive tool, like a simulation, a calculator or a dashboard, it gives you raw HTML, CSS and JavaScript code. To make it live for students inside Canvas, you need a host. Google Apps Script hosts it for free, securely and with no ads. The same steps work for code from Claude or ChatGPT.</p>
+      <p class="lede">When Claude, Gemini or ChatGPT builds an interactive tool, like a simulation, a calculator or a dashboard, it gives you raw HTML, CSS and JavaScript code. To make it live for students inside Canvas, you need a host. Google Apps Script hosts it for free, securely and with no ads. The steps are the same whichever AI built it.</p>
     </div>
     <ol class="guide">
-      <li><span class="g-n">1</span><div><h3>Prepare your code from Gemini</h3>
-        <ul><li>In your Gemini chat, find the code for the interactive tool.</li><li>Click the <b>Copy</b> icon.</li><li>Make sure you have the full code. It usually starts with <code>&lt;!DOCTYPE html&gt;</code> and ends with <code>&lt;/html&gt;</code>.</li></ul></div></li>
+      <li><span class="g-n">1</span><div><h3>Prepare your code from the AI</h3>
+        <ul><li>In your AI chat, find the code for the interactive tool.</li><li>Click the <b>Copy</b> icon.</li><li>Make sure you have the full code. It usually starts with <code>&lt;!DOCTYPE html&gt;</code> and ends with <code>&lt;/html&gt;</code>.</li></ul></div></li>
       <li><span class="g-n">2</span><div><h3>Create an Apps Script project</h3>
         <ul><li>Go to <a href="https://script.google.com" target="_blank" rel="noopener">script.google.com</a>.</li><li>Click <b>+ New project</b> in the top left.</li><li>Rename the project at the top, for example "WWI Home Front Simulation."</li></ul></div></li>
       <li><span class="g-n">3</span><div><h3>Set up the backend (Code.gs)</h3>
@@ -926,7 +926,7 @@ html.present .pager{padding-block:10px 14px}
 }</pre></div>
         <p class="why"><b>Why this matters:</b> the <code>.setXFrameOptionsMode</code> line is the "magic" command that lets your app be embedded in an iframe in Canvas. Without it, the browser blocks the connection.</p></div></li>
       <li><span class="g-n">4</span><div><h3>Set up the frontend (index.html)</h3>
-        <ul><li>Click the <b>+</b> next to <b>Files</b> in the left sidebar and choose <b>HTML</b>.</li><li>Name the file <b>index</b>. Google adds <code>.html</code> for you.</li><li>Delete the template code and paste the entire code you copied from Gemini.</li><li>Save your work: <b>Cmd+S</b> or <b>Ctrl+S</b>.</li></ul></div></li>
+        <ul><li>Click the <b>+</b> next to <b>Files</b> in the left sidebar and choose <b>HTML</b>.</li><li>Name the file <b>index</b>. Google adds <code>.html</code> for you.</li><li>Delete the template code and paste the entire code you copied from the AI.</li><li>Save your work: <b>Cmd+S</b> or <b>Ctrl+S</b>.</li></ul></div></li>
       <li><span class="g-n">5</span><div><h3>Deploy the web app</h3>
         <ul><li>Click the blue <b>Deploy</b> button at the top right and choose <b>New deployment</b>.</li><li>Click the gear icon next to "Select type" and choose <b>Web app</b>.</li><li><b>Description:</b> for example, "Initial launch."</li><li><b>Execute as:</b> Me (your email).</li><li><b>Who has access: Anyone.</b> This is critical, so students can open it without logging into the script editor.</li><li>Click <b>Deploy</b> and copy the <b>Web app URL</b>. It ends in <code>/exec</code>.</li></ul></div></li>
       <li><span class="g-n">6</span><div><h3>Embed it in Canvas</h3>
