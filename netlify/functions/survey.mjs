@@ -57,7 +57,11 @@ export default async (req) => {
   try {
     const st = store();
     const round = await currentRound(st);
-    if (req.method === "GET") return json(await summary(st, round));
+    if (req.method === "GET") {
+      const s = await summary(st, round);
+      console.log(JSON.stringify({ op: "get", round, total: s.total, ideas: s.ideas.length }));
+      return json(s);
+    }
     if (req.method !== "POST") return json({ ok: false, error: "method not allowed" }, 405);
 
     let d;
@@ -89,8 +93,12 @@ export default async (req) => {
     const subject = SUBJECTS.includes(d.subject) ? d.subject : "";
     const prefix = `r${round}/${id}/`;
     await deletePrefix(st, prefix); // changing an answer replaces the old one
-    await st.set(prefix + [d.stage, grade, subject].map(encodeURIComponent).join("~"), "1");
-    return json(await summary(st, round));
+    const key = prefix + [d.stage, grade, subject].map(encodeURIComponent).join("~");
+    await st.set(key, "1");
+    const s = await summary(st, round);
+    const listed = (await st.list({ prefix: `r${round}/` })).blobs.map((x) => x.key);
+    console.log(JSON.stringify({ op: "checkin", round, key, total: s.total, listed }));
+    return json(s);
   } catch (err) {
     console.error(err);
     return json({ ok: false, error: "server error" }, 500);
