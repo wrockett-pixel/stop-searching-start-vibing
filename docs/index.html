@@ -58,11 +58,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (max-width:640px){.steps{display:none}.trail .wrap{justify-content:space-between}}
 
 /* ---------- sections ---------- */
-section{padding-block:clamp(56px,9vw,110px);border-bottom:1px solid var(--line);scroll-margin-top:56px}
+section{padding-block:clamp(16px,2.4vw,40px);border-bottom:1px solid var(--line);scroll-margin-top:56px}
 .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,64px);align-items:center}
 .split.flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
 .split.flip .art{order:2}
-.art img{display:block;width:100%;height:auto;max-height:min(82vh,960px);object-fit:cover;
+.art img{display:block;width:100%;height:auto;max-height:min(calc(100vh - 190px),900px);object-fit:cover;
   -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C80 18 98 34 92 52C86 70 100 84 90 100H0Z'/%3E%3C/svg%3E");
   mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H88C80 18 98 34 92 52C86 70 100 84 90 100H0Z'/%3E%3C/svg%3E");
   -webkit-mask-size:100% 100%;mask-size:100% 100%;border-radius:var(--r) 0 0 var(--r)}
@@ -77,7 +77,7 @@ section{padding-block:clamp(56px,9vw,110px);border-bottom:1px solid var(--line);
 }
 
 /* hero */
-#start{padding-block:clamp(40px,6vw,80px)}
+#start{padding-block:clamp(16px,2.4vw,40px)}
 #start h1{font-size:var(--s4);font-weight:800}
 #start h1 em{font-style:normal;color:var(--teal)}
 .hero-sub{font-family:var(--f-display);font-weight:600;font-size:var(--s2);line-height:1.2;max-width:22ch}
@@ -493,7 +493,7 @@ main section.enter-fwd,main section.enter-back{overflow-x:clip}
 @media (prefers-reduced-motion:reduce){main section.enter-fwd>.wrap,main section.enter-back>.wrap,main section h2::after{animation:none!important}}
 /* pages: show one section at a time */
 main section{display:none}
-main section.on{display:flex;align-items:center;min-height:calc(100vh - 150px)}
+main section.on{display:flex;align-items:flex-start;min-height:0}
 main section.on>.wrap{width:100%}
 main section.on>canvas.flies{position:absolute}
 section::after{display:none}
@@ -927,7 +927,7 @@ html.present .pager{padding-block:10px 14px}
 <section id="demo" data-speaker="L" data-name="Live demo">
   <div class="wrap">
     <div class="split">
-      <div class="art"><img src="img/lab.webp" alt="A dinosaur scientist looks into a microscope beneath a glowing plant cell in a jungle research lab" width="760" height="1300" style="max-height:min(60vh,680px)"></div>
+      <div class="art"><img src="img/lab.webp" alt="A dinosaur scientist looks into a microscope beneath a glowing plant cell in a jungle research lab" width="760" height="1300" style="max-height:min(52vh,600px)"></div>
       <div class="stack">
         <p class="eyebrow">Live demo · 7th grade science · Georgia standard S7L2</p>
         <h2>Cell organelles matching game</h2>
@@ -1014,7 +1014,7 @@ html.present .pager{padding-block:10px 14px}
 <section class="deco flipdeco" id="silk" data-speaker="W" data-name="Live demo: Silk Road">
   <div class="wrap">
     <div class="split flip">
-      <div class="art"><img class="keep" src="img/silk.webp" alt="A young green dinosaur holding a glowing trade-route map leads a caravan of long-necked dinosaurs loaded with silk, porcelain and spice sacks across desert dunes toward a domed caravanserai below snowy mountains at sunset" width="760" height="1140" style="max-height:min(76vh,880px)"></div>
+      <div class="art"><img class="keep" src="img/silk.webp" alt="A young green dinosaur holding a glowing trade-route map leads a caravan of long-necked dinosaurs loaded with silk, porcelain and spice sacks across desert dunes toward a domed caravanserai below snowy mountains at sunset" width="760" height="1140" style="max-height:min(calc(100vh - 190px),880px)"></div>
       <div class="stack">
       <p class="eyebrow">Live demo · AP World History · Unit 2, Topic 2.1</p>
         <h2>Silk Road caravan</h2>
@@ -1126,7 +1126,7 @@ html.present .pager{padding-block:10px 14px}
 <section id="turn" data-speaker="WL" data-name="Your turn">
   <div class="wrap">
     <div class="split flip">
-      <div class="art"><img class="keep" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg with an adult T. rex watching behind" width="760" height="1221" style="max-height:min(58vh,660px)"></div>
+      <div class="art"><img class="keep" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg with an adult T. rex watching behind" width="760" height="1221" style="max-height:min(48vh,560px)"></div>
       <div class="stack">
         <p class="eyebrow">Your turn · 8 minutes</p>
         <h2>How do you think you can use this?</h2>
