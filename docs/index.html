@@ -1344,11 +1344,12 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   });
 
   /* QR codes point at this page */
-  function pageUrl(){const u=location.href.split('#')[0];return /^https?:/.test(u)?u:''}
+  // QR codes always point to the public site, wherever this page is opened (Claude, GitHub Pages, a file).
+  function pageUrl(){return 'https://stop-searching-start-vibing.netlify.app/'}
   function drawQR(el,hash){const u=pageUrl();if(!u||typeof QRCode==='undefined'){return false}
     el.innerHTML='';new QRCode(el,{text:u+(hash||''),width:240,height:240,colorDark:'#0f2231',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});return true}
-  if(drawQR($('#qrRoom'),'#room')){$('#qrUrl').textContent=location.host}else{$('#qrCard').hidden=true}
-  const kq=$('#qrKit');if(kq){if(drawQR(kq,'')){$('#qrKitUrl').textContent=location.host}else{kq.closest('.qr-card').hidden=true}}
+  if(drawQR($('#qrRoom'),'#room')){$('#qrUrl').textContent='stop-searching-start-vibing.netlify.app'}else{$('#qrCard').hidden=true}
+  const kq=$('#qrKit');if(kq){if(drawQR(kq,'')){$('#qrKitUrl').textContent='stop-searching-start-vibing.netlify.app'}else{kq.closest('.qr-card').hidden=true}}
 
   /* ---------- example tabs ---------- */
   const tabs=$$('[role=tab]');
