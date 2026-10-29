@@ -216,6 +216,25 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .tracks .skill li{font-size:.95rem}
 .tracks q{color:var(--bone);font-style:italic}
 @media (max-width:700px){.tracks{grid-template-columns:minmax(0,1fr)}}
+.guide{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.guide>li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;background:var(--deep);border-radius:var(--r);padding:20px}
+.guide h3{margin-bottom:8px}
+.guide ul{margin:0;padding-left:18px;display:grid;gap:4px;color:var(--fog)}
+.guide ul b,.guide p b{color:var(--bone)}
+.guide p{color:var(--fog);margin-top:6px}
+.guide .why{border-left:3px solid var(--amber);padding-left:12px}
+.g-n{width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--teal-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.15rem}
+.guide code,.g-tips code{font-family:var(--f-mono);font-size:.85em;background:var(--moss);padding:1px 5px;border-radius:4px;color:var(--bone)}
+.codebox{margin-top:10px;min-width:0;display:grid;gap:6px}
+.codebox pre{margin:0;background:#091723;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-family:var(--f-mono);font-size:.82rem;line-height:1.55;color:var(--bone);white-space:pre;overflow-x:auto}
+.codebox .code-copy{justify-self:end;order:-1}
+.credit{color:var(--fog);font-size:.95rem;margin-top:-6px}
+.credit b{color:var(--amber)}
+.g-tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.g-tips .tile b{display:block;margin-bottom:4px}
+.g-tips .tile span{color:var(--fog)}
+.g-tips .tile span b{display:inline;color:var(--bone);font-size:inherit;margin:0}
+@media (max-width:900px){.guide,.g-tips{grid-template-columns:minmax(0,1fr)}}
 /* demo game */
 .game{background:var(--deep);border-radius:calc(var(--r) + 6px);padding:clamp(16px,3vw,28px);margin-top:32px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px}
 @media (max-width:900px){.game{grid-template-columns:minmax(0,1fr)}}
@@ -749,7 +768,7 @@ html.present section>.wrap{width:100%}
       <ol>
         <li><div class="num">5</div><div class="body"><b>Release it into the wild</b><span>Pick the way that fits your class. Each one gives students a plain web link, with no AI account needed.</span>
           <div class="rel-opts">
-            <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M14 18v3"/></svg></div><div><b>Google Apps Script</b><span>Paste the code into a web app in your Google account. It stays with your Google files, and results can go straight to a Google Sheet.</span></div></div>
+            <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M14 18v3"/></svg></div><div><b>Google Apps Script</b><span>Paste the code into a web app in your Google account. It stays with your Google files, and results can go straight to a Google Sheet. <a href="#gas-guide">Step-by-step guide</a></span></div></div>
             <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-.5-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1-1 9z"/></svg></div><div><b>Netlify</b><span>Drag and drop your file onto Netlify to get a free, live website with a name you choose. Good for apps with images or several pages.</span></div></div>
             <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M9 4c-2 0-3 1-3 3v2c0 1.5-1 2.5-2 3 1 .5 2 1.5 2 3v2c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2c0 1.5 1 2.5 2 3-1 .5-2 1.5-2 3v2c0 2-1 3-3 3"/></svg></div><div><b>Embed in your LMS</b><span>Add the link or embed code to a Canvas (or other LMS) page so the app lives where students already work.</span></div></div>
           </div></div></li>
@@ -767,6 +786,46 @@ html.present section>.wrap{width:100%}
           </div>
           <p class="muted" style="font-size:.92rem;margin-top:10px">Using Gemini or ChatGPT? Save your setup as a Gem or a custom GPT.</p></div></li>
       </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 9d -->
+<section class="deco flipdeco" id="gas-guide" data-name="Apps Script guide">
+  <div class="wrap">
+    <div class="stack" style="max-width:72ch">
+      <p class="eyebrow">Teacher guide · hosting with Google Apps Script</p>
+      <h2>Transforming Gemini Artifacts into Live Canvas Assets</h2>
+      <p class="credit">Guide by <b>Taylor Stevens, Ed.S.</b> · Instructional Designer, Forsyth Virtual Academy</p>
+      <p class="lede">When Gemini builds an interactive tool, like a simulation, a calculator or a dashboard, it gives you raw HTML, CSS and JavaScript code. To make it live for students inside Canvas, you need a host. Google Apps Script hosts it for free, securely and with no ads. The same steps work for code from Claude or ChatGPT.</p>
+    </div>
+    <ol class="guide">
+      <li><span class="g-n">1</span><div><h3>Prepare your code from Gemini</h3>
+        <ul><li>In your Gemini chat, find the code for the interactive tool.</li><li>Click the <b>Copy</b> icon.</li><li>Make sure you have the full code. It usually starts with <code>&lt;!DOCTYPE html&gt;</code> and ends with <code>&lt;/html&gt;</code>.</li></ul></div></li>
+      <li><span class="g-n">2</span><div><h3>Create an Apps Script project</h3>
+        <ul><li>Go to <a href="https://script.google.com" target="_blank" rel="noopener">script.google.com</a>.</li><li>Click <b>+ New project</b> in the top left.</li><li>Rename the project at the top, for example "WWI Home Front Simulation."</li></ul></div></li>
+      <li><span class="g-n">3</span><div><h3>Set up the backend (Code.gs)</h3>
+        <p>Every Google web app needs a small "server" instruction that tells Google how to show the file. In <b>Code.gs</b>, delete the existing code and paste this exactly:</p>
+        <div class="codebox"><button type="button" class="chip code-copy" data-target="gsCode">Copy</button><pre id="gsCode">function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index')
+         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}</pre></div>
+        <p class="why"><b>Why this matters:</b> the <code>.setXFrameOptionsMode</code> line is the "magic" command that lets your app be embedded in an iframe in Canvas. Without it, the browser blocks the connection.</p></div></li>
+      <li><span class="g-n">4</span><div><h3>Set up the frontend (index.html)</h3>
+        <ul><li>Click the <b>+</b> next to <b>Files</b> in the left sidebar and choose <b>HTML</b>.</li><li>Name the file <b>index</b>. Google adds <code>.html</code> for you.</li><li>Delete the template code and paste the entire code you copied from Gemini.</li><li>Save your work: <b>Cmd+S</b> or <b>Ctrl+S</b>.</li></ul></div></li>
+      <li><span class="g-n">5</span><div><h3>Deploy the web app</h3>
+        <ul><li>Click the blue <b>Deploy</b> button at the top right and choose <b>New deployment</b>.</li><li>Click the gear icon next to "Select type" and choose <b>Web app</b>.</li><li><b>Description:</b> for example, "Initial launch."</li><li><b>Execute as:</b> Me (your email).</li><li><b>Who has access: Anyone.</b> This is critical, so students can open it without logging into the script editor.</li><li>Click <b>Deploy</b> and copy the <b>Web app URL</b>. It ends in <code>/exec</code>.</li></ul></div></li>
+      <li><span class="g-n">6</span><div><h3>Embed it in Canvas</h3>
+        <ul><li>Open your Canvas page or assignment.</li><li>Switch to the <b>HTML editor</b> (the <b>&lt;/&gt;</b> icon).</li><li>Paste this code, replacing the URL with your link from step 5:</li></ul>
+        <div class="codebox"><button type="button" class="chip code-copy" data-target="ifCode">Copy</button><pre id="ifCode">&lt;iframe src="YOUR_WEB_APP_URL_HERE" width="100%" height="700px" style="border:none;"&gt;&lt;/iframe&gt;</pre></div>
+        <p>Save the page. Your interactive asset is now live.</p></div></li>
+    </ol>
+    <h3 style="margin-top:36px">Important tips for teachers</h3>
+    <div class="g-tips">
+      <div class="tile"><b>The "New Version" rule</b><span>Saving your script doesn't change what students see. Go to <b>Deploy › Manage deployments</b>, edit your active deployment, and choose <b>New version</b> to push updates live. The link stays the same.</span></div>
+      <div class="tile"><b>Test it like a student</b><span>Open the link in a private or Incognito window. If it asks for a sign-in, check that <b>Who has access</b> is set to Anyone. If you're signed into several Google accounts, Apps Script can show "page not found," so test in a private window.</span></div>
+      <div class="tile"><b>Security</b><span>These apps are sandboxed by Google. They can't access your personal files or the student's computer unless you specifically write code to do so.</span></div>
+      <div class="tile"><b>Persistence</b><span>Apps hosted on your Google account stay active as long as the account exists, with no third-party hosting fees. Apps on a school account go away if that account is closed, so keep a copy of your code.</span></div>
     </div>
   </div>
 </section>
@@ -1063,7 +1122,8 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
         <a href="#plan"><b>From Egg to Apex map</b><small>The six steps, from choosing your dig site to leaving your tracks</small><span>steps</span></a>
         <a href="#turn"><b>Vibe-Check starter kit</b><small>Fill in the starter prompt, copy it and hatch your first app</small><span>prompt</span></a>
         <a href="#demo"><b>Live demos</b><small>The cell organelles game and the Silk Road caravan</small><span>play</span></a>
-        <a href="#release"><b>Apps Script, Netlify and LMS how-tos</b><small>Three ways to get your app to students</small><span>share</span></a>
+        <a href="#gas-guide"><b>Apps Script teacher guide</b><small>Turn AI-built code into a live app and embed it in Canvas</small><span>guide</span></a>
+        <a href="#release"><b>Apps Script, Netlify and LMS options</b><small>Three ways to get your app to students</small><span>share</span></a>
         <a href="#skill"><b>Make it a Claude skill</b><small>Save your recipe so the next app takes minutes</small><span>reuse</span></a>
         <a href="#tips"><b>Tips &amp; tricks</b><small>What we learned the hard way</small><span>tips</span></a>
       </div>
@@ -1389,6 +1449,10 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   /* example apps: copy link fallback */
   $$('.app-copy').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.url;
     try{navigator.clipboard.writeText(t).then(()=>toast('Link copied. Paste it into a private window.'),()=>toast(t))}catch(e){toast(t)}}));
+  /* teacher guide: copy code blocks */
+  $$('.code-copy').forEach(b=>b.addEventListener('click',()=>{const el=document.getElementById(b.dataset.target);const t=el.textContent;
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Selected. Press Ctrl+C or ⌘C to copy')};
+    try{navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)},sel)}catch(e){sel()}}));
   /* contact: copy email */
   $$('.c-copy').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.email;
     try{navigator.clipboard.writeText(t).then(()=>toast('Email copied'),()=>toast(t))}catch(e){toast(t)}}));
