@@ -26,7 +26,10 @@ const STAGES = ['egg', 'hatchling', 'apex'];
 function sheet_(name, header) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sh = ss.getSheetByName(name);
-  if (!sh) { sh = ss.insertSheet(name); sh.appendRow(header); sh.setFrozenRows(1); }
+  if (!sh) {
+    try { sh = ss.insertSheet(name); sh.appendRow(header); sh.setFrozenRows(1); }
+    catch (err) { SpreadsheetApp.flush(); sh = ss.getSheetByName(name); } // another request just made it
+  }
   return sh;
 }
 function live_() { return sheet_(LIVE, ['Device', 'Stage', 'Grade', 'Content', 'Checked in']); }
