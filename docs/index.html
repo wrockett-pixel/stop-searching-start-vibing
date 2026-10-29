@@ -460,6 +460,27 @@ html.present .speaker{display:flex}
 .speaker span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.75rem;font-weight:600;opacity:.85}
 .speaker .sp-W{background:var(--amber);color:#2a1a00}
 .speaker .sp-L{background:var(--teal);color:var(--teal-ink)}
+.pacer{display:none;position:relative}
+html.present .pacer{display:block}
+.pacer>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:4px 12px 4px 6px;font-family:var(--f-mono);font-size:.8rem;color:var(--fog);background:rgba(0,0,0,.15);user-select:none}
+.pacer>summary::-webkit-details-marker{display:none}
+.pacer .p-ring{width:22px;height:22px;flex:none}
+.pacer .p-ring circle{fill:none;stroke-width:4}
+.pacer .p-ring .bg{stroke:var(--line)}
+.pacer .p-ring .fg{stroke:var(--teal);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .9s linear,stroke .3s}
+.pacer .p-left{color:var(--bone);font-weight:600;min-width:3.4em}
+.pacer .p-drift{opacity:.85}
+.pacer.warn .p-ring .fg{stroke:var(--amber)}.pacer.warn .p-left{color:var(--amber)}
+.pacer.over .p-ring .fg{stroke:var(--bad)}.pacer.over .p-left{color:var(--bad)}
+.pacer .p-drift.behind{color:var(--amber)}
+.pacer.paused>summary{opacity:.6}
+.pacer .p-panel{position:absolute;right:0;top:calc(100% + 8px);width:270px;background:var(--night-2,#14263a);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;z-index:40;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.pacer .p-row{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--fog)}
+.pacer .p-row b{color:var(--bone);font-family:var(--f-mono)}
+.pacer .p-track{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.pacer .p-track i{display:block;height:100%;background:var(--teal);width:0}
+.pacer .p-btns{display:flex;gap:8px}
+.pacer .p-btns button{flex:1}
 .reveal{margin-top:28px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:2px dashed var(--amber);border-radius:var(--r);padding:18px 22px;background:color-mix(in srgb,var(--amber) 8%,transparent)}
 .reveal .star{font-family:var(--f-display);font-weight:800;font-size:2rem;color:var(--amber);line-height:1}
 .reveal p{font-family:var(--f-display);font-weight:600;font-size:var(--s2);color:var(--bone);margin:0;flex:1;min-width:14rem}
@@ -547,6 +568,15 @@ html.present .pager{padding-block:10px 14px}
     <a class="brand" href="#start">Egg <span>→</span> Apex</a>
     <nav class="steps" id="dots" aria-label="Pages"></nav>
     <div class="speaker" id="speaker" aria-hidden="true"></div>
+    <details class="pacer" id="pacer"><summary title="Pacing timer: time left on this page"><svg class="p-ring" viewBox="0 0 24 24" aria-hidden="true"><circle class="bg" cx="12" cy="12" r="9"/><circle class="fg" id="pRing" cx="12" cy="12" r="9" stroke-dasharray="56.55" stroke-dashoffset="0"/></svg><span class="p-left" id="pLeft">0:00</span><span class="p-drift" id="pDrift">on time</span></summary>
+      <div class="p-panel">
+        <div class="p-row"><span>This page</span><b id="pPage">0:00 of 0:00</b></div>
+        <div class="p-row"><span>Session</span><b id="pTotal">0:00 of 55:00</b></div>
+        <div class="p-track"><i id="pBar"></i></div>
+        <div class="p-row"><span>Planned for this point</span><b id="pPlan">0:00</b></div>
+        <div class="p-btns"><button type="button" class="chip" id="pPause">Pause</button><button type="button" class="chip" id="pReset">Reset</button></div>
+      </div>
+    </details>
     <details class="page-menu" id="pageMenu"><summary class="trail-btn">Pages</summary><ol id="pageList" aria-label="All pages"></ol></details>
     <button class="trail-btn" id="presentBtn" aria-pressed="false" title="Arrow keys move between pages">Present</button>
   </div>
@@ -1397,6 +1427,50 @@ html.present .pager{padding-block:10px 14px}
     if(on){const el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen().catch(()=>{});toast('Use ← → to move between pages')}
     else if(document.fullscreenElement&&document.exitFullscreen){document.exitFullscreen().catch(()=>{})}
   });
+
+  /* ---------- pacing timer (Present mode): budgets add up to 55 minutes ---------- */
+  (function(){
+    const BUDGET={start:1,room:3,why:2,vibe:2,now:2,uses:2,examples:3,tools:2,plan:2,hatch:2,release:2,'gas-guide':2,pick:3,demo:3,silk:3,tips:2,fairer:2,beyond:1,turn:9,takeaways:1,kit:2,share:4};
+    const TOTAL=sections.reduce((a,s)=>a+(BUDGET[s.id]||0),0)*60;
+    const el=$('#pacer');if(!el)return;
+    const KEY='vibe-pacer';let st={total:0,pages:{},running:false};
+    try{const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v&&typeof v.total==='number')st=Object.assign(st,v,{running:false})}catch(e){}
+    const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+    const fmt=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+    const present=()=>document.documentElement.classList.contains('present');
+    let last=Date.now();
+    function draw(){
+      const sec=sections[current]||sections[0];if(!sec)return;
+      const bud=(BUDGET[sec.id]||1)*60,used=st.pages[sec.id]||0,left=bud-used;
+      const before=sections.slice(0,sections.indexOf(sec)).reduce((a,s)=>a+(BUDGET[s.id]||0)*60,0);
+      const plan=before+Math.min(used,bud),drift=st.total-plan;
+      $('#pLeft').textContent=left>=0?fmt(left):'+'+fmt(-left);
+      $('#pRing').style.strokeDashoffset=(56.55*Math.min(1,used/bud)).toFixed(2);
+      el.classList.toggle('over',left<0);el.classList.toggle('warn',left>=0&&left<=Math.max(20,bud*.2));
+      el.classList.toggle('paused',!st.running);
+      const d=$('#pDrift');d.className='p-drift';
+      if(!st.running&&st.total===0){d.textContent='tap to start'}
+      else if(drift>30){d.textContent=fmt(drift)+' behind';d.classList.add('behind')}
+      else if(drift<-30){d.textContent=fmt(-drift)+' ahead'}
+      else d.textContent=st.running?'on time':'paused';
+      $('#pPage').textContent=fmt(used)+' of '+fmt(bud);
+      $('#pTotal').textContent=fmt(st.total)+' of '+fmt(TOTAL);
+      $('#pPlan').textContent=fmt(plan);
+      $('#pBar').style.width=Math.min(100,st.total/TOTAL*100)+'%';$('#pBar').style.background=st.total>TOTAL?'var(--bad)':'';
+      $('#pPause').textContent=st.running?'Pause':(st.total?'Resume':'Start');
+    }
+    setInterval(()=>{const now=Date.now(),dt=(now-last)/1000;last=now;
+      if(st.running&&present()&&dt<5){const id=(sections[current]||{}).id;st.total+=dt;if(id)st.pages[id]=(st.pages[id]||0)+dt;save()}
+      draw()},1000);
+    $('#pPause').addEventListener('click',()=>{st.running=!st.running;last=Date.now();save();draw()});
+    const rb=$('#pReset');let armed=null;
+    rb.addEventListener('click',()=>{if(!armed){rb.textContent='Tap again to reset';armed=setTimeout(()=>{armed=null;rb.textContent='Reset'},3000);return}
+      clearTimeout(armed);armed=null;rb.textContent='Reset';st={total:0,pages:{},running:false};save();draw()});
+    // starts on its own the first time you go to Present; pauses when you leave it
+    new MutationObserver(()=>{if(present()){if(!st.total&&!st.running){st.running=true;last=Date.now()}}else st.running=false;draw()}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+    document.addEventListener('click',e=>{if(el.open&&!el.contains(e.target))el.open=false});
+    window.addEventListener('hashchange',()=>setTimeout(draw,30));draw();
+  })();
 
   /* ---------- who's in the room: live check-in ---------- */
   // Live survey runs as a Netlify Function (netlify/functions/survey.mjs).
