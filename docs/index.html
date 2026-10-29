@@ -569,7 +569,7 @@ html.present .pager{padding-block:10px 14px}
           <form id="clearForm" hidden>
             <label for="clearPin" class="ci-label">Presenter PIN</label>
             <div class="clear-row"><input type="text" id="clearPin" inputmode="numeric" autocomplete="off"><button class="btn" type="submit" style="background:var(--bad);color:#2a0d05">Clear and archive</button><button type="button" class="btn ghost" id="clearCancel">Cancel</button></div>
-            <p class="ci-msg" id="clearMsg" aria-live="polite">Current answers move to the Archive tab in your Sheet, then the count starts at zero.</p>
+            <p class="ci-msg" id="clearMsg" aria-live="polite">This deletes every answer and starts the count at zero. Nothing is saved.</p>
           </form>
         </div>
       </div>
@@ -1253,8 +1253,10 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   });
 
   /* ---------- who's in the room: live check-in ---------- */
-  // Paste the Google Apps Script web app URL here (see check-in-sheet.gs).
-  const RESPONSES_URL='';
+  // Live survey runs as a Netlify Function (netlify/functions/survey.mjs).
+  // On Netlify it is same-origin; the GitHub Pages mirror calls the Netlify site.
+  const SURVEY_SITE='https://stop-searching-start-vibing.netlify.app';
+  const RESPONSES_URL=/\.netlify\.app$/.test(location.hostname)?'/api/survey':(/^https?:$/.test(location.protocol)?SURVEY_SITE+'/api/survey':'');
   const routes={
     egg:'<b>Welcome, Egg.</b> Start with whichever AI tool your district already gives you, or a free account. Gemini builds fast in a side panel if you use Google. When we get to <a href="#turn">Your turn</a>, use the starter prompt as-is and just swap in your own content.',
     hatchling:'<b>Nice, Hatchling.</b> You already chat with AI. Today\'s leap is asking for an <i>app</i> instead of text. Watch the <a href="#demo">live demo</a>, then evolve your own build one change at a time.',
@@ -1309,11 +1311,11 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
       // Not connected yet: show this device's answer so the screen still demonstrates the idea.
       mine=entry;store.set('vibe-checkin',JSON.stringify(entry));
       summary={total:1,stage:{egg:0,hatchling:0,apex:0,[entry.stage]:1},grade:{[entry.grade]:1},subject:{[entry.subject]:1}};renderResults();
-      msg('Saved on this device only. Live room results start once the Google Sheet is connected.','bad');return}
+      msg('Saved on this device only. Open the live presentation link to join the room survey.','bad');return}
     const btn=$('#ciSubmit');btn.disabled=true;msg('Adding you…');
     try{
       const r=await fetch(RESPONSES_URL,{method:'POST',body:JSON.stringify(entry)});
-      const d=clean(await r.json());if(d){summary=d}
+      const raw=await r.json();if(!raw||raw.ok===false)throw new Error(raw&&raw.error||'refused');const d=clean(raw);if(d){summary=d}
       entry.round=summary.round;mine=entry;store.set('vibe-checkin',JSON.stringify(entry));renderResults();setLive('on');
       btn.textContent='Update my answer';msg('You\'re in! Thanks for checking in.','good');
     }catch(err){msg('That didn\'t go through. Check your connection and tap the button again.','bad')}
@@ -1335,10 +1337,10 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
     const pin=$('#clearPin').value.trim();if(!pin){cm.textContent='Enter your presenter PIN.';cm.className='ci-msg bad';return}
     cm.textContent='Clearing…';cm.className='ci-msg';
     try{const r=await fetch(RESPONSES_URL,{method:'POST',body:JSON.stringify({action:'clear',pin,label:'GaETC'})});const d=await r.json();
-      if(d&&d.ok===false){cm.textContent=d.error==='wrong pin'?'That PIN doesn\'t match the one in your Apps Script.':'The Sheet refused that request.';cm.className='ci-msg bad';return}
-      const c=clean(d);if(c)summary=c;resetForm();renderResults();$('#clearPin').value='';$('#clearCancel').click();toast('Room cleared. Answers saved to the Archive tab.');
-      cm.textContent='Current answers move to the Archive tab in your Sheet, then the count starts at zero.';
-    }catch(err){cm.textContent='Couldn\'t reach the Sheet. Check the connection and try again.';cm.className='ci-msg bad'}
+      if(d&&d.ok===false){cm.textContent=d.error==='wrong pin'?'That PIN doesn\'t match. Check with Wendy or Lindsay.':'The survey couldn\'t clear right now. Try again.';cm.className='ci-msg bad';return}
+      const c=clean(d);if(c)summary=c;resetForm();renderResults();$('#clearPin').value='';$('#clearCancel').click();toast('Room cleared. Ready for the next session.');
+      cm.textContent='This deletes every answer and starts the count at zero. Nothing is saved.';
+    }catch(err){cm.textContent='Couldn\'t reach the survey. Check the connection and try again.';cm.className='ci-msg bad'}
   });
 
   /* QR codes point at this page */
