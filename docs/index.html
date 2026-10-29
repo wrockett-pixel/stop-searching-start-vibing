@@ -448,6 +448,15 @@ html.present #room .qr-card p{font-size:1.05rem}
 .c-row a{color:var(--amber);word-break:break-all;user-select:all}
 @media (max-width:520px){.c-row{grid-template-columns:minmax(0,1fr) auto}.c-row b{grid-column:1/-1}}
 /* present mode */
+/* page transitions */
+@keyframes pageInFwd{from{opacity:0;transform:translateX(56px)}to{opacity:1;transform:none}}
+@keyframes pageInBack{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
+@keyframes ruleGrow{from{width:0}to{width:56px}}
+main section.enter-fwd>.wrap{animation:pageInFwd .45s cubic-bezier(.2,.7,.2,1) both}
+main section.enter-back>.wrap{animation:pageInBack .45s cubic-bezier(.2,.7,.2,1) both}
+main section.enter-fwd h2::after,main section.enter-back h2::after{animation:ruleGrow .6s .2s ease-out both}
+main section.enter-fwd,main section.enter-back{overflow-x:clip}
+@media (prefers-reduced-motion:reduce){main section.enter-fwd>.wrap,main section.enter-back>.wrap,main section h2::after{animation:none!important}}
 /* pages: show one section at a time */
 main section{display:none}
 main section.on{display:flex;align-items:center;min-height:calc(100vh - 150px)}
@@ -1190,7 +1199,9 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   function show(i,target){
     i=Math.max(0,Math.min(sections.length-1,i));
     if(i!==current){
-      sections.forEach((s,k)=>{s.classList.toggle('on',k===i);s.setAttribute('aria-hidden',k===i?'false':'true')});
+      const dir=current<0?'':(i>current?'fwd':'back');
+      sections.forEach((s,k)=>{s.classList.toggle('on',k===i);s.setAttribute('aria-hidden',k===i?'false':'true');s.classList.remove('enter-fwd','enter-back')});
+      if(dir&&!reduce){const s=sections[i];void s.offsetWidth;s.classList.add('enter-'+dir);s.addEventListener('animationend',()=>s.classList.remove('enter-fwd','enter-back'),{once:true})}
       current=i;
       dotEls.forEach((d,k)=>d.setAttribute('aria-current',k===i?'true':'false'));
       menuLinks.forEach((d,k)=>d.setAttribute('aria-current',k===i?'page':'false'));
