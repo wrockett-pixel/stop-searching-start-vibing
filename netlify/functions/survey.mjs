@@ -7,6 +7,8 @@ const GRADES = ["K–2", "3–5", "6–8", "9–12", "Other"];
 const SUBJECTS = ["ELA", "Math", "Science", "Social Studies", "World Languages", "Fine Arts", "CTE",
   "Special Education", "Media / Tech Coach", "Other"];
 
+const HELP = ["prompts", "publish", "canvas", "fixing", "access", "integrity", "tools", "time"];
+
 const HEADERS = {
   "content-type": "application/json",
   "cache-control": "no-store",
@@ -42,6 +44,17 @@ async function summary(st, round) {
   const ideas = await st.list({ prefix: `i${round}/` });
   const keys = ideas.blobs.map((b) => b.key).sort().reverse().slice(0, 40);
   s.ideas = (await Promise.all(keys.map((k) => st.get(k, { type: "json" })))).filter(Boolean);
+  // Help poll: one key per device, h<round>/<device>/<pick>+<pick>; questions like ideas.
+  s.help = Object.fromEntries(HELP.map((h) => [h, 0]));
+  s.helpTotal = 0;
+  for (const { key } of (await st.list({ prefix: `h${round}/` })).blobs) {
+    const picks = (key.split("/")[2] || "").split("+").filter((x) => HELP.includes(x));
+    if (!picks.length) continue;
+    s.helpTotal++;
+    picks.forEach((x) => s.help[x]++);
+  }
+  const qs = (await st.list({ prefix: `q${round}/` })).blobs.map((b) => b.key).sort().reverse().slice(0, 40);
+  s.questions = (await Promise.all(qs.map((k) => st.get(k, { type: "json" })))).filter(Boolean);
   return s;
 }
 
@@ -72,11 +85,30 @@ export default async (req) => {
       if (!pin || String(d.pin || "") !== pin) return json({ ok: false, error: "wrong pin" }, 403);
       await deletePrefix(st, `r${round}/`);
       await deletePrefix(st, `i${round}/`);
+      await deletePrefix(st, `h${round}/`);
+      await deletePrefix(st, `q${round}/`);
       await st.setJSON("meta/round", { n: round + 1 });
       return json(await summary(st, round + 1));
     }
 
     const id = String(d.id || "").replace(/[^a-zA-Z0-9]/g, "").slice(0, 40);
+
+    if (d.action === "help") {
+      const picks = [...new Set((Array.isArray(d.picks) ? d.picks : []).filter((x) => HELP.includes(x)))].slice(0, 3);
+      if (!id || !picks.length) return json({ ok: false, error: "bad help" }, 400);
+      await deletePrefix(st, `h${round}/${id}/`);
+      await st.set(`h${round}/${id}/${picks.join("+")}`, "1");
+      return json(await summary(st, round));
+    }
+
+    if (d.action === "question") {
+      const text = String(d.text || "").replace(/\s+/g, " ").trim().slice(0, 200);
+      if (!id || text.length < 3) return json({ ok: false, error: "bad question" }, 400);
+      const mine = await st.list({ prefix: `q${round}/` });
+      if (mine.blobs.filter((b) => b.key.endsWith("-" + id)).length >= 3) return json({ ok: false, error: "limit" }, 429);
+      await st.setJSON(`q${round}/${String(Date.now()).padStart(14, "0")}-${id}`, { text, t: Date.now() });
+      return json(await summary(st, round));
+    }
 
     if (d.action === "idea") {
       const text = String(d.text || "").replace(/\s+/g, " ").trim().slice(0, 160);
