@@ -682,14 +682,7 @@ html.present .pager{padding-block:10px 14px}
       </div>
 
       <div class="panel" role="tabpanel" id="p-sim" aria-labelledby="t-sim" hidden>
-        <span class="tag">AP Microeconomics · market for lemonade</span>
-        <label for="price"><b>Set the price per cup: <span id="priceOut">$3</span></b></label>
-        <input type="range" id="price" min="1" max="11" step="1" value="3">
-        <div class="sim-bars">
-          <div class="sim-row"><span>Qty demanded</span><div class="sim-track"><div class="sim-fill" id="qdBar" style="background:var(--info)"></div></div><span id="qdOut"></span></div>
-          <div class="sim-row"><span>Qty supplied</span><div class="sim-track"><div class="sim-fill" id="qsBar" style="background:var(--amber)"></div></div><span id="qsOut"></span></div>
-        </div>
-        <p class="fb" id="simFb" aria-live="polite"></p>
+        <span class="tag">From our classes · science virtual labs</span>
         <figure class="showcase">
           <video src="media/virtual-labs.mp4" poster="media/virtual-labs-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of five science virtual labs built with AI, including an ink chromatography lab"></video>
           <figcaption>Five virtual labs from our physical science, chemistry and forensics classes, built with AI and run on any Chromebook. 30 seconds.</figcaption>
@@ -1372,18 +1365,6 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
     const fb=$('#cfuFb');fb.className='fb '+(ok?'good':'bad');fb.textContent=(ok?'Correct. ':'Not yet. ')+b.dataset.fb;
   }));
 
-  // supply & demand sim: Qd = 100 - 8P, Qs = -20 + 12P, equilibrium P=6 Q=52
-  function sim(){
-    const p=+$('#price').value, qd=Math.max(0,100-8*p), qs=Math.max(0,-20+12*p);
-    $('#priceOut').textContent='$'+p;
-    $('#qdBar').style.width=qd+'%';$('#qsBar').style.width=Math.min(100,qs)+'%';
-    $('#qdOut').textContent=qd;$('#qsOut').textContent=qs;
-    const fb=$('#simFb');
-    if(qd>qs){fb.className='fb bad';fb.textContent='Shortage of '+(qd-qs)+' cups. Buyers want more than sellers will make. What happens to price?'}
-    else if(qs>qd){fb.className='fb bad';fb.textContent='Surplus of '+(qs-qd)+' cups. Lemonade is going unsold. What would sellers do?'}
-    else{fb.className='fb good';fb.textContent='Equilibrium: at $6, 52 cups are demanded and 52 are supplied.'}
-  }
-  $('#price').addEventListener('input',sim);sim();
 
   // reading settings + read aloud
   const reader=$('#reader');
