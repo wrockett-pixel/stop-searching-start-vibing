@@ -166,6 +166,7 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .showcase video{width:100%;height:auto;max-width:100%;border-radius:10px;background:#000;display:block}
 .showcase figcaption{color:var(--fog);font-size:.9rem}
 .real-app{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.panel>.tag+.real-app{border-top:0;padding-top:0}
 /* environments */
 .envs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
 .env{border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}
@@ -665,17 +666,9 @@ html.present .pager{padding-block:10px 14px}
       </div>
 
       <div class="panel" role="tabpanel" id="p-cfu" aria-labelledby="t-cfu">
-        <span class="tag">AP Psychology · research methods</span>
-        <p><b>A researcher wants to know whether caffeine improves memory. Half the participants drink coffee, half drink decaf, then everyone takes a recall test. What is the independent variable?</b></p>
-        <div class="opts" id="cfuOpts">
-          <button class="opt" data-ok="0" data-fb="That's what gets measured at the end, so it's the dependent variable. Which thing did the researcher change on purpose?">Scores on the recall test</button>
-          <button class="opt" data-ok="1" data-fb="The researcher manipulates caffeine (coffee vs. decaf), then measures its effect on memory.">Whether participants got caffeine</button>
-          <button class="opt" data-ok="0" data-fb="Age wasn't changed by the researcher. If it differed between groups it could be a confounding variable.">The participants' ages</button>
-          <button class="opt" data-ok="0" data-fb="Everyone takes the same test, so it's held constant. Look for what differs between the two groups.">The type of recall test</button>
-        </div>
-        <p class="fb" id="cfuFb" aria-live="polite"></p>
+        <span class="tag">From our classes · check for understanding</span>
         <div class="real-app">
-          <p>See a real one from our classes, built with AI and published with Google Apps Script.</p>
+          <p>A real one from our classes, built with AI and published with Google Apps Script.</p>
           <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Try our check for understanding ↗</a></div>
           <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec">Copy link</button> and paste it into a private window.</p>
         </div>
@@ -688,7 +681,7 @@ html.present .pager{padding-block:10px 14px}
           <figcaption>Five virtual labs from our physical science, chemistry and forensics classes, built with AI and run on any Chromebook. 30 seconds.</figcaption>
         </figure>
         <div class="real-app">
-          <p>See a real one from our classes, built with AI and published with Google Apps Script.</p>
+          <p>A real one from our classes, built with AI and published with Google Apps Script.</p>
           <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec" target="_blank" rel="noopener">Try our simulation lab ↗</a></div>
           <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec">Copy link</button> and paste it into a private window.</p>
         </div>
@@ -698,22 +691,14 @@ html.present .pager{padding-block:10px 14px}
         <span class="tag">From our classes · review game</span>
         <p>Our review games use a theme, a progress map, and one firm rule: students must get it right to move on, with a hint, never the answer.</p>
         <p>This is a real review game from our classes, built with AI and published with Google Apps Script.</p>
-        <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Play our review game ↗</a><a class="btn ghost" href="#demo">Or try the organelle game</a></div>
+        <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Play our review game ↗</a></div>
         <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec">Copy link</button> and paste it into a private window.</p>
       </div>
 
       <div class="panel" role="tabpanel" id="p-acc" aria-labelledby="t-acc" hidden>
-        <span class="tag">Reading settings any student can open</span>
-        <div class="toggles">
-          <button class="chip" data-rd="big" aria-pressed="false">Larger text</button>
-          <button class="chip" data-rd="space" aria-pressed="false">Extra spacing</button>
-          <button class="chip" data-rd="soft" aria-pressed="false">Soft background</button>
-          <button class="chip" id="readBtn" aria-pressed="false">Read aloud</button>
-        </div>
-        <p class="reader" id="reader">Mitochondria release the energy stored in food. Cells that work hard, like muscle cells, have many of them.</p>
-        <p class="muted" id="readNote" style="font-size:.9rem">Read aloud highlights each word as it's spoken.</p>
+        <span class="tag">From our classes · accessibility</span>
         <div class="real-app">
-          <p>See a real one from our classes, built with AI and published with Google Apps Script.</p>
+          <p>A real one from our classes, built with AI and published with Google Apps Script.</p>
           <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycby5ScuJDvR0OKLwfxo42lcaXRHbMJcMiDvPpZFyzCksyu5ZJ3I84YwnoJAmVY_ANI6lWw/exec" target="_blank" rel="noopener">Try our accessibility example ↗</a></div>
           <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycby5ScuJDvR0OKLwfxo42lcaXRHbMJcMiDvPpZFyzCksyu5ZJ3I84YwnoJAmVY_ANI6lWw/exec">Copy link</button> and paste it into a private window.</p>
         </div>
@@ -1357,34 +1342,6 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   tabs.forEach((t,i)=>{t.addEventListener('click',()=>selectTab(t));t.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();e.stopPropagation();const n=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];selectTab(n);n.focus()}})});
 
-  // check for understanding
-  $$('#cfuOpts .opt').forEach(b=>b.addEventListener('click',()=>{
-    const ok=b.dataset.ok==='1';
-    $$('#cfuOpts .opt').forEach(x=>x.classList.remove('wrong'));
-    b.classList.add(ok?'right':'wrong');
-    const fb=$('#cfuFb');fb.className='fb '+(ok?'good':'bad');fb.textContent=(ok?'Correct. ':'Not yet. ')+b.dataset.fb;
-  }));
-
-
-  // reading settings + read aloud
-  const reader=$('#reader');
-  $$('[data-rd]').forEach(c=>c.addEventListener('click',()=>{const on=reader.classList.toggle(c.dataset.rd);c.setAttribute('aria-pressed',on)}));
-  const text=reader.textContent;
-  const words=[];let html='',pos=0;
-  text.split(/(\s+)/).forEach(tok=>{if(/^\s+$/.test(tok)){html+=tok}else if(tok){words.push(pos);html+='<span class="w" data-i="'+pos+'">'+tok+'</span>'}pos+=tok.length});
-  reader.innerHTML=html;
-  const rb=$('#readBtn');
-  if(!('speechSynthesis' in window)){rb.disabled=true;$('#readNote').textContent='Read aloud isn\'t available in this browser.'}
-  rb.addEventListener('click',()=>{
-    try{
-      speechSynthesis.cancel();
-      if(rb.getAttribute('aria-pressed')==='true'){rb.setAttribute('aria-pressed','false');$$('#reader .w').forEach(w=>w.classList.remove('on'));return}
-      const u=new SpeechSynthesisUtterance(text);u.rate=.9;
-      u.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;let idx=0;words.forEach(w=>{if(w<=ev.charIndex)idx=w});$$('#reader .w').forEach(w=>w.classList.toggle('on',+w.dataset.i===idx))};
-      u.onend=u.onerror=()=>{rb.setAttribute('aria-pressed','false');$$('#reader .w').forEach(w=>w.classList.remove('on'))};
-      rb.setAttribute('aria-pressed','true');speechSynthesis.speak(u);
-    }catch(e){$('#readNote').textContent='Read aloud isn\'t available here.'}
-  });
 
   /* ---------- organelle game ---------- */
   const ORG={
