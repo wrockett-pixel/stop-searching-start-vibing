@@ -162,6 +162,7 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 14px;font-size:.9rem}
 .chip[aria-pressed="true"]{background:var(--teal);color:var(--teal-ink);border-color:var(--teal)}
 
+.real-app{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
 /* environments */
 .envs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
 .env{border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}
@@ -613,6 +614,11 @@ html.present section>.wrap{width:100%}
           <button class="opt" data-ok="0" data-fb="Everyone takes the same test, so it's held constant. Look for what differs between the two groups.">The type of recall test</button>
         </div>
         <p class="fb" id="cfuFb" aria-live="polite"></p>
+        <div class="real-app">
+          <p>See a real one from our classes, built with AI and published with Google Apps Script.</p>
+          <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Try our check for understanding ↗</a></div>
+          <p class="muted" style="font-size:.88rem">Opens in a new tab.</p>
+        </div>
       </div>
 
       <div class="panel" role="tabpanel" id="p-sim" aria-labelledby="t-sim" hidden>
