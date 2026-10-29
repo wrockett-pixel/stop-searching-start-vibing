@@ -617,7 +617,7 @@ html.present section>.wrap{width:100%}
         <div class="real-app">
           <p>See a real one from our classes, built with AI and published with Google Apps Script.</p>
           <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Try our check for understanding ↗</a></div>
-          <p class="muted" style="font-size:.88rem">Opens in a new tab.</p>
+          <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec">Copy link</button> and paste it into a private window.</p>
         </div>
       </div>
 
@@ -637,7 +637,7 @@ html.present section>.wrap{width:100%}
         <p>Our review games use a theme, a progress map, and one firm rule: students must get it right to move on, with a hint, never the answer.</p>
         <p>This is a real review game from our classes, built with AI and published with Google Apps Script.</p>
         <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Play our review game ↗</a><a class="btn ghost" href="#demo">Or try the organelle game</a></div>
-        <p class="muted" style="font-size:.88rem">Opens in a new tab.</p>
+        <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec">Copy link</button> and paste it into a private window.</p>
       </div>
 
       <div class="panel" role="tabpanel" id="p-acc" aria-labelledby="t-acc" hidden>
@@ -1376,6 +1376,9 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
     start();
   })();
 
+  /* example apps: copy link fallback */
+  $$('.app-copy').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.url;
+    try{navigator.clipboard.writeText(t).then(()=>toast('Link copied. Paste it into a private window.'),()=>toast(t))}catch(e){toast(t)}}));
   /* contact: copy email */
   $$('.c-copy').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.email;
     try{navigator.clipboard.writeText(t).then(()=>toast('Email copied'),()=>toast(t))}catch(e){toast(t)}}));
