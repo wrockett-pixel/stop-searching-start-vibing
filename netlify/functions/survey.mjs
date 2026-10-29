@@ -38,6 +38,10 @@ async function summary(st, round) {
     if (grade) s.grade[grade] = (s.grade[grade] || 0) + 1;
     if (subject) s.subject[subject] = (s.subject[subject] || 0) + 1;
   }
+  // Live-demo ideas: i<round>/<time>-<device>, newest first, at most 40.
+  const ideas = await st.list({ prefix: `i${round}/` });
+  const keys = ideas.blobs.map((b) => b.key).sort().reverse().slice(0, 40);
+  s.ideas = (await Promise.all(keys.map((k) => st.get(k, { type: "json" })))).filter(Boolean);
   return s;
 }
 
@@ -63,11 +67,23 @@ export default async (req) => {
       const pin = Netlify.env.get("SURVEY_PIN");
       if (!pin || String(d.pin || "") !== pin) return json({ ok: false, error: "wrong pin" }, 403);
       await deletePrefix(st, `r${round}/`);
+      await deletePrefix(st, `i${round}/`);
       await st.setJSON("meta/round", { n: round + 1 });
       return json(await summary(st, round + 1));
     }
 
     const id = String(d.id || "").replace(/[^a-zA-Z0-9]/g, "").slice(0, 40);
+
+    if (d.action === "idea") {
+      const text = String(d.text || "").replace(/\s+/g, " ").trim().slice(0, 160);
+      if (!id || text.length < 3) return json({ ok: false, error: "bad idea" }, 400);
+      const mine = await st.list({ prefix: `i${round}/` });
+      if (mine.blobs.filter((b) => b.key.endsWith("-" + id)).length >= 3) return json({ ok: false, error: "limit" }, 429);
+      const idea = { text, subject: SUBJECTS.includes(d.subject) ? d.subject : "", grade: GRADES.includes(d.grade) ? d.grade : "", t: Date.now() };
+      await st.setJSON(`i${round}/${String(Date.now()).padStart(14, "0")}-${id}`, idea);
+      return json(await summary(st, round));
+    }
+
     if (!id || !STAGES.includes(d.stage)) return json({ ok: false, error: "bad answer" }, 400);
     const grade = GRADES.includes(d.grade) ? d.grade : "";
     const subject = SUBJECTS.includes(d.subject) ? d.subject : "";

@@ -458,6 +458,24 @@ html.present .speaker{display:flex}
 .speaker span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.75rem;font-weight:600;opacity:.85}
 .speaker .sp-W{background:var(--amber);color:#2a1a00}
 .speaker .sp-L{background:var(--teal);color:var(--teal-ink)}
+.reveal{margin-top:28px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:2px dashed var(--amber);border-radius:var(--r);padding:18px 22px;background:color-mix(in srgb,var(--amber) 8%,transparent)}
+.reveal .star{font-family:var(--f-display);font-weight:800;font-size:2rem;color:var(--amber);line-height:1}
+.reveal p{font-family:var(--f-display);font-weight:600;font-size:var(--s2);color:var(--bone);margin:0;flex:1;min-width:14rem}
+/* live demo ideas */
+.ideas{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-height:min(52vh,560px);overflow:auto}
+.ideas li.idea{background:var(--moss);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center}
+.ideas .i-text{font-size:1.02rem;color:var(--bone);word-break:break-word}
+.ideas .i-meta{grid-column:1;font-family:var(--f-mono);font-size:.75rem;color:var(--fog)}
+.ideas .i-build{grid-column:2;grid-row:1/3;display:none}
+html.present .ideas .i-build{display:inline-flex}
+.ideas li.idea.picked{outline:2px solid var(--amber)}
+.ideas-tip{font-size:.88rem;display:none}
+html.present .ideas-tip{display:block}
+html.present #pick .ci-form{display:none}
+html.present #pick .checkin{grid-template-columns:minmax(0,1fr)}
+html.present #pick .qr{width:190px;height:190px}
+html.present #pick .ideas .i-text{font-size:1.2rem}
+@media (max-width:700px){#qrPickCard{display:none}}
 /* page transitions */
 @keyframes pageInFwd{from{opacity:0;transform:translateX(56px)}to{opacity:1;transform:none}}
 @keyframes pageInBack{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
@@ -861,6 +879,43 @@ html.present .pager{padding-block:10px 14px}
   </div>
 </section>
 
+<!-- 9e -->
+<section class="deco" id="pick" data-speaker="WL" data-name="You pick the live demo">
+  <div class="wrap">
+    <div class="room-head">
+      <div class="stack" style="gap:12px">
+        <p class="eyebrow">Live demo · you choose</p>
+        <h2>What should we build live?</h2>
+        <p class="lede">Tell us an activity or handout you'd love to turn into an app. We'll pick one and Claude will build it while we walk you through two we made earlier.</p>
+      </div>
+      <div class="qr-card" id="qrPickCard">
+        <div class="qr" id="qrPick" aria-hidden="true"></div>
+        <p><b>Scan to send an idea</b><span id="qrPickUrl" class="muted"></span></p>
+      </div>
+    </div>
+    <div class="checkin">
+      <form class="ci-form" id="ideaForm" autocomplete="off">
+        <div class="field"><label for="ideaText" class="ci-label">What do you want to build?</label>
+          <textarea id="ideaText" maxlength="160" placeholder="Example: a sorting game for the causes of the American Revolution"></textarea>
+          <small class="muted"><span id="ideaCount">0</span>/160</small></div>
+        <div class="row2">
+          <div class="field"><label for="ideaSubject" class="ci-label">Content</label>
+            <select id="ideaSubject"><option value="">Choose one</option><option>ELA</option><option>Math</option><option>Science</option><option>Social Studies</option><option>World Languages</option><option>Fine Arts</option><option>CTE</option><option>Special Education</option><option>Media / Tech Coach</option><option>Other</option></select></div>
+          <div class="field"><label for="ideaGrade" class="ci-label">Grade</label>
+            <select id="ideaGrade"><option value="">Choose one</option><option>K–2</option><option>3–5</option><option>6–8</option><option>9–12</option><option value="Other">Admin / other</option></select></div>
+        </div>
+        <button class="btn amber" id="ideaSubmit" type="submit">Send my idea</button>
+        <p class="ci-msg" id="ideaMsg" aria-live="polite">You can send up to 3 ideas.</p>
+      </form>
+      <div class="ci-results">
+        <div class="ci-total"><span class="big" id="ideaTotal">0</span><span>ideas so far</span><span class="live" id="ideaLive">waiting</span></div>
+        <ol class="ideas" id="ideaList"><li class="muted idea-empty">Ideas will show up here as they come in.</li></ol>
+        <p class="muted ideas-tip">Presenters: in Present mode, click <b>Build this</b> on an idea. It copies a ready prompt and opens Claude. Paste and send, then move on to the demos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 10 -->
 <section id="demo" data-speaker="L" data-name="Live demo">
   <div class="wrap">
@@ -997,6 +1052,7 @@ html.present .pager{padding-block:10px 14px}
       </div>
       <div class="clue" id="silkClue" aria-live="polite"></div>
     </div>
+    <div class="reveal" role="note"><span class="star" aria-hidden="true">✱</span><p>Now let's see what Claude has built for us!</p><a class="btn amber" href="https://claude.ai/recents" target="_blank" rel="noopener">Back to Claude ↗</a></div>
   </div>
 </section>
 
@@ -1270,7 +1326,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
     $('#ciSubmit').textContent='Update my answer';msg('You\'re checked in. Change anything and tap Update.','good')}
 
   let summary={total:0,stage:{egg:0,hatchling:0,apex:0},grade:{},subject:{}};
-  function renderResults(){
+  function renderResults(){renderIdeas();
     const s=summary;$('#ciTotal').textContent=s.total||0;
     const max=Math.max(1,...STAGES.map(([k])=>s.stage[k]||0));
     $('#ciBars').innerHTML=STAGES.map(([k,n])=>{const v=s.stage[k]||0;return '<div class="ci-bar'+(mine&&mine.stage===k?' mine':'')+'"><img src="img/'+k+'.webp" alt=""><div class="t"><b>'+n+'</b><div class="ci-track"><div class="ci-fill" style="width:'+(v/max*100)+'%"></div></div></div><span class="n">'+v+'</span></div>'}).join('');
@@ -1285,14 +1341,15 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   function setLive(state){const l=$('#ciLive');l.className='live'+(state==='on'?' on':'');l.textContent=state==='on'?'live':state==='off'?'not connected':'connecting'}
   function clean(d){if(!d||typeof d!=='object')return null;const o={round:+d.round||1,total:+d.total||0,stage:{},grade:{},subject:{}};
     ['egg','hatchling','apex'].forEach(k=>o.stage[k]=+(d.stage&&d.stage[k])||0);
-    ['grade','subject'].forEach(f=>{if(d[f]&&typeof d[f]==='object')Object.keys(d[f]).slice(0,40).forEach(k=>o[f][String(k).slice(0,40)]=+d[f][k]||0)});return o}
+    ['grade','subject'].forEach(f=>{if(d[f]&&typeof d[f]==='object')Object.keys(d[f]).slice(0,40).forEach(k=>o[f][String(k).slice(0,40)]=+d[f][k]||0)});
+    o.ideas=Array.isArray(d.ideas)?d.ideas.slice(0,40).filter(x=>x&&typeof x.text==='string').map(x=>({text:String(x.text).slice(0,160),subject:String(x.subject||'').slice(0,40),grade:String(x.grade||'').slice(0,20)})):[];return o}
   function resetForm(){mine=null;ci.stage=null;ci.grade=null;try{localStorage.removeItem('vibe-checkin')}catch(e){}
     $$('.stage,#gradeChips .chip').forEach(b=>b.setAttribute('aria-pressed','false'));$('#ciSubject').value='';$('#route').hidden=true;
     $('#ciSubmit').textContent='Add me to the room';msg('Tap a stage above to start.')}
   function checkRound(){if(mine&&RESPONSES_URL&&mine.round!==summary.round)resetForm()}
   async function refresh(){
     if(!RESPONSES_URL){setLive('off');return}
-    try{const r=await fetch(RESPONSES_URL+'?t='+Date.now());const d=clean(await r.json());if(d){summary=d;checkRound();renderResults();setLive('on')}}catch(e){setLive('off')}
+    try{const r=await fetch(RESPONSES_URL+'?t='+Date.now());const d=clean(await r.json());if(d){summary=d;checkRound();renderResults();setLive('on');const il=$('#ideaLive');if(il){il.className='live on';il.textContent='live'}}}catch(e){setLive('off')}
   }
   $('#ciForm').addEventListener('submit',async e=>{
     e.preventDefault();
@@ -1304,7 +1361,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
     if(!RESPONSES_URL){
       // Not connected yet: show this device's answer so the screen still demonstrates the idea.
       mine=entry;store.set('vibe-checkin',JSON.stringify(entry));
-      summary={total:1,stage:{egg:0,hatchling:0,apex:0,[entry.stage]:1},grade:{[entry.grade]:1},subject:{[entry.subject]:1}};renderResults();
+      summary={total:1,stage:{egg:0,hatchling:0,apex:0,[entry.stage]:1},grade:{[entry.grade]:1},subject:{[entry.subject]:1},ideas:summary.ideas||[]};renderResults();
       msg('Saved on this device only. Open the live presentation link to join the room survey.','bad');return}
     const btn=$('#ciSubmit');btn.disabled=true;msg('Adding you…');
     try{
@@ -1320,7 +1377,10 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   // Presenter screen refreshes every 4 s; audience phones every ~15 s so a full room doesn't overload the script.
   const every=()=>document.documentElement.classList.contains('present')?4000:13000+Math.random()*5000;
   function schedule(){clearTimeout(poll);poll=setTimeout(async()=>{await refresh();schedule()},every())}
-  new IntersectionObserver(es=>{if(es[0].isIntersecting){refresh();schedule()}else{clearTimeout(poll);poll=null}}).observe($('#room'));
+  // Poll only while the check-in or idea page is showing.
+  const pollVisible=()=>['room','pick'].some(id=>{const el=document.getElementById(id);return el&&el.classList.contains('on')});
+  function syncPoll(){if(pollVisible()){if(!poll){refresh();schedule()}}else{clearTimeout(poll);poll=null}}
+  window.addEventListener('hashchange',()=>setTimeout(syncPoll,50));setTimeout(syncPoll,50);
 
   /* presenter: clear the room between sessions */
   $('#clearOpen').addEventListener('click',()=>{$('#clearForm').hidden=false;$('#clearOpen').hidden=true;$('#clearPin').focus()});
@@ -1343,6 +1403,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   function drawQR(el,hash){const u=pageUrl();if(!u||typeof QRCode==='undefined'){return false}
     el.innerHTML='';new QRCode(el,{text:u+(hash||''),width:240,height:240,colorDark:'#0f2231',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});return true}
   if(drawQR($('#qrRoom'),'#room')){$('#qrUrl').textContent='stop-searching-start-vibing.netlify.app'}else{$('#qrCard').hidden=true}
+  const pq=$('#qrPick');if(pq){if(drawQR(pq,'#pick')){$('#qrPickUrl').textContent='stop-searching-start-vibing.netlify.app'}else{$('#qrPickCard').hidden=true}}
   const kq=$('#qrKit');if(kq){if(drawQR(kq,'')){$('#qrKitUrl').textContent='stop-searching-start-vibing.netlify.app'}else{kq.closest('.qr-card').hidden=true}}
 
   /* ---------- example tabs ---------- */
@@ -1485,6 +1546,59 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
   /* contact: copy email */
   $$('.c-copy').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.email;
     try{navigator.clipboard.writeText(t).then(()=>toast('Email copied'),()=>toast(t))}catch(e){toast(t)}}));
+  /* ---------- you pick the live demo: idea wall ---------- */
+  const ideaText=$('#ideaText');
+  ideaText.addEventListener('input',()=>{$('#ideaCount').textContent=ideaText.value.length});
+  const imsg=(t,c)=>{const m=$('#ideaMsg');m.textContent=t;m.className='ci-msg'+(c?' '+c:'')};
+  function renderIdeas(){
+    const list=$('#ideaList');if(!list)return;
+    const ideas=(summary.ideas||[]);
+    $('#ideaTotal').textContent=ideas.length;
+    list.innerHTML='';
+    if(!ideas.length){const li=document.createElement('li');li.className='muted idea-empty';li.textContent='Ideas will show up here as they come in.';list.appendChild(li);return}
+    ideas.forEach((it,i)=>{
+      const li=document.createElement('li');li.className='idea';
+      const t=document.createElement('span');t.className='i-text';t.textContent=it.text;
+      const m=document.createElement('span');m.className='i-meta';m.textContent=[it.subject,it.grade==='Other'?'Admin / other':it.grade].filter(Boolean).join(' · ')||' ';
+      const b=document.createElement('button');b.type='button';b.className='btn i-build';b.textContent='Build this ↗';
+      b.addEventListener('click',()=>buildIdea(it,li));
+      li.append(t,m,b);list.appendChild(li);
+    });
+  }
+  function ideaPrompt(it){
+    const who=[it.grade&&it.grade!=='Other'?it.grade+' grade':'',it.subject].filter(Boolean).join(' ');
+    return ["I'm a teacher. Build me an interactive web app for my "+(who?who+' ':'')+"students.",'',
+      'WHAT I WANT: '+it.text,'',
+      'REQUIREMENTS:',
+      '- One self-contained HTML file. No logins, no outside data.',
+      '- Use accurate, age-appropriate content. Write 8 to 10 questions or tasks yourself.',
+      '- Students must get each item right to move on. When they miss, give a hint and explain why that answer is wrong, never the answer.',
+      '- Give it a fun theme and a progress bar.',
+      '- Dyslexia-friendly: clear font, 18px or larger, extra spacing, and a read-aloud button.',
+      '- End with a results screen showing score and time, plus a "Copy my results" button.',
+      '- Make it work on Chromebooks and phones.','',
+      'Build the first draft now.'].join('\n')}
+  function buildIdea(it,li){
+    $$('#ideaList li.idea').forEach(x=>x.classList.remove('picked'));li.classList.add('picked');
+    const text=ideaPrompt(it);
+    window.open('https://claude.ai/new','_blank','noopener');
+    try{navigator.clipboard.writeText(text).then(()=>toast('Prompt copied. Paste it into Claude and send.'),()=>toast('Couldn\'t copy. Use the starter prompt page instead.'))}catch(e){toast('Couldn\'t copy. Use the starter prompt page instead.')}
+  }
+  $('#ideaForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const text=ideaText.value.trim();
+    if(text.length<3){imsg('Tell us what you want to build.','bad');ideaText.focus();return}
+    if(!RESPONSES_URL){summary.ideas=[{text,subject:$('#ideaSubject').value,grade:$('#ideaGrade').value}].concat(summary.ideas||[]);renderIdeas();imsg('Shown on this device only. Open the live presentation link to share ideas with the room.','bad');return}
+    const btn=$('#ideaSubmit');btn.disabled=true;imsg('Sending…');
+    try{const r=await fetch(RESPONSES_URL,{method:'POST',body:JSON.stringify({action:'idea',id:deviceId,text,subject:$('#ideaSubject').value,grade:$('#ideaGrade').value})});
+      const raw=await r.json();
+      if(raw&&raw.error==='limit'){imsg('Thanks! You\'ve sent 3 ideas, the most per person.','bad');return}
+      if(!raw||raw.ok===false)throw new Error('refused');
+      const d=clean(raw);if(d)summary=d;renderResults();ideaText.value='';$('#ideaCount').textContent='0';imsg('Sent! Watch for it on the big screen.','good');$('#ideaLive').className='live on';$('#ideaLive').textContent='live';
+    }catch(err){imsg('That didn\'t go through. Check your connection and try again.','bad')}
+    finally{btn.disabled=false}
+  });
+
   /* ---------- 8-minute timer ---------- */
   let left=480,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
   function draw(){clock.textContent=fmt(left);clock.classList.toggle('out',left===0)}
