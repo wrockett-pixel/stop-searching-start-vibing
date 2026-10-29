@@ -467,7 +467,9 @@ html.present .speaker{display:flex}
 .follow span{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
 .follow b{font-family:var(--f-display);font-weight:800;font-size:var(--s2);line-height:1.1;word-break:break-all}
 html.present .follow b{font-size:var(--s3)}
-.jungle{align-self:flex-start}
+.jungle{align-self:flex-start;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--deep);display:grid;place-items:center;padding:0;color:var(--bone)}
+.jungle svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.jungle:hover{border-color:var(--teal)}
 .jungle[aria-pressed="true"]{background:var(--teal);color:var(--teal-ink);border-color:var(--teal)}
 /* live demo ideas */
 .ideas{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-height:min(52vh,560px);overflow:auto}
@@ -548,7 +550,7 @@ html.present .pager{padding-block:10px 14px}
         <a class="btn" href="#room">Start the expedition</a>
         <a class="btn ghost" href="#demo">Jump to the live demo</a>
       </div>
-      <button type="button" class="chip jungle" id="jungleBtn" aria-pressed="false">♪ Play jungle sounds</button>
+      <button type="button" class="jungle" id="jungleBtn" aria-pressed="false" aria-label="Play jungle sounds" title="Play jungle sounds"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg></button>
       <p class="muted" style="font-size:.9rem">Presenting? Press <span class="kbd">Present</span>, then use <span class="kbd">←</span> <span class="kbd">→</span> to move between pages.</p>
     </div>
   </div>
@@ -1611,6 +1613,7 @@ html.present .pager{padding-block:10px 14px}
 
   /* ---------- jungle soundscape (generated live, no audio files) ---------- */
   const jb=$('#jungleBtn');
+  const JOFF='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>', JON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
   let jctx=null,jmaster=null,jtimers=[],jon=false;
   function noiseBuf(ctx,sec){const b=ctx.createBuffer(1,ctx.sampleRate*sec,ctx.sampleRate);const d=b.getChannelData(0);let last=0;for(let i=0;i<d.length;i++){const w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.5}return b}
   function startJungle(){
@@ -1641,11 +1644,11 @@ html.present .pager{padding-block:10px 14px}
       const og=ctx.createGain();og.gain.value=.35;const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.32,t+.35);g.gain.exponentialRampToValueAtTime(.0001,t+d);
       o.connect(og);og.connect(lp);src.connect(lp);lp.connect(g);g.connect(jmaster);o.start(t);src.start(t);o.stop(t+d+.1);src.stop(t+d+.1)},9000,16000);
     return true}
-  function stopJungle(){if(!jon)return;jon=false;jb.setAttribute('aria-pressed','false');jb.textContent='♪ Play jungle sounds';
+  function stopJungle(){if(!jon)return;jon=false;jb.setAttribute('aria-pressed','false');jb.innerHTML=JOFF;jb.setAttribute('aria-label','Play jungle sounds');jb.title='Play jungle sounds';
     const m=jmaster,ts=jtimers;jtimers=[];if(m&&jctx){const t=jctx.currentTime;m.gain.cancelScheduledValues(t);m.gain.setValueAtTime(m.gain.value,t);m.gain.linearRampToValueAtTime(0,t+1.2)}
     setTimeout(()=>{ts.forEach(x=>x.stop());try{m&&m.disconnect()}catch(e){}},1300)}
   if(jb){
-    jb.addEventListener('click',()=>{if(jon){stopJungle();return}if(startJungle()){jon=true;jb.setAttribute('aria-pressed','true');jb.textContent='■ Stop jungle sounds'}});
+    jb.addEventListener('click',()=>{if(jon){stopJungle();return}if(startJungle()){jon=true;jb.setAttribute('aria-pressed','true');jb.innerHTML=JON;jb.setAttribute('aria-label','Stop jungle sounds');jb.title='Stop jungle sounds'}});
     window.addEventListener('hashchange',()=>{const s=document.getElementById('start');if(!s.classList.contains('on'))stopJungle()});
   }
 
