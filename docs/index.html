@@ -162,6 +162,9 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 14px;font-size:.9rem}
 .chip[aria-pressed="true"]{background:var(--teal);color:var(--teal-ink);border-color:var(--teal)}
 
+.showcase{margin:6px 0 0;display:grid;gap:8px}
+.showcase video{width:100%;height:auto;max-width:100%;border-radius:10px;background:#000;display:block}
+.showcase figcaption{color:var(--fog);font-size:.9rem}
 .real-app{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
 /* environments */
 .envs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
@@ -687,6 +690,10 @@ html.present .pager{padding-block:10px 14px}
           <div class="sim-row"><span>Qty supplied</span><div class="sim-track"><div class="sim-fill" id="qsBar" style="background:var(--amber)"></div></div><span id="qsOut"></span></div>
         </div>
         <p class="fb" id="simFb" aria-live="polite"></p>
+        <figure class="showcase">
+          <video src="media/virtual-labs.mp4" poster="media/virtual-labs-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of five science virtual labs built with AI, including an ink chromatography lab"></video>
+          <figcaption>Five virtual labs from our physical science, chemistry and forensics classes, built with AI and run on any Chromebook. 30 seconds.</figcaption>
+        </figure>
         <div class="real-app">
           <p>See a real one from our classes, built with AI and published with Google Apps Script.</p>
           <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec" target="_blank" rel="noopener">Try our simulation lab ↗</a></div>
