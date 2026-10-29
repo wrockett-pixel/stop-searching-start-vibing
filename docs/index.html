@@ -448,6 +448,12 @@ html.present #room .qr-card p{font-size:1.05rem}
 .c-row a{color:var(--amber);word-break:break-all;user-select:all}
 @media (max-width:520px){.c-row{grid-template-columns:minmax(0,1fr) auto}.c-row b{grid-column:1/-1}}
 /* present mode */
+/* speaker cue: only in Present mode */
+.speaker{display:none;align-items:center;gap:6px}
+html.present .speaker{display:flex}
+.speaker span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.75rem;font-weight:600;opacity:.85}
+.speaker .sp-W{background:var(--amber);color:#2a1a00}
+.speaker .sp-L{background:var(--teal);color:var(--teal-ink)}
 /* page transitions */
 @keyframes pageInFwd{from{opacity:0;transform:translateX(56px)}to{opacity:1;transform:none}}
 @keyframes pageInBack{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
@@ -490,6 +496,7 @@ html.present .pager{padding-block:10px 14px}
   <div class="wrap">
     <a class="brand" href="#start">Egg <span>→</span> Apex</a>
     <nav class="steps" id="dots" aria-label="Pages"></nav>
+    <div class="speaker" id="speaker" aria-hidden="true"></div>
     <details class="page-menu" id="pageMenu"><summary class="trail-btn">Pages</summary><ol id="pageList" aria-label="All pages"></ol></details>
     <button class="trail-btn" id="presentBtn" aria-pressed="false" title="Arrow keys move between pages">Present</button>
   </div>
@@ -498,7 +505,7 @@ html.present .pager{padding-block:10px 14px}
 
 <main>
 <!-- 1 -->
-<section id="start" data-name="Start"><canvas class="flies" aria-hidden="true"></canvas>
+<section id="start" data-speaker="WL" data-name="Start"><canvas class="flies" aria-hidden="true"></canvas>
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/hero.webp" alt="A green T. rex roars in a jungle beside a fossil skull, a field survey map and a magnifying glass" width="760" height="1221"></div>
     <div class="stack">
@@ -516,7 +523,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 2 -->
-<section class="deco flipdeco" id="room" data-name="Who's in the room?">
+<section class="deco flipdeco" id="room" data-speaker="W" data-name="Who's in the room?">
   <div class="wrap">
     <div class="room-head">
       <div class="stack" style="gap:12px">
@@ -571,7 +578,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 3 -->
-<section id="why" data-name="Why #1">
+<section id="why" data-speaker="L" data-name="Why #1">
   <div class="wrap split">
     <div class="art"><img src="img/why.webp" alt="A crowd of excited cartoon dinosaurs tapping a glowing tablet on a log" width="730" height="1300"></div>
     <div class="stack">
@@ -588,7 +595,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 4 -->
-<section id="vibe" data-name="What is vibe coding?">
+<section id="vibe" data-speaker="W" data-name="What is vibe coding?">
   <div class="wrap split">
     <div class="art"><img src="img/vibe.webp" alt="A curious dinosaur watches glowing app windows swirl out of a laptop at night" width="760" height="1257"></div>
     <div class="stack">
@@ -607,7 +614,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 5 -->
-<section id="now" data-name="Why it's relevant now">
+<section id="now" data-speaker="L" data-name="Why it's relevant now">
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/tired.webp" alt="An exhausted dinosaur slumped over piles of worksheets beside a broken piggy bank" width="760" height="1221"></div>
     <div class="stack">
@@ -625,7 +632,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 6 -->
-<section class="deco" id="uses" data-name="Why #2">
+<section class="deco" id="uses" data-speaker="W" data-name="Why #2">
   <div class="wrap">
     <p class="eyebrow">Why #2</p>
     <h2>How you can use it</h2>
@@ -641,7 +648,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 7 -->
-<section id="examples" data-name="Examples">
+<section id="examples" data-speaker="LW" data-name="Examples">
   <div class="wrap split">
     <div class="art"><img class="raw" src="img/jars.webp" alt="A dinosaur peers through a field-station window at four glowing specimen jars and an observation notebook" width="760" height="1081"></div>
     <div class="stack">
@@ -716,7 +723,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 8 -->
-<section class="deco flipdeco" id="tools" data-name="Pick your environment">
+<section class="deco flipdeco" id="tools" data-speaker="W" data-name="Pick your environment">
   <div class="wrap">
     <p class="eyebrow">Three apex environments</p>
     <h2>Your options: pick one and start</h2>
@@ -750,7 +757,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 9a -->
-<section class="deco" id="plan" data-name="Plan the expedition">
+<section class="deco" id="plan" data-speaker="L" data-name="Plan the expedition">
   <div class="wrap leg-page">
     <div class="stack">
       <p class="eyebrow">From egg to apex · part 1 of 3</p>
@@ -768,7 +775,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 9b -->
-<section class="deco flipdeco" id="hatch" data-name="Hatch it">
+<section class="deco flipdeco" id="hatch" data-speaker="W" data-name="Hatch it">
   <div class="wrap leg-page">
     <div class="stack">
       <p class="eyebrow">From egg to apex · part 2 of 3</p>
@@ -787,7 +794,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 9c -->
-<section class="deco" id="release" data-name="Release it">
+<section class="deco" id="release" data-speaker="L" data-name="Release it">
   <div class="wrap">
     <div class="stack" style="max-width:62ch">
       <p class="eyebrow">From egg to apex · part 3 of 3</p>
@@ -822,7 +829,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 9d -->
-<section class="deco flipdeco" id="gas-guide" data-name="Apps Script guide">
+<section class="deco flipdeco" id="gas-guide" data-speaker="W" data-name="Apps Script guide">
   <div class="wrap">
     <div class="stack" style="max-width:72ch">
       <p class="eyebrow">Teacher guide · hosting with Google Apps Script</p>
@@ -862,7 +869,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 10 -->
-<section id="demo" data-name="Live demo">
+<section id="demo" data-speaker="L" data-name="Live demo">
   <div class="wrap">
     <div class="split">
       <div class="art"><img src="img/lab.webp" alt="A dinosaur scientist looks into a microscope beneath a glowing plant cell in a jungle research lab" width="760" height="1300" style="max-height:min(60vh,680px)"></div>
@@ -948,7 +955,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 10b -->
-<section class="deco flipdeco" id="silk" data-name="Live demo: Silk Road">
+<section class="deco flipdeco" id="silk" data-speaker="W" data-name="Live demo: Silk Road">
   <div class="wrap">
     <div class="split flip">
       <div class="art"><img class="keep" src="img/silk.webp" alt="A young green dinosaur holding a glowing trade-route map leads a caravan of long-necked dinosaurs loaded with silk, porcelain and spice sacks across desert dunes toward a domed caravanserai below snowy mountains at sunset" width="760" height="1140" style="max-height:min(76vh,880px)"></div>
@@ -1000,7 +1007,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 12 -->
-<section id="tips" data-name="Tips & tricks">
+<section id="tips" data-speaker="W" data-name="Tips & tricks">
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/lantern.webp" alt="An adult T. rex with a lantern guides a young dinosaur down a jungle path past signs reading Courage, Patience and Kindness" width="760" height="1221"></div>
     <div class="stack">
@@ -1018,7 +1025,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 13 -->
-<section class="deco" id="fairer" data-name="Smarter, fairer apps">
+<section class="deco" id="fairer" data-speaker="L" data-name="Smarter, fairer apps">
   <div class="wrap">
     <p class="eyebrow">Apex build</p>
     <h2>Smarter, Fairer Web Apps</h2>
@@ -1045,7 +1052,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 14 -->
-<section class="deco flipdeco" id="beyond" data-name="Beyond apps">
+<section class="deco flipdeco" id="beyond" data-speaker="W" data-name="Beyond apps">
   <div class="wrap">
     <p class="eyebrow">Same skill, bigger territory</p>
     <h2>Beyond apps: the same skill builds your whole course</h2>
@@ -1058,7 +1065,7 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 15 -->
-<section id="turn" data-name="Your turn">
+<section id="turn" data-speaker="WL" data-name="Your turn">
   <div class="wrap">
     <div class="split flip">
       <div class="art"><img class="keep" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg with an adult T. rex watching behind" width="760" height="1221" style="max-height:min(58vh,660px)"></div>
@@ -1129,7 +1136,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
 </section>
 
 <!-- 16 -->
-<section class="deco" id="takeaways" data-name="Key takeaways">
+<section class="deco" id="takeaways" data-speaker="L" data-name="Key takeaways">
   <div class="wrap">
     <p class="eyebrow">The playbook for progress</p>
     <h2>Key takeaways</h2>
@@ -1142,7 +1149,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
 </section>
 
 <!-- 17 -->
-<section id="kit" data-name="Take the tool kit"><canvas class="flies" aria-hidden="true"></canvas>
+<section id="kit" data-speaker="W" data-name="Take the tool kit"><canvas class="flies" aria-hidden="true"></canvas>
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/kit.webp" alt="An open leather field kit glowing green on a jungle trail lined with dinosaur footprints" width="760" height="1221"></div>
     <div class="stack">
@@ -1211,6 +1218,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
       if(prev){$('#pgPrev').href='#'+prev.id;$('#pgPrevName').textContent=prev.dataset.name}
       if(next){$('#pgNext').href='#'+next.id;$('#pgNextName').textContent=next.dataset.name}
       $('#pgCount').textContent='Page '+(i+1)+' of '+sections.length;
+      const sp=$('#speaker');if(sp){const who=sections[i].dataset.speaker||'';sp.innerHTML=who.split('').map(c=>'<span class="sp-'+c+'">'+c+'</span>').join('');sp.title=who?('Speaking: '+who.split('').map(c=>c==='W'?'Wendy':'Lindsay').join(' and ')):''}
       document.title=(i===0?'':sections[i].dataset.name+' · ')+'Stop Searching, Start Vibing';
       window.scrollTo(0,0);
     }
