@@ -467,6 +467,8 @@ html.present .speaker{display:flex}
 .follow span{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
 .follow b{font-family:var(--f-display);font-weight:800;font-size:var(--s2);line-height:1.1;word-break:break-all}
 html.present .follow b{font-size:var(--s3)}
+.jungle{align-self:flex-start}
+.jungle[aria-pressed="true"]{background:var(--teal);color:var(--teal-ink);border-color:var(--teal)}
 /* live demo ideas */
 .ideas{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-height:min(52vh,560px);overflow:auto}
 .ideas li.idea{background:var(--moss);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center}
@@ -546,6 +548,7 @@ html.present .pager{padding-block:10px 14px}
         <a class="btn" href="#room">Start the expedition</a>
         <a class="btn ghost" href="#demo">Jump to the live demo</a>
       </div>
+      <button type="button" class="chip jungle" id="jungleBtn" aria-pressed="false">♪ Play jungle sounds</button>
       <p class="muted" style="font-size:.9rem">Presenting? Press <span class="kbd">Present</span>, then use <span class="kbd">←</span> <span class="kbd">→</span> to move between pages.</p>
     </div>
   </div>
@@ -1127,13 +1130,14 @@ html.present .pager{padding-block:10px 14px}
 </section>
 
 <!-- 15 -->
-<section id="turn" data-speaker="WL" data-name="Your turn">
+<section id="turn" data-speaker="WL" data-name="Your turn: hatch your first app">
   <div class="wrap">
     <div class="split flip">
-      <div class="art"><img class="keep" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg with an adult T. rex watching behind" width="760" height="1221" style="max-height:min(48vh,560px)"></div>
+      <div class="art"><img class="raw" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg while an adult T. rex watches from the jungle behind" width="760" height="1035" style="max-height:min(60vh,620px);width:auto;margin-left:auto;transform:none"></div>
       <div class="stack">
         <p class="eyebrow">Your turn · 8 minutes</p>
-        <h2>How do you think you can use this?</h2>
+        <h2>Hatch your first app</h2>
+        <p class="lede" style="margin:0">Eight minutes. One idea. Let's see what you build.</p>
         <div class="timer">
           <span class="clock" id="clock" role="timer" aria-live="off">8:00</span>
           <button class="btn amber" id="timerBtn">Start timer</button>
@@ -1151,32 +1155,26 @@ html.present .pager{padding-block:10px 14px}
 
     <div class="turn">
       <form class="builder" id="builder" autocomplete="off">
-        <p class="eyebrow">Starter prompt · filled in with our demo, swap in yours</p>
+        <p class="eyebrow">Starter prompt · fill in your own</p>
         <p class="step-h"><span>1</span>Choose your dig site</p>
-        <div class="field"><label for="f-dig">What activity or handout do you want to improve?</label><input type="text" id="f-dig" value="Students mix up which organelle does which job"></div>
+        <div class="field"><label for="f-dig">What activity or handout do you want to improve?</label><input type="text" id="f-dig" placeholder="e.g., Students rush through my vocab worksheet"></div>
         <p class="step-h"><span>2</span>Pack your field kit</p>
         <div class="row2">
-          <div class="field"><label for="f-grade">Grade</label><input type="text" id="f-grade" value="7th grade"></div>
-          <div class="field"><label for="f-subject">Subject</label><input type="text" id="f-subject" value="Life science"></div>
+          <div class="field"><label for="f-grade">Grade</label><input type="text" id="f-grade" placeholder="e.g., 9th grade"></div>
+          <div class="field"><label for="f-subject">Subject</label><input type="text" id="f-subject" placeholder="e.g., World History"></div>
         </div>
         <div class="row2">
-          <div class="field"><label for="f-std">Standard</label><input type="text" id="f-std" value="Georgia S7L2a"></div>
+          <div class="field"><label for="f-std">Standard</label><input type="text" id="f-std" placeholder="e.g., your state standard code"></div>
           <div class="field"><label for="f-type">Activity type</label>
-            <select id="f-type"><option>matching game</option><option>review game</option><option>check for understanding</option><option>simulation or virtual lab</option><option>drag-and-drop sort</option><option>flip cards</option></select></div>
+            <select id="f-type"><option value="">Choose one</option><option>matching game</option><option>review game</option><option>check for understanding</option><option>simulation or virtual lab</option><option>drag-and-drop sort</option><option>flip cards</option></select></div>
         </div>
-        <div class="field"><label for="f-goal">Goal: students will…</label><input type="text" id="f-goal" value="match cell structures to their functions"></div>
+        <div class="field"><label for="f-goal">Goal: students will…</label><input type="text" id="f-goal" placeholder="e.g., explain the causes of World War I"></div>
         <div class="row2">
-          <div class="field"><label for="f-theme">Theme</label><input type="text" id="f-theme" value="jungle research lab expedition"></div>
-          <div class="field"><label for="f-devices">Devices</label><input type="text" id="f-devices" value="Chromebooks and phones"></div>
+          <div class="field"><label for="f-theme">Theme</label><input type="text" id="f-theme" placeholder="e.g., space mission, detective case"></div>
+          <div class="field"><label for="f-devices">Devices</label><input type="text" id="f-devices" placeholder="e.g., Chromebooks and phones"></div>
         </div>
         <div class="field"><label for="f-content">Your vocab, questions and answer key</label><small>Paste your own. The AI should use these exactly.</small>
-          <textarea id="f-content">Nucleus: controls the cell and holds DNA
-Mitochondria: release energy from food
-Chloroplast: uses sunlight to make food (plants only)
-Cell wall: rigid support layer (plants only)
-Cell membrane: controls what enters and leaves
-Cytoplasm: gel where organelles sit
-Lysosome: breaks down waste and worn-out parts</textarea></div>
+          <textarea id="f-content" placeholder="Paste your vocab list, questions and answer key, or the text of your handout."></textarea></div>
         <p class="step-h"><span>4</span>Evolve it with</p>
         <fieldset class="fieldset"><legend class="sr">Features to add</legend>
           <div class="checks">
@@ -1611,6 +1609,46 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
     finally{btn.disabled=false}
   });
 
+  /* ---------- jungle soundscape (generated live, no audio files) ---------- */
+  const jb=$('#jungleBtn');
+  let jctx=null,jmaster=null,jtimers=[],jon=false;
+  function noiseBuf(ctx,sec){const b=ctx.createBuffer(1,ctx.sampleRate*sec,ctx.sampleRate);const d=b.getChannelData(0);let last=0;for(let i=0;i<d.length;i++){const w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.5}return b}
+  function startJungle(){
+    if(!jctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){toast('Sound isn\'t available in this browser.');return false}jctx=new AC()}
+    if(jctx.state==='suspended')jctx.resume();
+    const ctx=jctx,now=ctx.currentTime;
+    jmaster=ctx.createGain();jmaster.gain.setValueAtTime(0,now);jmaster.gain.linearRampToValueAtTime(1.4,now+2.5);jmaster.connect(ctx.destination);
+    // leaves and wind: soft filtered brown noise that swells
+    const n=ctx.createBufferSource();n.buffer=noiseBuf(ctx,4);n.loop=true;
+    const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=900;bp.Q.value=.6;
+    const ng=ctx.createGain();ng.gain.value=.10;
+    const lfo=ctx.createOscillator();lfo.frequency.value=.09;const lg=ctx.createGain();lg.gain.value=.06;lfo.connect(lg);lg.connect(ng.gain);lfo.start();
+    n.connect(bp);bp.connect(ng);ng.connect(jmaster);n.start();
+    // insects: high shimmer pulsing
+    const cr=ctx.createOscillator();cr.type='triangle';cr.frequency.value=4300;
+    const crg=ctx.createGain();crg.gain.value=0;const am=ctx.createOscillator();am.type='square';am.frequency.value=22;const amg=ctx.createGain();amg.gain.value=.006;
+    am.connect(amg);amg.connect(crg.gain);cr.connect(crg);crg.connect(jmaster);cr.start();am.start();
+    jtimers.push({stop:()=>{[n,lfo,cr,am].forEach(x=>{try{x.stop()}catch(e){}})}});
+    const loop=(fn,min,max)=>{let id;const go=()=>{fn();id=setTimeout(go,min+Math.random()*(max-min))};id=setTimeout(go,300+Math.random()*min);jtimers.push({stop:()=>clearTimeout(id)})};
+    // birds: quick chirps and whistles
+    loop(()=>{const t=ctx.currentTime;const k=1+Math.floor(Math.random()*4);const base=1800+Math.random()*2200;for(let i=0;i<k;i++){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';const st=t+i*.13;o.frequency.setValueAtTime(base,st);o.frequency.exponentialRampToValueAtTime(base*(Math.random()<.5?1.6:.6),st+.1);g.gain.setValueAtTime(0,st);g.gain.linearRampToValueAtTime(.09,st+.015);g.gain.exponentialRampToValueAtTime(.0005,st+.12);const pan=ctx.createStereoPanner?ctx.createStereoPanner():null;o.connect(g);if(pan){pan.pan.value=Math.random()*1.6-.8;g.connect(pan);pan.connect(jmaster)}else g.connect(jmaster);o.start(st);o.stop(st+.15)}},900,2600);
+    // drum: soft two-beat pulse
+    let beat=0;loop(()=>{const t=ctx.currentTime;const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';const f=beat%4===3?82:110;o.frequency.setValueAtTime(f*1.8,t);o.frequency.exponentialRampToValueAtTime(f,t+.08);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(beat%2?.16:.28,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.45);o.connect(g);g.connect(jmaster);o.start(t);o.stop(t+.5);beat++},540,560);
+    // distant dinosaur roar every 9-16 s
+    loop(()=>{const t=ctx.currentTime,d=2.2;const src=ctx.createBufferSource();src.buffer=noiseBuf(ctx,3);
+      const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(260,t);lp.frequency.linearRampToValueAtTime(700,t+.5);lp.frequency.linearRampToValueAtTime(180,t+d);
+      const o=ctx.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(70,t);o.frequency.linearRampToValueAtTime(115,t+.45);o.frequency.linearRampToValueAtTime(55,t+d);
+      const og=ctx.createGain();og.gain.value=.35;const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.32,t+.35);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+      o.connect(og);og.connect(lp);src.connect(lp);lp.connect(g);g.connect(jmaster);o.start(t);src.start(t);o.stop(t+d+.1);src.stop(t+d+.1)},9000,16000);
+    return true}
+  function stopJungle(){if(!jon)return;jon=false;jb.setAttribute('aria-pressed','false');jb.textContent='♪ Play jungle sounds';
+    const m=jmaster,ts=jtimers;jtimers=[];if(m&&jctx){const t=jctx.currentTime;m.gain.cancelScheduledValues(t);m.gain.setValueAtTime(m.gain.value,t);m.gain.linearRampToValueAtTime(0,t+1.2)}
+    setTimeout(()=>{ts.forEach(x=>x.stop());try{m&&m.disconnect()}catch(e){}},1300)}
+  if(jb){
+    jb.addEventListener('click',()=>{if(jon){stopJungle();return}if(startJungle()){jon=true;jb.setAttribute('aria-pressed','true');jb.textContent='■ Stop jungle sounds'}});
+    window.addEventListener('hashchange',()=>{const s=document.getElementById('start');if(!s.classList.contains('on'))stopJungle()});
+  }
+
   /* ---------- 8-minute timer ---------- */
   let left=480,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
   function draw(){clock.textContent=fmt(left);clock.classList.toggle('out',left===0)}
@@ -1644,7 +1682,7 @@ Lysosome: breaks down waste and worn-out parts</textarea></div>
       'HERD: '+(F('f-grade')||'[grade]')+', '+(F('f-subject')||'[subject]'),
       'STANDARD: '+(F('f-std')||'[standard]'),
       'GOAL: Students will '+(F('f-goal')||'[goal]')+'.',
-      'ACTIVITY: A '+F('f-type')+'.',
+      'ACTIVITY: '+(F('f-type')?'A '+F('f-type'):'[activity type]')+'.',
       '',
       'CONTENT (use exactly this; don\'t add facts I didn\'t give you):',
       F('f-content')||'[paste your vocab, questions and answer key]',
