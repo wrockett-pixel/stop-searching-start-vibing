@@ -83,6 +83,9 @@ export default async (req) => {
     if (d.action === "clear") {
       const pin = Netlify.env.get("SURVEY_PIN");
       if (!pin || String(d.pin || "") !== pin) return json({ ok: false, error: "wrong pin" }, 403);
+      // Clear just one page's survey; check-ins and the round stay as they are.
+      if (d.scope === "ideas") { await deletePrefix(st, `i${round}/`); return json(await summary(st, round)); }
+      if (d.scope === "share") { await deletePrefix(st, `h${round}/`); await deletePrefix(st, `q${round}/`); return json(await summary(st, round)); }
       await deletePrefix(st, `r${round}/`);
       await deletePrefix(st, `i${round}/`);
       await deletePrefix(st, `h${round}/`);

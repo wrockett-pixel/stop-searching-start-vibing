@@ -946,6 +946,14 @@ html.present .pager{padding-block:10px 14px}
         <div class="ci-total"><span class="big" id="ideaTotal">0</span><span>ideas so far</span><span class="live" id="ideaLive">waiting</span></div>
         <ol class="ideas" id="ideaList"><li class="muted idea-empty">Ideas will show up here as they come in.</li></ol>
         <p class="muted ideas-tip">Presenters: in Present mode, click <b>Build this</b> on an idea. It copies a ready prompt and opens Claude. Paste and send, then move on to the demos.</p>
+        <div class="ci-admin">
+          <button type="button" class="chip" data-clear-open="ideas">Clear the ideas</button>
+          <form data-clear-form="ideas" hidden>
+            <label for="clearPin-ideas" class="ci-label">Presenter PIN</label>
+            <div class="clear-row"><input type="text" id="clearPin-ideas" inputmode="numeric" autocomplete="off"><button class="btn" type="submit" style="background:var(--bad);color:#2a0d05">Clear</button><button type="button" class="btn ghost" data-clear-cancel>Cancel</button></div>
+            <p class="ci-msg" aria-live="polite">This deletes every idea on this page. Check-ins on page 2 stay.</p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -1300,6 +1308,14 @@ html.present .pager{padding-block:10px 14px}
         <div class="ci-total"><span class="big" id="helpTotal">0</span><span>people answered</span><span class="live" id="helpLive">waiting</span></div>
         <div class="ci-bars" id="helpBars"></div>
         <div><span class="ci-label">Questions</span><ol class="ideas" id="qList"><li class="muted idea-empty">Questions will show up here.</li></ol></div>
+        <div class="ci-admin">
+          <button type="button" class="chip" data-clear-open="share">Clear the help poll and questions</button>
+          <form data-clear-form="share" hidden>
+            <label for="clearPin-share" class="ci-label">Presenter PIN</label>
+            <div class="clear-row"><input type="text" id="clearPin-share" inputmode="numeric" autocomplete="off"><button class="btn" type="submit" style="background:var(--bad);color:#2a0d05">Clear</button><button type="button" class="btn ghost" data-clear-cancel>Cancel</button></div>
+            <p class="ci-msg" aria-live="polite">This deletes every help pick and question on this page. Check-ins on page 2 stay.</p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -1737,6 +1753,20 @@ html.present .pager{padding-block:10px 14px}
     window.addEventListener('hashchange',()=>{const s=document.getElementById('start');if(!s.classList.contains('on'))stopJungle()});
   }
 
+
+  /* presenter: clear one page's survey (ideas, or help poll + questions) */
+  $$('[data-clear-open]').forEach(btn=>{const key=btn.dataset.clearOpen,f=document.querySelector('[data-clear-form="'+key+'"]'),inp=f.querySelector('input'),m=f.querySelector('.ci-msg'),orig=m.textContent;
+    const close=()=>{f.hidden=true;btn.hidden=false;inp.value='';m.textContent=orig;m.className='ci-msg'};
+    btn.addEventListener('click',()=>{f.hidden=false;btn.hidden=true;inp.focus()});
+    f.querySelector('[data-clear-cancel]').addEventListener('click',close);
+    f.addEventListener('submit',async e=>{e.preventDefault();
+      if(!RESPONSES_URL){if(key==='ideas')summary.ideas=[];else{summary.help={};summary.helpTotal=0;summary.questions=[]}renderResults();close();toast('Cleared');return}
+      const pin=inp.value.trim();if(!pin){m.textContent='Enter your presenter PIN.';m.className='ci-msg bad';return}
+      m.textContent='Clearing…';m.className='ci-msg';
+      try{const r=await fetch(RESPONSES_URL,{method:'POST',body:JSON.stringify({action:'clear',scope:key,pin})});const d=await r.json();
+        if(d&&d.ok===false){m.textContent=d.error==='wrong pin'?'That PIN doesn\'t match. Check with Wendy or Lindsay.':'It couldn\'t clear right now. Try again.';m.className='ci-msg bad';return}
+        const c=clean(d);if(c)summary=c;renderResults();close();toast(key==='ideas'?'Ideas cleared':'Help poll and questions cleared');
+      }catch(err){m.textContent='It couldn\'t clear right now. Check the connection and try again.';m.className='ci-msg bad'}})});
   /* ---------- share & questions: help poll ---------- */
   function helpLabels(){return {prompts:'Writing prompts that work',publish:'Publishing with Apps Script or Netlify',canvas:'Embedding apps in Canvas or my LMS',fixing:'Fixing an app that breaks',access:'Accessibility and differentiation',integrity:'Academic integrity features',tools:'Choosing Claude, Gemini or ChatGPT',time:'Finding time to build'}}
   const hmsg=(id,t,c)=>{const m=$(id);m.textContent=t;m.className='ci-msg'+(c?' '+c:'')};
