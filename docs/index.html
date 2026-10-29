@@ -1097,14 +1097,14 @@ html.present .pager{padding-block:10px 14px}
     <h3 style="margin-top:32px">The student journey</h3>
     <div class="journey">
       <div><span class="n">1</span><b>Type name</b><span>Tracking notice shown</span></div>
-      <div><span class="n">2</span><b>5 warm-ups</b><span>Not scored</span></div>
+      <div><span class="n">2</span><b>3 warm-ups</b><span>Not scored</span></div>
       <div><span class="n">3</span><b>Pick a level</b><span>App recommends</span></div>
       <div><span class="n">4</span><b>Themed activity</b><span>Hints and read-aloud</span></div>
       <div><span class="n">5</span><b>Student report</b><span>Score and time</span></div>
       <div><span class="n">6</span><b>Teacher Sheet</b><span>Flags sorted to top</span></div>
     </div>
     <div class="pillars">
-      <div class="pillar"><h3>Differentiated</h3><p>5 warm-ups recommend a level. The student chooses: Support, On-Level or Challenge.</p><p>Same content and number of questions. Only wording and scaffolds change. Tiered hints, vocab pop-ups, retry with a new version.</p></div>
+      <div class="pillar"><h3>Differentiated</h3><p>3 warm-ups recommend a level. The student chooses: Support, On-Level or Challenge.</p><p>Same content and number of questions. Only wording and scaffolds change. Tiered hints, vocab pop-ups, retry with a new version.</p></div>
       <div class="pillar"><h3>Engaging</h3><p>A theme built from the topic, like a mission inside the cell or a caravan on the Silk Road. Simulations, drag-and-drop, data and graphs.</p><p>Theme progress map and specific feedback. Same look at every level.</p></div>
       <div class="pillar"><h3>Dyslexia-friendly</h3><p>Clear font, 18px+, extra spacing, soft backgrounds. Read-aloud with word highlighting.</p><p>Reading settings any student can open. Spelling isn't penalized. Voice typing allowed.</p></div>
       <div class="pillar"><h3>Academic integrity</h3><p>Students are told up front what's tracked. Copying questions and pasting answers is blocked, so it's harder to hand the work to AI.</p><p>Leaving the page is counted and timed. Inactivity check-in: "Why were you away?"</p></div>
@@ -1179,7 +1179,7 @@ html.present .pager{padding-block:10px 14px}
         <fieldset class="fieldset"><legend class="sr">Features to add</legend>
           <div class="checks">
             <label><input type="checkbox" id="c-hint" checked> Must get it right to move on, with a hint, never the answer</label>
-            <label><input type="checkbox" id="c-diff"> 5 warm-ups that recommend Support, On-Level or Challenge</label>
+            <label><input type="checkbox" id="c-diff"> 3 warm-ups that recommend Support, On-Level or Challenge</label>
             <label><input type="checkbox" id="c-dys" checked> Dyslexia-friendly text and read-aloud</label>
             <label><input type="checkbox" id="c-int"> Academic integrity tracking with a notice up front</label>
             <label><input type="checkbox" id="c-shot" checked> "Screenshot your result" end screen</label>
@@ -1668,7 +1668,7 @@ html.present .pager{padding-block:10px 14px}
       'Give instant, specific feedback that reteaches.'
     ];
     if(F('c-hint'))req.push('Students must get each item right to move on. When they miss, give a tiered hint, never the answer.');
-    if(F('c-diff'))req.push('Start with 5 unscored warm-ups that recommend a level: Support, On-Level or Challenge. The student chooses. Same content and number of questions at every level; only wording and scaffolds change.');
+    if(F('c-diff'))req.push('Start with 3 unscored warm-ups that recommend a level: Support, On-Level or Challenge. The student chooses. Same content and number of questions at every level; only wording and scaffolds change.');
     if(F('c-dys'))req.push('Make it dyslexia-friendly: clear font, 18px or larger, extra spacing, soft background, read-aloud with word highlighting, and a reading-settings menu. Don\'t penalize spelling.');
     if(F('c-int'))req.push('Academic integrity: tell students up front what is tracked. Block copying questions and pasting answers. Count and time each time they leave the page, and ask "Why were you away?" after inactivity.');
     if(F('c-copy'))req.push('Add a "Copy my results" button that copies the student\'s score, time and answers so they can paste them into the assignment.');
