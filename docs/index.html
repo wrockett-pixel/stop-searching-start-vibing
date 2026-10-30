@@ -642,6 +642,8 @@ details.more[open]>summary::before{content:"–"}
 .fair-vid{margin:0}
 .fair-vid video{border:3px solid #e9dfc8;border-radius:12px;box-shadow:0 0 0 6px rgba(233,223,200,.12),0 18px 40px rgba(0,0,0,.55)}
 .fair-vid figcaption{color:#c9d6e0}
+.fair-vid .cap-link{color:var(--amber);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.fair-vid .cap-link::after{content:" ↗"}
 @media (max-width:900px){.fair-wrap{grid-template-columns:minmax(0,1fr)}}
 .recipe-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:28px;align-items:center;margin-top:28px}
 .recipe-wrap .recipe{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:0}
@@ -1190,7 +1192,7 @@ html.vid-on .trail{backdrop-filter:none;background:var(--night)}
     </div>
     <figure class="showcase fair-vid">
       <video src="media/one-prompt-every-learner-v2.mp4" poster="media/one-prompt-every-learner-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of One Prompt, Every Learner shown in Solution Lab: Light the Bulb: the app recommends a level, a themed simulation, dyslexia-friendly reading tools, academic integrity tracking, and one Google Sheet for the teacher with flagged students sorted to the top"></video>
-      <figcaption>See it in action: Solution Lab: Light the Bulb, built from one reusable prompt.</figcaption>
+      <figcaption>See it in action: Solution Lab: Light the Bulb, built from <a class="cap-link" href="media/One-Prompt-Every-Learner-Prompt.pdf" target="_blank" rel="noopener">one reusable prompt</a>.</figcaption>
     </figure>
     </div>
     <details class="more"><summary>More info</summary><div class="more-body"><div class="pillars">
