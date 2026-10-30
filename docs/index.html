@@ -287,6 +287,13 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 @media (max-width:700px){.share{grid-template-columns:minmax(0,1fr)}}
 .tips{display:grid;gap:14px}
 .tips div{border:1px solid var(--line);border-radius:var(--r);padding:16px 20px}
+.tips details{border:1px solid var(--line);border-radius:var(--r);padding:0}
+.tips summary{list-style:none;cursor:pointer;padding:14px 52px 14px 20px;position:relative;display:block}
+.tips summary::-webkit-details-marker{display:none}
+.tips summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;border:1.5px solid var(--amber);color:var(--amber);display:grid;place-items:center;font-family:var(--f-mono);font-size:.9rem;line-height:1}
+.tips details[open] summary::after{content:"–"}
+.tips details[open]{border-color:var(--amber)}
+.tips details p{padding:0 20px 16px;color:var(--bone);line-height:1.55}
 .tips b{display:block;font-size:var(--s1)}
 .tips span{color:var(--fog)}
 
@@ -1140,11 +1147,11 @@ details.more[open]>summary::before{content:"–"}
       <p class="eyebrow">If we have time · field notes</p>
       <h2>Tips &amp; tricks</h2>
       <div class="tips">
-        <div><b>Use the copy button</b><span>Selecting by hand misses code.</span></div>
-        <div><b>Apps won't save work</b><span>Add a "Copy my results" button or a screenshot screen.</span></div>
-        <div><b>One change at a time</b><span>Test after every change.</span></div>
-        <div><b>Check every fact</b><span>Play it before students do.</span></div>
-        <div><b>Test it like a student</b><span>Open your link in an Incognito window.</span></div>
+        <details class="tip"><summary><b>Use the copy button</b><span>Selecting by hand misses code.</span></summary><p>The copy button grabs all the code at once. Selecting by hand often misses a few characters at the start or end, and one missing line can break the whole app.</p></details>
+        <details class="tip"><summary><b>Apps won't save work</b><span>Add a "Copy my results" button or a screenshot screen.</span></summary><p>When students close the page, their work is gone. Ask the AI to add a "Copy my results" button so students can paste their answers into the assignment, end with a "screenshot your result" screen, or send results to a Google Form or Sheet.</p></details>
+        <details class="tip"><summary><b>One change at a time</b><span>Test after every change.</span></summary><p>Asking for five fixes at once often breaks something that already worked, and then it's hard to tell which change caused it. Ask for one change, test it, then ask for the next.</p></details>
+        <details class="tip"><summary><b>Check every fact</b><span>Play it before students do.</span></summary><p>AI can get content wrong or invent an answer. Play the whole app yourself and check every question, answer and explanation against your answer key before students see it.</p></details>
+        <details class="tip"><summary><b>Test it like a student</b><span>Open your link in an Incognito window.</span></summary><p>Open your link in a private (Incognito) window or a student account to make sure it opens without a sign-in. In Apps Script, set "Who has access" to Anyone. If you're signed into several Google accounts, Apps Script can show "page not found," so testing in a private window catches that too.</p></details>
       </div>
     </div>
   </div>
