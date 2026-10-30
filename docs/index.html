@@ -699,7 +699,7 @@ body{background:transparent}
 
 /* ---- moving background: drifting glows + fireflies ---- */
 #bgfx{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
-#bgfx .glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;will-change:transform}
+#bgfx .glow{position:absolute;border-radius:50%;opacity:.6;will-change:transform}
 #bgfx .g1{width:46vw;height:46vw;left:-10vw;top:-12vw;background:radial-gradient(circle,rgba(24,165,148,.45),transparent 70%);animation:drift1 38s ease-in-out infinite alternate}
 #bgfx .g2{width:40vw;height:40vw;right:-12vw;bottom:-14vw;background:radial-gradient(circle,rgba(243,180,67,.32),transparent 70%);animation:drift2 46s ease-in-out infinite alternate}
 #bgfx .g3{width:30vw;height:30vw;left:40vw;top:30vh;background:radial-gradient(circle,rgba(90,150,210,.22),transparent 70%);animation:drift3 54s ease-in-out infinite alternate}
@@ -708,6 +708,8 @@ body{background:transparent}
 @keyframes drift3{to{transform:translate(-16vw,18vh) scale(.85)}}
 #bgfx .fly{position:absolute;bottom:-10px;width:5px;height:5px;border-radius:50%;background:#ffe39a;box-shadow:0 0 10px 3px rgba(255,214,120,.55);opacity:0;animation:fly linear infinite}
 @keyframes fly{0%{transform:translate(0,0);opacity:0}10%{opacity:.85}50%{transform:translate(var(--dx),-55vh);opacity:.6}90%{opacity:.8}100%{transform:translate(calc(var(--dx) * -1),-110vh);opacity:0}}
+html.vid-on #bgfx .glow,html.vid-on #bgfx .fly{animation-play-state:paused}
+html.vid-on #bgfx .fly{visibility:hidden}
 @media (prefers-reduced-motion:reduce){#bgfx .glow,#bgfx .fly{animation:none}#bgfx .fly{display:none}}
 </style>
 
@@ -1389,6 +1391,10 @@ body{background:transparent}
     if(!a||!document.documentElement.classList.contains('present'))return;
     e.preventDefault();window.open(a.href.replace('https://script.google.com/macros/s/','https://script.google.com/a/macros/forsythk12.org/s/'),'_blank','noopener')});
 
+
+  /* pause the moving background while any video plays, so videos stay smooth */
+  (function(){const set=()=>document.documentElement.classList.toggle('vid-on',[...document.querySelectorAll('video')].some(v=>!v.paused&&!v.ended));
+    ['play','playing','pause','ended'].forEach(ev=>document.addEventListener(ev,set,true))})();
   /* ---------- pacing timer (Present mode): budgets add up to 55 minutes ---------- */
   (function(){
     const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:4,recipe:3,tools:1,pick:8,turn:13,release:2,beyond:2,fairer:2,tips:2,kit:3,share:6};
