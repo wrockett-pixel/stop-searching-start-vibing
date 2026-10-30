@@ -671,6 +671,13 @@ details.more[open]>summary::before{content:"–"}
 .wp{border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
 .wp p{font-size:1.1rem}
 .wp ul{margin:6px 0 0;padding-left:1.1em;color:var(--fog);display:grid;gap:4px;font-size:.95rem}
+.gas-lead{position:relative;border:2px solid var(--amber);background:#f3b443!important;background-image:linear-gradient(160deg,#ffd27a,#f3b443)!important;color:#1b1404;box-shadow:0 0 0 6px rgba(243,180,67,.18),0 14px 34px -8px rgba(243,180,67,.45)!important;transform:scale(1.03)}
+.gas-lead b,.gas-lead span:not(.pick){color:#1b1404!important}
+.gas-lead .badge{background:#1b1404;color:#ffd27a}
+.gas-lead .badge svg{stroke:#ffd27a}
+.gas-lead .pick{position:absolute;top:-12px;right:14px;background:var(--teal);color:var(--teal-ink);font-family:var(--f-mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.gas-lead .gas-open{display:inline-block;margin-top:8px;color:#1b1404;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#gas-guide>summary{font-size:1.05em}
 .rel-opts.big{margin-top:28px;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
 .rel-opts.big .tile{padding:22px}
 .rel-opts.big .tile b{font-size:var(--s1)}
@@ -1133,14 +1140,14 @@ html.vid-on .trail{backdrop-filter:none;background:var(--night)}
   <div class="wrap">
     <p class="eyebrow"><span class="phase ph-you">You do</span> After you build</p>
     <h2>Share it with students</h2>
-    <p class="lede" style="margin-top:10px">Each option gives students a plain link. No AI account needed.</p>
+    <p class="lede" style="margin-top:10px">We use <b>Google Apps Script</b>, and the step-by-step instructions are right here. Every option gives students a plain link, with no AI account needed.</p>
     <div class="rel-opts big">
-      <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M14 18v3"/></svg></div><div><b>Google Apps Script</b><span>Free, inside your Google account. Our go-to.</span></div></div>
+      <div class="tile gas-lead"><span class="pick">What we use</span><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M14 18v3"/></svg></div><div><b>Google Apps Script</b><span>Free, inside your Google account.</span><a class="gas-open" href="#gas-guide">Step-by-step guide ↓</a></div></div>
       <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-.5-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1-1 9z"/></svg></div><div><b>Netlify</b><span>Drag and drop your file for a free website.</span></div></div>
       <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M9 4c-2 0-3 1-3 3v2c0 1.5-1 2.5-2 3 1 .5 2 1.5 2 3v2c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2c0 1.5 1 2.5 2 3-1 .5-2 1.5-2 3v2c0 2-1 3-3 3"/></svg></div><div><b>Your LMS</b><span>Embed the link on a Canvas page.</span></div></div>
       <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><div><b>Google Sites</b><span>Insert, then Embed, and paste your link.</span></div></div>
     </div>
-    <details class="more" id="gas-guide"><summary>Step-by-step: Apps Script into Canvas</summary><div class="more-body">
+    <details class="more" id="gas-guide"><summary>Step-by-step instructions: Apps Script into Canvas</summary><div class="more-body">
       <h3>Transforming AI Artifacts into Live Canvas Assets</h3>
       <p class="credit">Guide by <b>Taylor Stevens, Ed.S.</b> · Instructional Designer, Forsyth Virtual Academy</p>
 <ol class="guide">
@@ -1410,6 +1417,8 @@ html.vid-on .trail{backdrop-filter:none;background:var(--night)}
   })();
 
 
+
+  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a.gas-open');if(!a)return;e.preventDefault();const d=document.getElementById('gas-guide');if(d){d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'})}});
   /* ---------- smooth video playback ----------
      - pause the moving background while any video plays
      - only one video plays at a time
