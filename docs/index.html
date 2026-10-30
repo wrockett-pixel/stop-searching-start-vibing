@@ -9,14 +9,14 @@
 /* Layout: field-journal expedition. Alternating art/text bands with the deck's wavy edge, one section per slide-idea, sticky trail nav. Deliberately dark, matching the GaETC deck. */
 :root{
   --night:#0f2231;      /* page ground, the deck's navy */
-  --deep:#15304a;       /* raised surface */
+  --deep:#1d4060;       /* raised surface */
   --moss:#1d3b4f;       /* second surface */
   --teal:#18a594;       /* deck accent */
   --teal-ink:#06251f;   /* text on teal */
   --amber:#f3b443;      /* lantern glow from the art */
   --bone:#ece6d6;       /* main text */
-  --fog:#a3b6c1;        /* muted text */
-  --line:#2c4a5e;       /* hairlines */
+  --fog:#bccbd5;        /* muted text */
+  --line:#3c6380;       /* hairlines */
   --bad:#ef7a5d; --good:#5fd39c; --warn:#f3c95b; --info:#6fb3f2;
   --f-display:"Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
   --f-body:"Atkinson Hyperlegible", Verdana, system-ui, sans-serif;
@@ -469,7 +469,7 @@ html.present .speaker{display:flex}
 .speaker .sp-L{background:var(--teal);color:var(--teal-ink)}
 .pacer{display:none;position:relative}
 html.present .pacer{display:block}
-.pacer>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:4px 12px 4px 6px;font-family:var(--f-mono);font-size:.8rem;color:var(--fog);background:rgba(0,0,0,.15);user-select:none}
+.pacer>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:4px 12px 4px 6px;font-family:var(--f-mono);font-size:.8rem;color:var(--fog);background:#24496b;border-color:#5a83a3;user-select:none}
 .pacer>summary::-webkit-details-marker{display:none}
 .pacer .p-ring{width:22px;height:22px;flex:none}
 .pacer .p-ring circle{fill:none;stroke-width:4}
@@ -685,10 +685,10 @@ details.more[open]>summary::before{content:"–"}
 
 /* ---- depth: lit backdrop + raised surfaces ---- */
 html{background:
-  radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.35) 100%),
-  radial-gradient(1100px 700px at 8% -10%,rgba(24,165,148,.20),transparent 60%),
-  radial-gradient(900px 650px at 105% 110%,rgba(243,180,67,.13),transparent 60%),
-  radial-gradient(1400px 900px at 50% 40%,#16314a 0%,var(--night) 62%,#0a1825 100%);
+  radial-gradient(ellipse at center,transparent 65%,rgba(0,0,0,.18) 100%),
+  radial-gradient(1100px 700px at 8% -10%,rgba(24,165,148,.28),transparent 60%),
+  radial-gradient(900px 650px at 105% 110%,rgba(243,180,67,.18),transparent 60%),
+  radial-gradient(1400px 900px at 50% 40%,#22466a 0%,#183650 55%,#12293d 100%);
   background-attachment:fixed}
 body{background:transparent}
 .tile,.panel,.guide>li,.pillar,form.builder,.aaa div,.ci-results,.six li,.where-card,.rc,.wedo,.route,.env,.tips details,.flow3 span,details.more{
