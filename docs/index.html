@@ -883,75 +883,9 @@ details.more[open]>summary::before{content:"–"}
   </div>
 </section>
 
-<section id="demo" data-speaker="L" data-name="How we built it">
-  <div class="wrap split">
-    <div class="art"><img src="img/lab.webp" alt="A dinosaur scientist looks into a microscope beneath a glowing plant cell in a jungle research lab" width="760" height="1300"></div>
-    <div class="stack">
-      <p class="eyebrow"><span class="phase ph-i">I do</span> How we build every app</p>
-      <h2>How we built it: 6 steps</h2>
-      <ol class="six">
-        <li><span class="ds-tag">Plan</span><b>Pick a problem</b><span>A concept students mix up</span></li>
-        <li><span class="ds-tag">Plan</span><b>Pack the field kit</b><span>Standard, grade, answer key</span></li>
-        <li><span class="ds-tag hatch">Hatch</span><b>Hatch it</b><span>AI builds a first draft</span></li>
-        <li><span class="ds-tag hatch">Hatch</span><b>Evolve it</b><span>Add hints, never answers</span></li>
-        <li><span class="ds-tag rel">Release</span><b>Share it</b><span>Publish with Apps Script</span></li>
-        <li><span class="ds-tag rel">Release</span><b>Save the recipe</b><span>Reuse it next unit</span></li>
-      </ol>
-    </div>
-  </div>
-</section>
 
-<section class="deco flipdeco" id="silk" data-speaker="W" data-name="Demo: Silk Road">
-  <div class="wrap">
-    <div class="split flip">
-      <div class="art"><img class="keep" src="img/silk.webp" alt="A young green dinosaur holding a glowing trade-route map leads a caravan of long-necked dinosaurs loaded with silk, porcelain and spice sacks across desert dunes toward a domed caravanserai below snowy mountains at sunset" width="760" height="1140" style="max-height:min(calc(100vh - 190px),880px)"></div>
-      <div class="stack">
-      <p class="eyebrow"><span class="phase ph-i">I do</span> AP World History · Topic 2.1</p>
-        <h2>Silk Road caravan</h2>
-        <p class="lede">Lead a caravan from Xi'an to Constantinople. Answer right to move on.</p>
-        <div class="pr3"><div><span class="ds-tag">Plan</span><span>Students list Silk Road goods but can't explain why trade grew.</span></div><div><span class="ds-tag hatch">Hatch</span><span>AI built the route-map game. We asked for feedback on every wrong answer.</span></div><div><span class="ds-tag rel">Release</span><span>Published with Apps Script, linked in Canvas.</span></div></div>
-        <details class="more"><summary>All 6 steps</summary><div class="more-body"><div class="demo-steps">
-        <div><span class="ds-tag">Plan</span><b>1 · Choose the dig site</b><span>Students can list Silk Road goods but can't explain why trade grew.</span></div>
-        <div><span class="ds-tag">Plan</span><b>2 · Pack the field kit</b><span>AP World Topic 2.1, six cities, our questions and answer key.</span></div>
-        <div><span class="ds-tag hatch">Hatch</span><b>3 · Hatch it</b><span>Paste the prompt and let the AI build the route-map game.</span></div>
-        <div><span class="ds-tag hatch">Hatch</span><b>4 · Evolve it</b><span>Check every date and fact, then ask for feedback that explains each wrong answer.</span></div>
-        <div><span class="ds-tag rel">Release</span><b>5 · Release it</b><span>Publish with Google Apps Script and add the link to the Canvas module.</span></div>
-        <div><span class="ds-tag rel">Release</span><b>6 · Leave your tracks</b><span>Save it as a skill and reuse it for Indian Ocean trade next.</span></div>
-      </div></div></details>
-      </div>
-    </div>
 
-    <div class="silk" id="silkGame">
-      <div class="game-head">
-        <div><p class="eyebrow">Caravan log</p><h3 style="font-size:var(--s2)" id="silkTitle">Leaving Xi'an</h3></div>
-        <div class="stats"><span id="skStop">Stop 1 of 6</span><span id="skFirst">0 first try</span><span id="skTime">0:00</span></div>
-      </div>
-      <div class="silk-map">
-        <svg viewBox="0 0 700 250" role="img" aria-labelledby="silkMapT">
-          <title id="silkMapT">Simplified Silk Road route from Constantinople in the west to Xi'an in the east, not to scale</title>
-          <rect x="0" y="0" width="700" height="250" rx="14" fill="#e9dcbc"/>
-          <path d="M0 210 Q120 190 210 225 T430 205 T700 220 V250 H0Z" fill="#d9c79c"/>
-          <g fill="none" stroke="#a88c5a" stroke-width="1.2" opacity=".7">
-            <path d="M330 70 l14 -22 l14 22 M350 70 l12 -18 l12 18 M368 72 l10 -15 l10 15"/>
-            <path d="M420 165 l12 -20 l12 20 M438 165 l10 -16 l10 16"/>
-          </g>
-          <text x="352" y="40" class="silk-geo" text-anchor="middle">Tian Shan</text>
-          <text x="440" y="182" class="silk-geo" text-anchor="middle">Pamirs</text>
-          <text x="470" y="58" class="silk-geo" text-anchor="middle">Taklamakan Desert</text>
-          <text x="150" y="238" class="silk-geo" text-anchor="middle">Persia</text>
-          <path id="silkRoute" d="M60 95 C110 140 140 170 180 170 S260 120 300 120 S360 135 395 125 S450 95 500 100 S580 140 630 135" fill="none" stroke="#8a5a2b" stroke-width="3" stroke-dasharray="7 6"/>
-          <g id="silkCities"></g>
-          <g id="caravan" aria-hidden="true">
-            <circle r="13" fill="#f3b443" stroke="#5a3a12" stroke-width="2"/>
-            <path d="M-6 3 q0-7 4-7 q2-4 5 0 l3 0 q2 2 0 3 l-2 0 l0 5 M-4 3 v4 M3 3 v4" fill="none" stroke="#3b2208" stroke-width="1.8" stroke-linecap="round"/>
-          </g>
-          <text x="690" y="244" class="silk-geo" text-anchor="end" style="font-size:10px">Not to scale</text>
-        </svg>
-      </div>
-      <div class="clue" id="silkClue" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
+
 
 <section class="deco" id="recipe" data-speaker="L" data-name="The recipe">
   <div class="wrap">
@@ -1057,11 +991,11 @@ details.more[open]>summary::before{content:"–"}
     <div class="split flip">
       <div class="art"><img class="raw" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg while an adult T. rex watches from the jungle behind" width="760" height="1035" style="max-height:min(60vh,620px);width:auto;margin-left:auto;transform:none"></div>
       <div class="stack">
-        <p class="eyebrow"><span class="phase ph-you">You do</span> Work session · 12 minutes</p>
+        <p class="eyebrow"><span class="phase ph-you">You do</span> Work session · 15 minutes</p>
         <h2>Hatch your first app</h2>
         <p class="lede" style="margin:0">One idea. Fill in the prompt, paste it into your AI, and play what you get.</p>
         <div class="timer">
-          <span class="clock" id="clock" role="timer" aria-live="off">12:00</span>
+          <span class="clock" id="clock" role="timer" aria-live="off">15:00</span>
           <button class="btn amber" id="timerBtn">Start timer</button>
           <button class="btn ghost" id="timerReset">Reset</button>
         </div>
@@ -1225,7 +1159,7 @@ details.more[open]>summary::before{content:"–"}
         <a href="media/From-Egg-to-Apex.pdf" target="_blank" rel="noopener" download><b>Printable 6 steps (PDF)</b><span>print</span></a>
         <a href="#turn"><b>Starter prompt</b><span>prompt</span></a>
         <a href="#gas-guide"><b>Apps Script guide</b><span>guide</span></a>
-        <a href="#examples"><b>Our examples and demos</b><span>play</span></a>
+        <a href="#examples"><b>Our examples</b><span>play</span></a>
       </div>
       <div class="qr-card" style="align-self:flex-start"><div class="qr" id="qrKit" aria-hidden="true"></div><p><b>Scan to take the tool kit home</b><span id="qrKitUrl" class="muted"></span></p></div>
       <p class="closer">Stop searching for the fossil. Start vibing the future.</p>
@@ -1378,7 +1312,7 @@ details.more[open]>summary::before{content:"–"}
 
   /* ---------- pacing timer (Present mode): budgets add up to 55 minutes ---------- */
   (function(){
-    const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:3,demo:3,silk:3,recipe:2,tools:1,pick:7,turn:15,release:2,beyond:1,fairer:1,tips:1,kit:3,share:4};
+    const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:4,recipe:3,tools:1,pick:8,turn:18,release:2,beyond:1,fairer:1,tips:1,kit:3,share:4};
     const TOTAL=sections.reduce((a,s)=>a+(BUDGET[s.id]||0),0)*60;
     const el=$('#pacer');if(!el)return;
     const KEY='vibe-pacer';let st={total:0,pages:{},running:false};
@@ -1427,7 +1361,7 @@ details.more[open]>summary::before{content:"–"}
   const RESPONSES_URL=/\.netlify\.app$/.test(location.hostname)?'/api/survey':(/^https?:$/.test(location.protocol)?SURVEY_SITE+'/api/survey':'');
   const routes={
     egg:'<b>Welcome, Egg.</b> Start with whichever AI tool your district already gives you, or a free account. Gemini builds fast in a side panel if you use Google. When we get to <a href="#turn">Your turn</a>, use the starter prompt as-is and just swap in your own content.',
-    hatchling:'<b>Nice, Hatchling.</b> You already chat with AI. Today\'s leap is asking for an <i>app</i> instead of text. See <a href="#demo">how we build</a>, then evolve your own build one change at a time.',
+    hatchling:'<b>Nice, Hatchling.</b> You already chat with AI. Today\'s leap is asking for an <i>app</i> instead of text. See <a href="#recipe">how we build</a>, then evolve your own build one change at a time.',
     apex:'<b>Hello, Apex Predator.</b> Save your setup so you never start from scratch: a Gem, a Claude project or skill, or a custom GPT. Then add the integrity and reporting features from <a href="#fairer">One Prompt, Every Learner</a>.'
   };
   const STAGES=[['egg','Egg'],['hatchling','Hatchling'],['apex','Apex Predator']];
@@ -1600,6 +1534,7 @@ details.more[open]>summary::before{content:"–"}
 
   /* ---------- Silk Road caravan (AP World 2.1) ---------- */
   (function(){
+    if(!document.getElementById('silkGame'))return;
     const CITIES=[
       {name:"Xi'an",x:630,y:135,ly:26,
        q:'Which Chinese luxury good was so prized in the West that these trade routes were later named after it?',
@@ -1834,15 +1769,15 @@ details.more[open]>summary::before{content:"–"}
     const b=$('#qSubmit');b.disabled=true;if(await sendShare({action:'question',text},'#qMsg','Sent! Watch for it on the big screen.'))$('#qText').value='';b.disabled=false});
 
   /* ---------- 8-minute timer ---------- */
-  let left=720,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
+  let left=900,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
   function draw(){clock.textContent=fmt(left);clock.classList.toggle('out',left===0)}
   tb.addEventListener('click',()=>{
     if(timer){clearInterval(timer);timer=null;tb.textContent='Resume';return}
-    if(left===0)left=720;
+    if(left===0)left=900;
     tb.textContent='Pause';
     timer=setInterval(()=>{left=Math.max(0,left-1);draw();if(left===0){clearInterval(timer);timer=null;tb.textContent='Start again';toast("Time's up! Share what you built.")}},1000);
   });
-  $('#timerReset').addEventListener('click',()=>{clearInterval(timer);timer=null;left=720;tb.textContent='Start timer';draw()});
+  $('#timerReset').addEventListener('click',()=>{clearInterval(timer);timer=null;left=900;tb.textContent='Start timer';draw()});
 
   /* ---------- prompt builder ---------- */
   const F=id=>{const el=$('#'+id);return el.type==='checkbox'?el.checked:el.value.trim()};
