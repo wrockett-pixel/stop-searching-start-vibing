@@ -725,33 +725,11 @@ html.vid-on .trail{backdrop-filter:none;background:var(--night)}
 @media (prefers-reduced-motion:reduce){#bgfx .glow,#bgfx .fly{animation:none}#bgfx .fly{opacity:.7;bottom:auto;top:calc(var(--y,50) * 1vh)}}
 
 
-/* ---- slide 4 decor: floating app windows and code marks ---- */
-.vibe-decor{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.vibe-decor .vd{position:absolute;display:block}
-.vibe-decor svg{width:100%;height:100%;fill:none;stroke:#f3b443;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.vibe-decor .w1{width:150px;height:105px;right:6%;top:9%;opacity:.16;transform:rotate(8deg);animation:vfloat 9s ease-in-out infinite}
-.vibe-decor .w2{width:110px;height:77px;right:27%;bottom:9%;opacity:.12;transform:rotate(-10deg);animation:vfloat 11s ease-in-out -3s infinite}
-.vibe-decor .w3{width:90px;height:63px;right:3%;bottom:24%;opacity:.1;transform:rotate(14deg);animation:vfloat 10s ease-in-out -6s infinite}
-.vibe-decor .c1{width:90px;height:54px;right:30%;top:12%;opacity:.14;animation:vfloat 12s ease-in-out -2s infinite}
-.vibe-decor .c2{width:70px;height:42px;right:12%;bottom:8%;opacity:.12;animation:vfloat 8s ease-in-out -4s infinite}
-.vibe-decor .w1 svg,.vibe-decor .w2 svg,.vibe-decor .w3 svg{stroke:#5fd3b5}
-.vibe-decor .s{width:6px;height:6px;border-radius:50%;background:#ffd27a;box-shadow:0 0 12px 4px rgba(255,210,122,.45);opacity:.55;animation:vtw 3.5s ease-in-out infinite}
-.vibe-decor .s1{right:20%;top:30%}.vibe-decor .s2{right:42%;top:22%;animation-delay:-1s}.vibe-decor .s3{right:9%;top:52%;animation-delay:-2s}.vibe-decor .s4{right:36%;bottom:22%;animation-delay:-.5s}.vibe-decor .s5{right:17%;bottom:30%;animation-delay:-2.6s}
-@keyframes vfloat{0%,100%{translate:0 0}50%{translate:0 -14px}}
-@keyframes vtw{0%,100%{opacity:.2;scale:.7}50%{opacity:.7;scale:1}}
-html.vid-on .vibe-decor .vd{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.vibe-decor .vd{animation:none}}
-@media (max-width:900px){.vibe-decor{display:none}}
 
-/* ---- floating decor on image pages ---- */
-.vdecor{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.vdecor .vd{position:absolute;display:block;animation:vfloat 10s ease-in-out infinite}
-.vdecor svg{width:100%;height:auto;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.vdecor .a svg{stroke:#f3b443}.vdecor .t svg{stroke:#5fd3b5}
-.vdecor .s{width:6px;height:6px;border-radius:50%;background:#ffd27a;box-shadow:0 0 12px 4px rgba(255,210,122,.45);opacity:.55;animation:vtw 3.5s ease-in-out infinite}
-html.vid-on .vdecor .vd{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.vdecor .vd{animation:none}}
-@media (max-width:900px){.vdecor{display:none}}
+
+/* ---- soft lantern-light halo behind the art on every image page ---- */
+section .art{position:relative}
+section .art::before{content:"";position:absolute;inset:-8% -10%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(243,180,67,.22),rgba(24,165,148,.10) 55%,transparent 100%);filter:none}
 </style>
 
 <header class="trail">
@@ -866,7 +844,6 @@ html.vid-on .vdecor .vd{animation-play-state:paused}
 </section>
 
 <section class="deco flipdeco" id="vibe" data-speaker="W" data-name="What is vibe coding?">
-  <div class="vibe-decor" aria-hidden="true"><span class="vd w1"><svg viewBox="0 0 120 84"><rect x="2" y="2" width="116" height="80" rx="10"/><path d="M2 20h116"/><circle cx="14" cy="11" r="3"/><circle cx="25" cy="11" r="3"/><circle cx="36" cy="11" r="3"/><path d="M18 40h56M18 52h84M18 64h40"/></svg></span><span class="vd c1"><svg viewBox="0 0 100 60"><path d="M30 12 10 30l20 18M70 12l20 18-20 18M58 6 42 54"/></svg></span><span class="vd w2"><svg viewBox="0 0 120 84"><rect x="2" y="2" width="116" height="80" rx="10"/><path d="M2 20h116"/><circle cx="14" cy="11" r="3"/><circle cx="25" cy="11" r="3"/><circle cx="36" cy="11" r="3"/><path d="M18 40h56M18 52h84M18 64h40"/></svg></span><span class="vd c2"><svg viewBox="0 0 100 60"><path d="M30 12 10 30l20 18M70 12l20 18-20 18M58 6 42 54"/></svg></span><span class="vd w3"><svg viewBox="0 0 120 84"><rect x="2" y="2" width="116" height="80" rx="10"/><path d="M2 20h116"/><circle cx="14" cy="11" r="3"/><circle cx="25" cy="11" r="3"/><circle cx="36" cy="11" r="3"/><path d="M18 40h56M18 52h84M18 64h40"/></svg></span><span class="vd s s1"></span><span class="vd s s2"></span><span class="vd s s3"></span><span class="vd s s4"></span><span class="vd s s5"></span></div>
   <div class="wrap split">
     <div class="art"><img src="img/vibe.webp" alt="A curious dinosaur watches glowing app windows swirl out of a laptop at night" width="760" height="1257"></div>
     <div class="stack">
@@ -879,8 +856,7 @@ html.vid-on .vdecor .vd{animation-play-state:paused}
   </div>
 </section>
 
-<section id="why" data-speaker="L" data-name="Why it matters">
-  <div class="vdecor" aria-hidden="true"><span class="vd a" style="left:36%;top:10%;width:64px;opacity:0.26;rotate:-8deg;animation-delay:-0.0s;animation-duration:9.0s"><svg viewBox="0 0 60 84"><path d="M30 4a24 24 0 0 0-14 43c4 3 6 7 6 12h16c0-5 2-9 6-12A24 24 0 0 0 30 4zM22 66h16M24 76h12"/></svg></span><span class="vd t" style="left:41%;top:63%;width:70px;opacity:0.22;rotate:6deg;animation-delay:-2.3s;animation-duration:10.5s"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36"/><path d="M22 41l12 12 24-26"/></svg></span><span class="vd a" style="left:30%;top:82%;width:46px;opacity:0.26;rotate:0deg;animation-delay:-4.6s;animation-duration:12.0s"><svg viewBox="0 0 60 60"><path d="M30 4c3 16 10 23 26 26-16 3-23 10-26 26-3-16-10-23-26-26 16-3 23-10 26-26z"/></svg></span><span class="vd t" style="left:22%;top:4%;width:120px;opacity:0.16;rotate:-6deg;animation-delay:-6.9s;animation-duration:13.5s"><svg viewBox="0 0 120 84"><rect x="2" y="2" width="116" height="80" rx="10"/><path d="M2 20h116"/><circle cx="14" cy="11" r="3"/><circle cx="25" cy="11" r="3"/><circle cx="36" cy="11" r="3"/><path d="M18 40h56M18 52h84M18 64h40"/></svg></span><span class="vd s" style="left:34%;top:30%;animation-delay:-0.0s"></span><span class="vd s" style="left:44%;top:48%;animation-delay:-0.7s"></span><span class="vd s" style="left:27%;top:74%;animation-delay:-1.4s"></span><span class="vd s" style="left:46%;top:86%;animation-delay:-2.1s"></span></div>
+<section class="deco" id="why" data-speaker="L" data-name="Why it matters">
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/tired.webp" alt="An exhausted dinosaur slumped over piles of worksheets beside a broken piggy bank" width="760" height="1221"></div>
     <div class="stack">
@@ -928,8 +904,7 @@ html.vid-on .vdecor .vd{animation-play-state:paused}
   </div>
 </section>
 
-<section id="examples" data-speaker="LW" data-name="Examples">
-  <div class="vdecor" aria-hidden="true"><span class="vd t" style="left:88%;top:2%;width:110px;opacity:0.19;rotate:8deg;animation-delay:-0.0s;animation-duration:9.0s"><svg viewBox="0 0 120 84"><rect x="2" y="2" width="116" height="80" rx="10"/><path d="M50 26v32l26-16z"/></svg></span><span class="vd a" style="left:3%;top:90%;width:40px;opacity:0.24;rotate:0deg;animation-delay:-2.3s;animation-duration:10.5s"><svg viewBox="0 0 60 60"><path d="M30 4c3 16 10 23 26 26-16 3-23 10-26 26-3-16-10-23-26-26 16-3 23-10 26-26z"/></svg></span><span class="vd a" style="left:70%;top:4%;width:80px;opacity:0.19;rotate:-6deg;animation-delay:-4.6s;animation-duration:12.0s"><svg viewBox="0 0 100 60"><path d="M30 12 10 30l20 18M70 12l20 18-20 18M58 6 42 54"/></svg></span><span class="vd s" style="left:80%;top:8%;animation-delay:-0.0s"></span><span class="vd s" style="left:94%;top:14%;animation-delay:-0.7s"></span><span class="vd s" style="left:6%;top:84%;animation-delay:-1.4s"></span></div>
+<section class="deco flipdeco" id="examples" data-speaker="LW" data-name="Examples">
   <div class="wrap split">
     <div class="art"><img class="raw" src="img/jars.webp" alt="A dinosaur peers through a field-station window at four glowing specimen jars and an observation notebook" width="760" height="1081"></div>
     <div class="stack">
@@ -1104,8 +1079,7 @@ html.vid-on .vdecor .vd{animation-play-state:paused}
   </div>
 </section>
 
-<section id="turn" data-speaker="WL" data-name="Your turn">
-  <div class="vdecor" aria-hidden="true"><span class="vd a" style="left:36%;top:14%;width:70px;opacity:0.24;rotate:-10deg;animation-delay:-0.0s;animation-duration:9.0s"><svg viewBox="0 0 64 84"><path d="M32 4C16 4 4 34 4 52a28 28 0 0 0 56 0C60 34 48 4 32 4z"/><path d="M10 48l9-7 8 8 8-9 8 8 9-8 7 6"/></svg></span><span class="vd t" style="left:58%;top:24%;width:70px;opacity:0.21;rotate:8deg;animation-delay:-2.3s;animation-duration:10.5s"><svg viewBox="0 0 84 84"><path d="M58 8l18 18L28 74H10V56zM48 18l18 18"/></svg></span><span class="vd a" style="left:48%;top:40%;width:44px;opacity:0.26;rotate:0deg;animation-delay:-4.6s;animation-duration:12.0s"><svg viewBox="0 0 60 60"><path d="M30 4c3 16 10 23 26 26-16 3-23 10-26 26-3-16-10-23-26-26 16-3 23-10 26-26z"/></svg></span><span class="vd t" style="left:30%;top:44%;width:90px;opacity:0.16;rotate:-4deg;animation-delay:-6.9s;animation-duration:13.5s"><svg viewBox="0 0 100 60"><path d="M30 12 10 30l20 18M70 12l20 18-20 18M58 6 42 54"/></svg></span><span class="vd s" style="left:42%;top:30%;animation-delay:-0.0s"></span><span class="vd s" style="left:55%;top:14%;animation-delay:-0.7s"></span><span class="vd s" style="left:62%;top:40%;animation-delay:-1.4s"></span><span class="vd s" style="left:35%;top:36%;animation-delay:-2.1s"></span></div>
+<section class="deco" id="turn" data-speaker="WL" data-name="Your turn">
   <div class="wrap">
     <div class="split flip">
       <div class="art"><img class="raw" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg while an adult T. rex watches from the jungle behind" width="760" height="1035" style="max-height:min(60vh,620px);width:auto;margin-left:auto;transform:none"></div>
@@ -1247,8 +1221,7 @@ html.vid-on .vdecor .vd{animation-play-state:paused}
   </div>
 </section>
 
-<section id="tips" data-speaker="W" data-name="Tips & tricks">
-  <div class="vdecor" aria-hidden="true"><span class="vd a" style="left:38%;top:6%;width:56px;opacity:0.24;rotate:10deg;animation-delay:-0.0s;animation-duration:9.0s"><svg viewBox="0 0 60 84"><path d="M30 4a24 24 0 0 0-14 43c4 3 6 7 6 12h16c0-5 2-9 6-12A24 24 0 0 0 30 4zM22 66h16M24 76h12"/></svg></span><span class="vd t" style="left:30%;top:14%;width:58px;opacity:0.19;rotate:-8deg;animation-delay:-2.3s;animation-duration:10.5s"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36"/><path d="M22 41l12 12 24-26"/></svg></span><span class="vd a" style="left:47%;top:16%;width:40px;opacity:0.26;rotate:0deg;animation-delay:-4.6s;animation-duration:12.0s"><svg viewBox="0 0 60 60"><path d="M30 4c3 16 10 23 26 26-16 3-23 10-26 26-3-16-10-23-26-26 16-3 23-10 26-26z"/></svg></span><span class="vd s" style="left:44%;top:4%;animation-delay:-0.0s"></span><span class="vd s" style="left:34%;top:9%;animation-delay:-0.7s"></span><span class="vd s" style="left:50%;top:10%;animation-delay:-1.4s"></span></div>
+<section class="deco flipdeco" id="tips" data-speaker="W" data-name="Tips & tricks">
   <div class="wrap split flip">
     <div class="art"><img class="keep whole" src="img/lantern.webp" alt="An adult T. rex with a lantern guides a young dinosaur down a jungle path past signs reading Courage, Patience and Kindness" width="760" height="1221"></div>
     <div class="stack">
@@ -1276,8 +1249,7 @@ html.vid-on .vdecor .vd{animation-play-state:paused}
 
 
 
-<section id="kit" data-speaker="W" data-name="Take it with you">
-  <div class="vdecor" aria-hidden="true"><span class="vd t" style="left:33%;top:5%;width:110px;opacity:0.18;rotate:-6deg;animation-delay:-0.0s;animation-duration:9.0s"><svg viewBox="0 0 120 84"><rect x="2" y="2" width="116" height="80" rx="10"/><path d="M2 20h116"/><circle cx="14" cy="11" r="3"/><circle cx="25" cy="11" r="3"/><circle cx="36" cy="11" r="3"/><path d="M18 40h56M18 52h84M18 64h40"/></svg></span><span class="vd a" style="left:45%;top:14%;width:44px;opacity:0.24;rotate:0deg;animation-delay:-2.3s;animation-duration:10.5s"><svg viewBox="0 0 60 60"><path d="M30 4c3 16 10 23 26 26-16 3-23 10-26 26-3-16-10-23-26-26 16-3 23-10 26-26z"/></svg></span><span class="vd a" style="left:38%;top:24%;width:56px;opacity:0.2;rotate:10deg;animation-delay:-4.6s;animation-duration:12.0s"><svg viewBox="0 0 64 84"><path d="M32 4C16 4 4 34 4 52a28 28 0 0 0 56 0C60 34 48 4 32 4z"/><path d="M10 48l9-7 8 8 8-9 8 8 9-8 7 6"/></svg></span><span class="vd t" style="left:30%;top:19%;width:52px;opacity:0.18;rotate:-8deg;animation-delay:-6.9s;animation-duration:13.5s"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36"/><path d="M22 41l12 12 24-26"/></svg></span><span class="vd s" style="left:42%;top:6%;animation-delay:-0.0s"></span><span class="vd s" style="left:35%;top:15%;animation-delay:-0.7s"></span><span class="vd s" style="left:48%;top:26%;animation-delay:-1.4s"></span></div>
+<section class="deco" id="kit" data-speaker="W" data-name="Take it with you">
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/kit.webp" alt="An open leather field kit glowing green on a jungle trail lined with dinosaur footprints" width="760" height="1221"></div>
     <div class="stack">
