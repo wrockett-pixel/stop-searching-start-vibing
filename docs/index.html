@@ -1391,10 +1391,22 @@ html.vid-on .trail{backdrop-filter:none;background:var(--night)}
     else if(document.fullscreenElement&&document.exitFullscreen){document.exitFullscreen().catch(()=>{})}
   });
 
-  /* ---------- example apps: open with the school Google account when presenting ---------- */
-  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="https://script.google.com/macros/s/"]');
-    if(!a||!document.documentElement.classList.contains('present'))return;
-    e.preventDefault();window.open(a.href.replace('https://script.google.com/macros/s/','https://script.google.com/a/macros/forsythk12.org/s/'),'_blank','noopener')});
+  /* ---------- example apps: open with the school Google account (@forsythk12.org) on the presenter's laptop ----------
+     Any device that has clicked Present is treated as the presenter's: every Apps Script link on it points to the
+     school-domain URL, so Google uses the forsythk12.org account instead of a personal Gmail. Audience phones never
+     press Present, so they keep the public link. "Copy link" buttons always copy the public link for Incognito. */
+  (function(){
+    const PUB='https://script.google.com/macros/s/',SCH='https://script.google.com/a/macros/forsythk12.org/s/',KEY='vibe-presenter';
+    let presenter=false;try{presenter=localStorage.getItem(KEY)==='1'}catch(e){}
+    const isOn=()=>presenter||document.documentElement.classList.contains('present');
+    function apply(){const on=isOn();document.querySelectorAll('a[href*="script.google.com/"]').forEach(a=>{
+      const h=a.getAttribute('href');if(on&&h.startsWith(PUB))a.setAttribute('href',SCH+h.slice(PUB.length));else if(!on&&h.startsWith(SCH))a.setAttribute('href',PUB+h.slice(SCH.length))})}
+    new MutationObserver(()=>{if(document.documentElement.classList.contains('present')&&!presenter){presenter=true;try{localStorage.setItem(KEY,'1')}catch(e){}}apply()}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+    // belt and braces: even if an href was missed, a click on the presenter's laptop opens the school version
+    document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="'+PUB+'"]');if(!a||!isOn())return;
+      e.preventDefault();window.open(SCH+a.getAttribute('href').slice(PUB.length),'_blank','noopener')});
+    apply();
+  })();
 
 
   /* ---------- smooth video playback ----------
