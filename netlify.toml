@@ -3,3 +3,8 @@
 
 [functions]
   directory = "netlify/functions"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

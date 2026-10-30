@@ -378,6 +378,7 @@ section:last-of-type::after{display:none}
 .eyebrow::before{content:"";display:inline-block;width:1.3em;height:1.3em;margin-right:.5em;vertical-align:-.32em;background:var(--teal);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 22c-2 0-3-1.5-3-3.5 0-1.5 1-3 3-3s3 1.5 3 3c0 2-1 3.5-3 3.5zM5 13c-1 0-2-1-2-2.5S4 8 5 8s2 1 2 2.5S6 13 5 13zm14 0c-1 0-2-1-2-2.5S18 8 19 8s2 1 2 2.5-1 2.5-2 2.5zM9 9C8 9 7 7.5 7 5.5S8 2 9 2s2 1.5 2 3.5S10 9 9 9zm6 0c-1 0-2-1.5-2-3.5S14 2 15 2s2 1.5 2 3.5S16 9 15 9z%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 22c-2 0-3-1.5-3-3.5 0-1.5 1-3 3-3s3 1.5 3 3c0 2-1 3.5-3 3.5zM5 13c-1 0-2-1-2-2.5S4 8 5 8s2 1 2 2.5S6 13 5 13zm14 0c-1 0-2-1-2-2.5S18 8 19 8s2 1 2 2.5-1 2.5-2 2.5zM9 9C8 9 7 7.5 7 5.5S8 2 9 2s2 1.5 2 3.5S10 9 9 9zm6 0c-1 0-2-1.5-2-3.5S14 2 15 2s2 1.5 2 3.5S16 9 15 9z%22/%3E%3C/svg%3E") center/contain no-repeat;transform:rotate(90deg)}
 .flies{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 #start .wrap,#kit .wrap{position:relative;z-index:1}
+#start,#kit{background:radial-gradient(1200px 800px at 30% 45%,rgba(8,22,36,.45),transparent 70%)}
 .art img.raw{-webkit-mask-image:none;mask-image:none;max-height:none;object-fit:contain;border-radius:var(--r) 0 0 var(--r)}
 .stack>h2{position:relative}
 h2::after{content:"";display:block;width:56px;height:4px;border-radius:2px;margin-top:14px;background:linear-gradient(90deg,var(--amber),var(--teal))}
@@ -710,6 +711,7 @@ body{background:transparent}
 @keyframes fly{0%{transform:translate(0,0);opacity:0}10%{opacity:.85}50%{transform:translate(var(--dx),-55vh);opacity:.6}90%{opacity:.8}100%{transform:translate(calc(var(--dx) * -1),-110vh);opacity:0}}
 html.vid-on #bgfx .glow,html.vid-on #bgfx .fly{animation-play-state:paused}
 html.vid-on #bgfx .fly{visibility:hidden}
+html.vid-on .trail{backdrop-filter:none;background:var(--night)}
 @media (prefers-reduced-motion:reduce){#bgfx .glow,#bgfx .fly{animation:none}#bgfx .fly{display:none}}
 </style>
 
@@ -901,7 +903,7 @@ html.vid-on #bgfx .fly{visibility:hidden}
       <div class="panel" role="tabpanel" id="p-cfu" aria-labelledby="t-cfu">
         <span class="tag">From our classes · check for understanding</span>
         <figure class="showcase">
-          <video src="media/checks-for-understanding.mp4" poster="media/checks-for-understanding-poster.jpg" controls muted playsinline preload="metadata" width="1920" height="1080" aria-label="Video tour of seven check-for-understanding formats built for virtual, asynchronous AP classes, such as Spot the Error"></video>
+          <video src="media/checks-for-understanding-v2.mp4" poster="media/checks-for-understanding-poster.jpg" controls muted playsinline preload="metadata" width="1920" height="1080" aria-label="Video tour of seven check-for-understanding formats built for virtual, asynchronous AP classes, such as Spot the Error"></video>
           <figcaption>Seven quick check formats, like Spot the Error.</figcaption>
         </figure>
         <div class="real-app">
@@ -913,7 +915,7 @@ html.vid-on #bgfx .fly{visibility:hidden}
       <div class="panel" role="tabpanel" id="p-sim" aria-labelledby="t-sim" hidden>
         <span class="tag">From our classes · science virtual labs</span>
         <figure class="showcase">
-          <video src="media/virtual-labs.mp4" poster="media/virtual-labs-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of five science virtual labs built with AI, including an ink chromatography lab"></video>
+          <video src="media/virtual-labs-v2.mp4" poster="media/virtual-labs-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of five science virtual labs built with AI, including an ink chromatography lab"></video>
           <figcaption>Five science labs that run on any Chromebook.</figcaption>
         </figure>
         <div class="real-app">
@@ -925,7 +927,7 @@ html.vid-on #bgfx .fly{visibility:hidden}
       <div class="panel" role="tabpanel" id="p-game" aria-labelledby="t-game" hidden>
         <span class="tag">From our classes · review game</span>
         <figure class="showcase">
-          <video src="media/unit-reviews.mp4" poster="media/unit-reviews-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of interactive unit review sites for AP Psych, AP World, US History and ELA, including an AP World Land-Based Empires drag-and-sort"></video>
+          <video src="media/unit-reviews-v2.mp4" poster="media/unit-reviews-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of interactive unit review sites for AP Psych, AP World, US History and ELA, including an AP World Land-Based Empires drag-and-sort"></video>
           <figcaption>A review site for every unit, in four subjects.</figcaption>
         </figure>
         <div class="real-app">
@@ -937,7 +939,7 @@ html.vid-on #bgfx .fly{visibility:hidden}
       <div class="panel" role="tabpanel" id="p-acc" aria-labelledby="t-acc" hidden>
         <span class="tag">From our classes · accessibility</span>
         <figure class="showcase">
-          <video src="media/accessibility.mp4" poster="media/accessibility-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of accessibility features built into every lab, shown in Solution Lab: Light the Bulb, including vocabulary pop-ups with read-aloud"></video>
+          <video src="media/accessibility-v2.mp4" poster="media/accessibility-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of accessibility features built into every lab, shown in Solution Lab: Light the Bulb, including vocabulary pop-ups with read-aloud"></video>
           <figcaption>Vocab pop-ups and read-aloud in every lab.</figcaption>
         </figure>
         <div class="real-app">
@@ -964,7 +966,7 @@ html.vid-on #bgfx .fly{visibility:hidden}
       <div class="rc"><span class="ds-tag rel">Release</span><ol start="5"><li><b>Share it</b><span>A link students can open</span></li><li><b>Save your recipe</b><span>Reuse your prompt next unit</span></li></ol></div>
     </div>
     <figure class="showcase recipe-vid">
-      <video src="media/night-vision-build.mp4" poster="media/night-vision-build-poster.jpg" controls muted playsinline preload="metadata" width="1920" height="1080" aria-label="One-minute video of Mrs. Rockett building Night Vision, an AP Psychology sleep review app, in Claude with five plain-English prompts: hatch it, evolve it with scenario checks, flashcards and a night-sky theme, then share it with Apps Script in Canvas"></video>
+      <video src="media/night-vision-build-v2.mp4" poster="media/night-vision-build-poster.jpg" controls muted playsinline preload="metadata" width="1920" height="1080" aria-label="One-minute video of Mrs. Rockett building Night Vision, an AP Psychology sleep review app, in Claude with five plain-English prompts: hatch it, evolve it with scenario checks, flashcards and a night-sky theme, then share it with Apps Script in Canvas"></video>
       <figcaption>Watch the steps in action: Night Vision, an AP Psych review app built in five prompts.</figcaption>
     </figure>
     </div>
@@ -1186,7 +1188,7 @@ html.vid-on #bgfx .fly{visibility:hidden}
     </ul>
     </div>
     <figure class="showcase fair-vid">
-      <video src="media/one-prompt-every-learner.mp4" poster="media/one-prompt-every-learner-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of One Prompt, Every Learner shown in Solution Lab: Light the Bulb: the app recommends a level, a themed simulation, dyslexia-friendly reading tools, academic integrity tracking, and one Google Sheet for the teacher with flagged students sorted to the top"></video>
+      <video src="media/one-prompt-every-learner-v2.mp4" poster="media/one-prompt-every-learner-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of One Prompt, Every Learner shown in Solution Lab: Light the Bulb: the app recommends a level, a themed simulation, dyslexia-friendly reading tools, academic integrity tracking, and one Google Sheet for the teacher with flagged students sorted to the top"></video>
       <figcaption>See it in action: Solution Lab: Light the Bulb, built from one reusable prompt.</figcaption>
     </figure>
     </div>
@@ -1392,9 +1394,31 @@ html.vid-on #bgfx .fly{visibility:hidden}
     e.preventDefault();window.open(a.href.replace('https://script.google.com/macros/s/','https://script.google.com/a/macros/forsythk12.org/s/'),'_blank','noopener')});
 
 
-  /* pause the moving background while any video plays, so videos stay smooth */
-  (function(){const set=()=>document.documentElement.classList.toggle('vid-on',[...document.querySelectorAll('video')].some(v=>!v.paused&&!v.ended));
-    ['play','playing','pause','ended'].forEach(ev=>document.addEventListener(ev,set,true))})();
+  /* ---------- smooth video playback ----------
+     - pause the moving background while any video plays
+     - only one video plays at a time
+     - leaving a page or switching an example tab pauses its video
+     - videos on this page and the next page start loading early */
+  (function(){
+    const vids=()=>[...document.querySelectorAll('video')];
+    const set=()=>document.documentElement.classList.toggle('vid-on',vids().some(v=>!v.paused&&!v.ended));
+    ['play','playing','pause','ended'].forEach(ev=>document.addEventListener(ev,set,true));
+    document.addEventListener('play',e=>{vids().forEach(v=>{if(v!==e.target&&!v.paused)v.pause()})},true);
+    function sync(){
+      const secs=[...document.querySelectorAll('section[id]')];
+      const cur=document.querySelector('section.on')||document.getElementById((location.hash||'#start').slice(1))||secs[0];if(!cur)return;
+      const i=secs.indexOf(cur),warm=[cur,secs[i+1]].filter(Boolean);
+      vids().forEach(v=>{const sec=v.closest('section');
+        if(sec!==cur&&!v.paused)v.pause();
+        if(warm.includes(sec)&&v.preload!=='auto'){v.preload='auto';try{v.load()}catch(e){}}});
+      set()}
+    window.addEventListener('hashchange',()=>setTimeout(sync,50));
+    new MutationObserver(()=>setTimeout(sync,50)).observe(document.querySelector('main')||document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+    document.addEventListener('click',e=>{if(e.target.closest('[role=tab]'))setTimeout(()=>{vids().forEach(v=>{const pn=v.closest('[role=tabpanel]');if(pn&&pn.hidden&&!v.paused)v.pause()})},30)},true);
+    // if a video stalls on a slow network, nudge it to keep going
+    document.addEventListener('stalled',e=>{const v=e.target;if(v.tagName==='VIDEO'&&!v.paused){const t=v.currentTime;setTimeout(()=>{if(!v.paused&&v.currentTime===t&&v.readyState<3){v.load();v.currentTime=t;v.play().catch(()=>{})}},4000)}},true);
+    setTimeout(sync,300);
+  })();
   /* ---------- pacing timer (Present mode): budgets add up to 55 minutes ---------- */
   (function(){
     const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:4,recipe:3,tools:1,pick:8,turn:13,release:2,beyond:2,fairer:2,tips:2,kit:3,share:6};
@@ -1913,9 +1937,9 @@ html.vid-on #bgfx .fly{visibility:hidden}
     $$('canvas.flies').forEach(cv=>{
       const ctx=cv.getContext('2d');let w,h,flies=[],vis=false,raf;
       function size(){const r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);w=r.width;h=r.height;cv.width=w*d;cv.height=h*d;ctx.setTransform(d,0,0,d,0,0);
-        flies=Array.from({length:Math.round(Math.min(40,w/30))},()=>({x:Math.random()*w,y:Math.random()*h,r:1+Math.random()*2.2,vx:(Math.random()-.5)*.25,vy:-.1-Math.random()*.25,p:Math.random()*6.28,c:Math.random()<.7?'243,180,67':'95,211,156'}))}
+        flies=Array.from({length:Math.round(Math.min(60,w/24))},()=>({x:Math.random()*w,y:Math.random()*h,r:1.4+Math.random()*2.4,vx:(Math.random()-.5)*.25,vy:-.1-Math.random()*.25,p:Math.random()*6.28,c:Math.random()<.7?'255,196,80':'110,235,180'}))}
       function frame(t){ctx.clearRect(0,0,w,h);flies.forEach(f=>{f.x+=f.vx+Math.sin(t/1400+f.p)*.15;f.y+=f.vy;if(f.y<-10){f.y=h+10;f.x=Math.random()*w}if(f.x<-10)f.x=w+10;if(f.x>w+10)f.x=-10;
-        const a=.35+.45*Math.sin(t/600+f.p*3)**2,g=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r*6);g.addColorStop(0,'rgba('+f.c+','+a+')');g.addColorStop(1,'rgba('+f.c+',0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(f.x,f.y,f.r*6,0,6.29);ctx.fill()});
+        const a=.55+.45*Math.sin(t/600+f.p*3)**2,g=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r*7);g.addColorStop(0,'rgba(255,248,220,'+a+')');g.addColorStop(.18,'rgba('+f.c+','+a+')');g.addColorStop(1,'rgba('+f.c+',0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(f.x,f.y,f.r*7,0,6.29);ctx.fill()});
         if(vis)raf=requestAnimationFrame(frame)}
       size();addEventListener('resize',size);
       new IntersectionObserver(es=>{vis=es[0].isIntersecting;cancelAnimationFrame(raf);if(vis)raf=requestAnimationFrame(frame)}).observe(cv);
