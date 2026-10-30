@@ -561,6 +561,82 @@ html.present .pager{padding-block:10px 14px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--bone);color:var(--night);padding:10px 18px;border-radius:999px;font-weight:700;z-index:30;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.show{opacity:1}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- restructure: lighter slides ---------- */
+.pgnum{font-family:var(--f-mono);font-size:.82rem;color:var(--fog);white-space:nowrap;flex:none}
+.pgnum b{color:var(--bone);font-weight:600}
+.phase{display:inline-block;font-family:var(--f-mono);font-weight:600;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 10px;margin-right:8px;vertical-align:1px}
+.phase.ph-i{background:var(--amber);color:#2a1a00}
+.phase.ph-we{background:var(--teal);color:var(--teal-ink)}
+.phase.ph-you{background:var(--info);color:#06213a}
+details.more{margin-top:22px;border:1px solid var(--line);border-radius:var(--r);background:color-mix(in srgb,var(--deep) 70%,transparent)}
+details.more>summary{list-style:none;cursor:pointer;padding:12px 18px;font-weight:700;color:var(--amber);display:flex;align-items:center;gap:10px;font-size:1rem}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"+";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--amber);font-family:var(--f-mono);font-size:.9rem;line-height:1}
+details.more[open]>summary::before{content:"–"}
+.more-body{padding:4px 20px 20px;display:grid;gap:14px;color:var(--fog)}
+.more-body b{color:var(--bone)}
+.more-body ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.more-body h3{color:var(--bone);font-size:var(--s0);margin-bottom:4px}
+.more-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:16px 24px}
+.more-body .try{margin-top:8px;font-style:italic}
+.more-body .try span{display:block;font-style:normal;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.big3{display:grid;gap:14px}
+.big3 div{border-left:4px solid var(--teal);padding:6px 0 6px 18px}
+.big3 b{display:block;font-family:var(--f-display);font-size:var(--s2);line-height:1.15}
+.big3 span{color:var(--fog);font-size:var(--s1)}
+.flow3{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.flow3 span{background:var(--deep);border-radius:999px;padding:10px 18px;font-weight:700}
+.flow3 span+span::before{content:"→";color:var(--amber);margin-right:12px;margin-left:-4px}
+.where{grid-template-columns:repeat(3,minmax(0,1fr))}
+.where-card{background:var(--deep);border-radius:var(--r);padding:22px 24px;display:grid;gap:4px}
+.where-card b{font-family:var(--f-display);font-size:var(--s2);line-height:1.15}
+.where-card span{color:var(--fog)}
+.where-card:last-child{background:transparent;border:1px dashed var(--line)}
+.then-now{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:24px;align-items:center;margin-top:36px}
+.tn{border-radius:var(--r);padding:26px 28px;display:grid;gap:8px}
+.tn.then{border:1px dashed var(--line)}
+.tn.now{background:var(--deep);border:1px solid var(--teal)}
+.tn-tag{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fog)}
+.tn.now .tn-tag{color:var(--teal)}
+.tn b{font-family:var(--f-display);font-size:var(--s2)}
+.tn ul{margin:0;padding-left:1.2em;color:var(--fog);display:grid;gap:4px}
+.tn-arrow{text-align:center;display:grid;gap:2px;color:var(--fog);font-size:.95rem}
+.tn-arrow b{color:var(--amber);font-family:var(--f-display);font-size:var(--s1)}
+.tn-arrow::after{content:"→";font-size:2.4rem;color:var(--amber);line-height:1}
+.callout{margin-top:32px;font-family:var(--f-display);font-weight:700;font-size:var(--s2);line-height:1.25;border-left:5px solid var(--amber);padding:6px 0 6px 22px;max-width:40ch}
+.pr3{display:grid;gap:12px}
+.pr3>div{display:grid;gap:2px;border-left:3px solid var(--line);padding-left:14px}
+.pr3>div span:last-child{font-size:1.05rem}
+.recipe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:32px}
+.rc{background:var(--deep);border-radius:var(--r);padding:22px 24px}
+.rc ol{margin:8px 0 0;padding-left:1.4em;display:grid;gap:14px}
+.rc li::marker{font-family:var(--f-mono);color:var(--amber);font-weight:600}
+.rc li b{display:block;font-size:var(--s1)}
+.rc li span{color:var(--fog)}
+.env-1{color:inherit;font-size:1.05rem}
+.env.lead .env-1{color:var(--teal-ink)}
+.wedo{margin-top:28px;background:var(--deep);border-radius:var(--r);padding:22px 24px}
+.wedo-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.wedo-parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.wp{border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.wp p{font-size:1.1rem}
+.wp ul{margin:6px 0 0;padding-left:1.1em;color:var(--fog);display:grid;gap:4px;font-size:.95rem}
+.rel-opts.big{margin-top:28px}
+.rel-opts.big .tile{padding:22px}
+.rel-opts.big .tile b{font-size:var(--s1)}
+.chips5{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chips5 span{border:1px solid var(--teal);color:var(--bone);border-radius:999px;padding:8px 16px;font-weight:700}
+.aaa.mini{margin-top:4px;gap:10px}
+.aaa.mini div{padding:14px 16px}
+.aaa.mini b{font-size:var(--s1);margin-bottom:2px}
+.aaa.mini span{font-size:.92rem}
+@media (max-width:820px){
+  .where,.recipe,.wedo-parts{grid-template-columns:minmax(0,1fr)}
+  .then-now{grid-template-columns:minmax(0,1fr)}
+  .tn-arrow::after{content:"↓"}
+  .pgnum{font-size:.72rem}
+}
 /* tips: show the whole picture, lantern included (no torn edge) */
 .split.flip .art img.keep.whole{-webkit-mask-image:none;mask-image:none;border-radius:var(--r);object-position:center 30%}
 </style>
@@ -569,6 +645,7 @@ html.present .pager{padding-block:10px 14px}
   <div class="wrap">
     <a class="brand" href="#start">Egg <span>→</span> Apex</a>
     <nav class="steps" id="dots" aria-label="Pages"></nav>
+    <span class="pgnum" id="pgNum" aria-live="polite"><b>1</b> / 20</span>
     <div class="speaker" id="speaker" aria-hidden="true"></div>
     <details class="pacer" id="pacer"><summary title="Pacing timer: time left on this page"><svg class="p-ring" viewBox="0 0 24 24" aria-hidden="true"><circle class="bg" cx="12" cy="12" r="9"/><circle class="fg" id="pRing" cx="12" cy="12" r="9" stroke-dasharray="56.55" stroke-dashoffset="0"/></svg><span class="p-left" id="pLeft">0:00</span><span class="p-drift" id="pDrift">on time</span></summary>
       <div class="p-panel">
@@ -586,7 +663,6 @@ html.present .pager{padding-block:10px 14px}
 </header>
 
 <main>
-<!-- 1 -->
 <section id="start" data-speaker="WL" data-name="Start"><canvas class="flies" aria-hidden="true"></canvas>
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/hero.webp" alt="A green T. rex roars in a jungle beside a fossil skull, a field survey map and a magnifying glass" width="760" height="1221"></div>
@@ -598,7 +674,7 @@ html.present .pager{padding-block:10px 14px}
       <a class="follow" href="https://tinyurl.com/Vibing-FVA" target="_blank" rel="noopener"><span>Follow along on your device</span><b>tinyurl.com/Vibing-FVA</b></a>
       <div class="cta-row">
         <a class="btn" href="#room">Start the expedition</a>
-        <a class="btn ghost" href="#demo">Jump to the live demo</a>
+        <a class="btn ghost" href="#examples">Jump to our examples</a>
       </div>
       <button type="button" class="jungle" id="jungleBtn" aria-pressed="false" aria-label="Play jungle sounds" title="Play jungle sounds"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg></button>
       <p class="muted" style="font-size:.9rem">Presenting? Press <span class="kbd">Present</span>, then use <span class="kbd">←</span> <span class="kbd">→</span> to move between pages.</p>
@@ -606,14 +682,13 @@ html.present .pager{padding-block:10px 14px}
   </div>
 </section>
 
-<!-- 2 -->
 <section class="deco flipdeco" id="room" data-speaker="W" data-name="Who's in the room?">
   <div class="wrap">
     <div class="room-head">
       <div class="stack" style="gap:12px">
         <p class="eyebrow">Check in</p>
         <h2>Who's in the room?</h2>
-        <p class="lede">What grade? What content? How comfortable are you with AI? Scan the code, pick yours, and watch the room fill in.</p>
+        <p class="lede">Scan the code, pick your dinosaur, and watch the room fill in.</p>
       </div>
       <div class="qr-card" id="qrCard">
         <div class="qr" id="qrRoom" aria-hidden="true"></div>
@@ -661,83 +736,88 @@ html.present .pager{padding-block:10px 14px}
   </div>
 </section>
 
-<!-- 3 -->
-<section id="why" data-speaker="L" data-name="Why #1">
+<section class="deco flipdeco" id="about" data-speaker="L" data-name="Who we are">
   <div class="wrap split">
     <div class="art"><img src="img/why.webp" alt="A crowd of excited cartoon dinosaurs tapping a glowing tablet on a log" width="730" height="1300"></div>
     <div class="stack">
-      <p class="eyebrow">Why #1</p>
-      <h2>The big picture</h2>
-      <div class="ico-list">
-        <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><div><h3>Engaging, authentic learning</h3><p>Students do, not just read.</p></div></div>
-        <div class="ico-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><h3>Instant feedback</h3><p>No waiting for grades to learn from mistakes.</p></div></div>
-        <div class="ico-item"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg><div><h3>Differentiation</h3><p>Levels and supports built for every learner.</p></div></div>
-        <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8.5a2 2 0 0 1 4 0V10"/></svg><div><h3>Combats cheating</h3><p>Students work through every step of the activity themselves, so they're less likely to use AI to do the work for them.</p></div></div>
+      <p class="eyebrow">Meet your guides</p>
+      <h2>Who we are (and why dinosaurs)</h2>
+      <div class="big3">
+        <div><b>Virtual teachers</b><span>Forsyth Virtual Academy: online, self-paced classes.</span></div>
+        <div><b>Years of building</b><span>We've made our own apps with AI for years, and we're still learning.</span></div>
+        <div><b>Why dinosaurs?</b><span>Our school mascot is a dinosaur. Today you go from Egg to Apex.</span></div>
       </div>
+      <details class="more"><summary>More info</summary><div class="more-body"><p>Lindsay teaches science. Wendy teaches AP World History. Our students work online and on their own schedule, so every activity has to teach, check and give feedback without us in the room. That is why we started building our own apps.</p></div></details>
     </div>
   </div>
 </section>
 
-<!-- 4 -->
 <section id="vibe" data-speaker="W" data-name="What is vibe coding?">
   <div class="wrap split">
     <div class="art"><img src="img/vibe.webp" alt="A curious dinosaur watches glowing app windows swirl out of a laptop at night" width="760" height="1257"></div>
     <div class="stack">
-      <p class="eyebrow">Definition</p>
+      <p class="eyebrow">The what</p>
       <h2>What is vibe coding?</h2>
-      <p class="defn">Building interactive web apps by describing what you want in plain English, then testing it and asking for changes until it works the way you want.</p>
-      <p class="muted" style="font-size:.9rem">Term coined by AI researcher Andrej Karpathy in 2025.</p>
-      <div class="trio">
-        <div><b>No coding skills needed</b><span>You describe it; the AI writes the code.</span></div>
-        <div><b>Real web apps</b><span>Students click, type and get feedback.</span></div>
-        <div><b>Build, don't search</b><span>Search sessions become build sessions.</span></div>
-        <div><b>You're the expert</b><span>You bring the standard, the content and the answer key, and you check that it's right. The AI brings the code.</span></div>
-      </div>
+      <p class="defn">Describe the app you want in plain English. AI builds it. You test it and ask for changes.</p>
+      <div class="flow3"><span>You describe it</span><span>AI writes the code</span><span>You test and improve</span></div>
+      <details class="more"><summary>More info</summary><div class="more-body"><ul><li><b>No coding skills needed.</b> The AI writes the code.</li><li><b>Real web apps.</b> Students click, type and get feedback.</li><li><b>You're the expert.</b> You bring the standard, the content and the answer key, and you check that it's right.</li><li>The term was coined by AI researcher Andrej Karpathy in 2025.</li></ul></div></details>
     </div>
   </div>
 </section>
 
-<!-- 5 -->
-<section id="now" data-speaker="L" data-name="Why it's relevant now">
+<section id="why" data-speaker="L" data-name="Why it matters">
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/tired.webp" alt="An exhausted dinosaur slumped over piles of worksheets beside a broken piggy bank" width="760" height="1221"></div>
     <div class="stack">
-      <p class="eyebrow">Timing</p>
-      <h2>Why it's relevant now</h2>
-      <blockquote>"We spend hours hunting for the perfect resource when we could be building it."<cite>— Lindsay &amp; Wendy</cite></blockquote>
-      <div class="tiles tiles2">
-        <div class="tile"><b>Shrinking budgets</b><span>Less money for premium software.</span></div>
-        <div class="tile"><b>AI fatigue</b><span>Tired of chatbots that just hand you more text to read. Apps give students something to <i>do</i>.</span></div>
-        <div class="tile"><b>Digital disengagement</b><span>Students zone out on static assignments.</span></div>
-        <div class="tile"><b>The tools caught up</b><span>Free AI can now build a working app in minutes, and many districts already give teachers access to tools like Gemini, Copilot or ChatGPT.</span></div>
+      <p class="eyebrow">The why</p>
+      <h2>Why it matters</h2>
+      <div class="ico-list">
+        <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><div><h3>Students do, not just read</h3></div></div>
+        <div class="ico-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><h3>Instant feedback</h3></div></div>
+        <div class="ico-item"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg><div><h3>Supports for every learner</h3></div></div>
+        <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8.5a2 2 0 0 1 4 0V10"/></svg><div><h3>Harder to hand off to AI</h3></div></div>
       </div>
+      <details class="more"><summary>More info</summary><div class="more-body"><blockquote>"We spend hours hunting for the perfect resource when we could be building it."<cite>— Lindsay &amp; Wendy</cite></blockquote><ul><li><b>Shrinking budgets:</b> less money for premium software.</li><li><b>AI fatigue:</b> chatbots hand students more text to read. Apps give them something to <i>do</i>.</li><li><b>Combats cheating:</b> students work through every step themselves, so they're less likely to use AI to do the work for them.</li><li><b>The tools caught up:</b> free AI can build a working app in minutes, and many districts already give teachers Gemini, Copilot or ChatGPT.</li></ul></div></details>
     </div>
   </div>
 </section>
 
-<!-- 6 -->
-<section class="deco" id="uses" data-speaker="W" data-name="Why #2">
+<section class="deco" id="anywhere" data-speaker="W" data-name="Use it anywhere">
   <div class="wrap">
-    <p class="eyebrow">Why #2</p>
-    <h2>How you can use it</h2>
-    <div class="grid2">
-      <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M6 9h12a4 4 0 0 1 4 4v2a3 3 0 0 1-5.2 2L15 15H9l-1.8 2A3 3 0 0 1 2 15v-2a4 4 0 0 1 4-4z"/><path d="M7 11v4M5 13h4"/><circle cx="16" cy="12" r=".8"/><circle cx="18" cy="14" r=".8"/></svg><div><h3>Review games</h3><p>Test prep students actually want to play.</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M6 21h12M9 21v-3h6v3"/><path d="M10 4l4 0M11 4v7l-2 3a5 5 0 1 0 8 0"/><path d="M13 4v5"/></svg><div><h3>Simulations and virtual labs</h3><p>Hands-on learning, even online.</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></svg><div><h3>Check for understanding</h3><p>Quick checks with instant feedback.</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/><path d="M12 14v3M9 21h6"/></svg><div><h3>Gamify a unit</h3><p>Points, levels and badges that carry across a whole unit, not just one activity.</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M14.5 5.5a4 4 0 0 0-5 5L3 17v4h4l6.5-6.5a4 4 0 0 0 5-5l-2.5 2.5-3-3z"/></svg><div><h3>Tools for you</h3><p>Group makers, random name pickers, timers and sign-up sheets, built in minutes.</p></div></div>
-      <div class="ico-item meta"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/></svg><div><h3>Interactive presentations</h3><p>Like this one. Your audience checks in, plays the demo and copies a prompt, all from one link.</p></div></div>
+    <p class="eyebrow">Not just for virtual</p>
+    <h2>Use it anywhere you teach</h2>
+    <p class="lede" style="margin-top:10px">We teach online, but these apps work just as well face to face.</p>
+    <div class="grid3 where">
+      <div class="where-card"><b>In class</b><span>Stations, bell ringers, whole-class review</span></div>
+      <div class="where-card"><b>Homework</b><span>Practice with feedback at home</span></div>
+      <div class="where-card"><b>Flipped classroom</b><span>Learn it at home, apply it in class</span></div>
+      <div class="where-card"><b>Absent students</b><span>Same activity, same feedback, no reteach</span></div>
+      <div class="where-card"><b>Alternative assignments</b><span>Make-up work, extension, choice boards</span></div>
+      <div class="where-card"><b>Virtual and self-paced</b><span>Where we started</span></div>
     </div>
+    <details class="more"><summary>More info</summary><div class="more-body"><p>What you can build: review games, simulations and virtual labs, quick checks for understanding, a gamified unit with points and levels, and tools for you, like group makers, name pickers and timers.</p></div></details>
   </div>
 </section>
 
-<!-- 7 -->
+<section class="deco flipdeco" id="journey" data-speaker="L" data-name="Where we started">
+  <div class="wrap">
+    <p class="eyebrow">From egg to apex, for real</p>
+    <h2>Where we started → where we are now</h2>
+    <div class="then-now">
+      <div class="tn then"><span class="tn-tag">Where we started</span><b>A basic quiz</b><ul><li>A question and a few buttons</li><li>Right or wrong, nothing more</li><li>Plain page, no theme</li></ul></div>
+      <div class="tn-arrow" aria-hidden="true"><span>Years of</span><b>one change at a time</b></div>
+      <div class="tn now"><span class="tn-tag">Where we are now</span><b>Full learning games</b><ul><li>Themes, maps and levels</li><li>Hints that reteach</li><li>Read-aloud and results reports</li></ul></div>
+    </div>
+    <p class="callout">You learn as you go. Just start talking to the AI. It doesn't have to be perfect.</p>
+  </div>
+</section>
+
 <section id="examples" data-speaker="LW" data-name="Examples">
   <div class="wrap split">
     <div class="art"><img class="raw" src="img/jars.webp" alt="A dinosaur peers through a field-station window at four glowing specimen jars and an observation notebook" width="760" height="1081"></div>
     <div class="stack">
-      <p class="eyebrow">Try them</p>
-      <h2>Example from our classes</h2>
+      <p class="eyebrow"><span class="phase ph-i">I do</span> Our examples</p>
+      <h2>Real apps from our classes</h2>
       <div class="tabs" role="tablist" aria-label="Examples">
         <button class="tab" role="tab" id="t-cfu" aria-controls="p-cfu" aria-selected="true"><span class="n">1</span>Check for understanding</button>
         <button class="tab" role="tab" id="t-sim" aria-controls="p-sim" aria-selected="false" tabindex="-1"><span class="n">2</span>Simulation</button>
@@ -749,12 +829,11 @@ html.present .pager{padding-block:10px 14px}
         <span class="tag">From our classes · check for understanding</span>
         <figure class="showcase">
           <video src="media/checks-for-understanding.mp4" poster="media/checks-for-understanding-poster.jpg" controls muted playsinline preload="metadata" width="1920" height="1080" aria-label="Video tour of seven check-for-understanding formats built for virtual, asynchronous AP classes, such as Spot the Error"></video>
-          <figcaption>Seven quick check formats for our virtual, asynchronous AP classes, like Spot the Error in AP World. 30 seconds.</figcaption>
+          <figcaption>Seven quick check formats, like Spot the Error.</figcaption>
         </figure>
         <div class="real-app">
-          <p>A real one from our classes, built with AI and published with Google Apps Script.</p>
-          <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxrvCWJXapoq6loOL8Z7vBde6HBMjtOta3NKGEW8rwYwbw0e4Z51_uJJhyu_3LHG85x/exec" target="_blank" rel="noopener">Try our check for understanding ↗</a></div>
-          <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxrvCWJXapoq6loOL8Z7vBde6HBMjtOta3NKGEW8rwYwbw0e4Z51_uJJhyu_3LHG85x/exec">Copy link</button> and paste it into a private window.</p>
+                    <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxrvCWJXapoq6loOL8Z7vBde6HBMjtOta3NKGEW8rwYwbw0e4Z51_uJJhyu_3LHG85x/exec" target="_blank" rel="noopener">Try our check for understanding ↗</a></div>
+          <p class="muted" style="font-size:.88rem">Not opening? <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxrvCWJXapoq6loOL8Z7vBde6HBMjtOta3NKGEW8rwYwbw0e4Z51_uJJhyu_3LHG85x/exec">Copy link</button> and paste it into an Incognito window.</p>
         </div>
       </div>
 
@@ -762,12 +841,11 @@ html.present .pager{padding-block:10px 14px}
         <span class="tag">From our classes · science virtual labs</span>
         <figure class="showcase">
           <video src="media/virtual-labs.mp4" poster="media/virtual-labs-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of five science virtual labs built with AI, including an ink chromatography lab"></video>
-          <figcaption>Five virtual labs from our physical science, chemistry and forensics classes, built with AI and run on any Chromebook. 30 seconds.</figcaption>
+          <figcaption>Five science labs that run on any Chromebook.</figcaption>
         </figure>
         <div class="real-app">
-          <p>A real one from our classes, built with AI and published with Google Apps Script.</p>
-          <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec" target="_blank" rel="noopener">Try our simulation lab ↗</a></div>
-          <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec">Copy link</button> and paste it into a private window.</p>
+                    <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec" target="_blank" rel="noopener">Try our simulation lab ↗</a></div>
+          <p class="muted" style="font-size:.88rem">Not opening? <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbwQf1W8807OlHdiDSU8Vm4-IvKigLlGepPvidk4bF3sfMoKiixCniCtBJR9uy5A9FT6bg/exec">Copy link</button> and paste it into an Incognito window.</p>
         </div>
       </div>
 
@@ -775,240 +853,46 @@ html.present .pager{padding-block:10px 14px}
         <span class="tag">From our classes · review game</span>
         <figure class="showcase">
           <video src="media/unit-reviews.mp4" poster="media/unit-reviews-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of interactive unit review sites for AP Psych, AP World, US History and ELA, including an AP World Land-Based Empires drag-and-sort"></video>
-          <figcaption>One interactive review site for every unit, in AP Psych, AP World, US History and ELA. Shown: AP World Unit 3, Land-Based Empires. 30 seconds.</figcaption>
+          <figcaption>A review site for every unit, in four subjects.</figcaption>
         </figure>
-        <p>Our review games use a theme, a progress map, and one firm rule: students must get it right to move on, with a hint, never the answer.</p>
-        <p>This is a real review game from our classes, built with AI and published with Google Apps Script.</p>
+        <div class="real-app">
         <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec" target="_blank" rel="noopener">Play our review game ↗</a></div>
-        <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec">Copy link</button> and paste it into a private window.</p>
+        <p class="muted" style="font-size:.88rem">Not opening? <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycbxgwDTceZdp1wYHpKO_0HYpXFh7EjzajkhjdYe5AA8FrlvPWi1SxMsdQs0Eh7Bf82d_/exec">Copy link</button> and paste it into an Incognito window.</p>
+        </div>
       </div>
 
       <div class="panel" role="tabpanel" id="p-acc" aria-labelledby="t-acc" hidden>
         <span class="tag">From our classes · accessibility</span>
         <figure class="showcase">
           <video src="media/accessibility.mp4" poster="media/accessibility-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of accessibility features built into every lab, shown in Solution Lab: Light the Bulb, including vocabulary pop-ups with read-aloud"></video>
-          <figcaption>Accessibility built into every lab, shown in Solution Lab: Light the Bulb. Features include vocabulary pop-ups with read-aloud. 30 seconds.</figcaption>
+          <figcaption>Vocab pop-ups and read-aloud in every lab.</figcaption>
         </figure>
         <div class="real-app">
-          <p>A real one from our classes, built with AI and published with Google Apps Script.</p>
-          <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycby5ScuJDvR0OKLwfxo42lcaXRHbMJcMiDvPpZFyzCksyu5ZJ3I84YwnoJAmVY_ANI6lWw/exec" target="_blank" rel="noopener">Try our accessibility example ↗</a></div>
-          <p class="muted" style="font-size:.88rem">Opens in a new tab. If Google says "page not found," you're probably signed into more than one Google account. <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycby5ScuJDvR0OKLwfxo42lcaXRHbMJcMiDvPpZFyzCksyu5ZJ3I84YwnoJAmVY_ANI6lWw/exec">Copy link</button> and paste it into a private window.</p>
+                    <div class="cta-row"><a class="btn" href="https://script.google.com/macros/s/AKfycby5ScuJDvR0OKLwfxo42lcaXRHbMJcMiDvPpZFyzCksyu5ZJ3I84YwnoJAmVY_ANI6lWw/exec" target="_blank" rel="noopener">Try our accessibility example ↗</a></div>
+          <p class="muted" style="font-size:.88rem">Not opening? <button type="button" class="chip app-copy" data-url="https://script.google.com/macros/s/AKfycby5ScuJDvR0OKLwfxo42lcaXRHbMJcMiDvPpZFyzCksyu5ZJ3I84YwnoJAmVY_ANI6lWw/exec">Copy link</button> and paste it into an Incognito window.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 8 -->
-<section class="deco flipdeco" id="tools" data-speaker="W" data-name="Pick your environment">
-  <div class="wrap">
-    <p class="eyebrow">Three apex environments</p>
-    <h2>Your options: pick one and start</h2>
-    <p class="lede" style="margin-top:12px">Same idea, different strengths.</p>
-    <div class="envs">
-      <div class="env lead">
-        <span class="pick">Our pick</span>
-        <h3>Claude</h3>
-        <dl><dt>Best for</dt><dd>Polished, professional design and a reusable setup that remembers your style. We built this presentation in Claude.</dd>
-        <dt>Where you build</dt><dd><b>Artifacts:</b> your app appears in a window beside the chat, where you can try it and ask for changes. Keep your work together in a Project.</dd>
-        <dt>Remembers your setup</dt><dd>Projects, settings, skills</dd>
-        <dt>Account</dt><dd>Free or paid</dd></dl>
-      </div>
-      <div class="env">
-        <h3>Gemini</h3>
-        <dl><dt>Best for</dt><dd>Fast first drafts. Builds in a side-by-side window.</dd>
-        <dt>Where you build</dt><dd><b>Canvas:</b> choose Canvas from the tools under the chat box, and your app opens in a panel beside the chat.</dd>
-        <dt>Remembers your setup</dt><dd>Gems</dd>
-        <dt>Account</dt><dd>Free or paid; included with many district Google accounts</dd></dl>
-      </div>
-      <div class="env">
-        <h3>ChatGPT</h3>
-        <dl><dt>Best for</dt><dd>A tool many teachers already use.</dd>
-        <dt>Where you build</dt><dd><b>Canvas:</b> a panel that opens beside the chat to show and edit what it builds.</dd>
-        <dt>Remembers your setup</dt><dd>Custom GPTs, projects</dd>
-        <dt>Account</dt><dd>Free or paid</dd></dl>
-      </div>
-    </div>
-    <p class="fine"><b>Heads up:</b> "Canvas" in Gemini and ChatGPT is their build window. It has nothing to do with Canvas the learning management system. The prompts in our library work in all three. Features change often; confirm before you build.</p>
-  </div>
-</section>
-
-<!-- 9a -->
-<section class="deco" id="plan" data-speaker="L" data-name="Plan the expedition">
-  <div class="wrap leg-page">
-    <div class="stack">
-      <p class="eyebrow">From egg to apex · part 1 of 3</p>
-      <ol class="eta" aria-label="From egg to apex, part 1 of 3"><li aria-current="step"><span>1</span>Plan the expedition</li><li><span>2</span>Hatch it</li><li><span>3</span>Release it</li></ol>
-      <h2>Plan the expedition</h2>
-      <p class="lede">Start with something you already teach. Is there an activity you want to improve, or a handout you want to make more engaging?</p>
-      <div class="cta-row"><a class="btn ghost" href="media/From-Egg-to-Apex.pdf" target="_blank" rel="noopener" download>Print all 6 steps (PDF) ↓</a></div>
-    </div>
-    <div class="leg">
-      <ol>
-        <li><div class="num">1</div><div class="body"><b>Choose your dig site</b><span>Pick one thing to build. One problem, one small app.</span><ul><li>A worksheet students rush through</li><li>A review activity that falls flat</li><li>A concept students always mix up</li></ul></div></li>
-        <li><div class="num">2</div><div class="body"><b>Pack your field kit</b><span>Give the AI everything it needs:</span><ul><li>Your topic, standard and what students should be able to do</li><li>Your vocab, questions and answer key, or paste in the handout itself</li><li>Grade, reading level, devices and accessibility needs</li></ul></div></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- 9b -->
-<section class="deco flipdeco" id="hatch" data-speaker="W" data-name="Hatch it">
-  <div class="wrap leg-page">
-    <div class="stack">
-      <p class="eyebrow">From egg to apex · part 2 of 3</p>
-      <ol class="eta" aria-label="From egg to apex, part 2 of 3"><li><span>1</span>Plan the expedition</li><li aria-current="step"><span>2</span>Hatch it</li><li><span>3</span>Release it</li></ol>
-      <h2>Hatch it, then evolve it</h2>
-      <p class="lede">Turn your field kit into a prompt, let the AI build a first draft, then test it like a student and improve it.</p>
-    </div>
-    <div class="leg">
-      <ol>
-        <li class="loop"><div class="num">3</div><div class="body"><b>Hatch it</b><span>Paste your prompt and let the AI build a first draft.</span><ul><li>Start from the starter prompt in <a href="#turn">Your turn</a></li><li>Don't expect perfect. A first draft is a starting point.</li></ul></div></li>
-        <li class="loop"><div class="num">4</div><div class="body"><b>Evolve it</b><span>Test it, then ask for one change at a time.</span><ul><li>Play it like a student: try wrong answers and check every fact and answer</li><li>Ask for one change, like "Add a hint when they get it wrong"</li><li>If something breaks, describe what you see: "The Next button does nothing"</li></ul></div></li>
-      </ol>
-      <p class="loopnote">Expect a few rounds. Test, ask for a change, and test again until it's right.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 9c -->
-<section class="deco" id="release" data-speaker="L" data-name="Release it">
-  <div class="wrap">
-    <div class="stack" style="max-width:62ch">
-      <p class="eyebrow">From egg to apex · part 3 of 3</p>
-      <ol class="eta" aria-label="From egg to apex, part 3 of 3"><li><span>1</span>Plan the expedition</li><li><span>2</span>Hatch it</li><li aria-current="step"><span>3</span>Release it</li></ol>
-      <h2>Release it into the wild</h2>
-      <p class="lede">Get your app to students, then save what worked so the next build starts ahead.</p>
-    </div>
-    <div class="leg rel">
-      <ol>
-        <li><div class="num">5</div><div class="body"><b>Release it into the wild</b><span>Pick the way that fits your class. Each one gives students a plain web link, with no AI account needed.</span>
-          <div class="rel-opts">
-            <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M14 18v3"/></svg></div><div><b>Google Apps Script</b><span>Paste the code into a web app in your Google account. It stays with your Google files, and results can go straight to a Google Sheet. <a href="#gas-guide">Step-by-step guide</a></span></div></div>
-            <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-.5-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1-1 9z"/></svg></div><div><b>Netlify</b><span>Drag and drop your file onto Netlify to get a free, live website with a name you choose. Good for apps with images or several pages.</span></div></div>
-            <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M9 4c-2 0-3 1-3 3v2c0 1.5-1 2.5-2 3 1 .5 2 1.5 2 3v2c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2c0 1.5 1 2.5 2 3-1 .5-2 1.5-2 3v2c0 2-1 3-3 3"/></svg></div><div><b>Embed in your LMS</b><span>Add the link or embed code to a Canvas (or other LMS) page so the app lives where students already work.</span></div></div>
-          </div></div></li>
-        <li><div class="num">6</div><div class="body"><b>Leave your tracks</b><span>Save the recipe behind your app, so the next one takes minutes instead of starting over.</span>
-          <div class="tracks">
-            <div class="tile"><b>Save a template</b><span>Paste your best prompt into a doc. Next unit, swap in the new topic and content and go.</span></div>
-            <div class="tile"><b>Use a Claude Project</b><span>Put your prompt, style notes and an example in the Project's instructions. Every chat in that Project starts with your setup.</span></div>
-            <div class="tile skill" id="skill"><b>Make it a Claude skill</b><span>A skill teaches Claude your recipe once. After that, Claude uses it on its own whenever you ask for that kind of app. Our One Prompt, Every Learner setup is one.</span>
-              <ol>
-                <li>Start a new chat and say: <q>I want to create a skill for building review games for my class.</q> Attach your best prompt and an app you liked.</li>
-                <li>Answer Claude's questions about how you build: your theme, levels, hints and accessibility rules.</li>
-                <li>Claude packages it as a skill. Save it, then check it's turned on in <b>Settings › Capabilities › Skills</b>.</li>
-                <li>Next time, just ask: <q>Make a review game for Unit 4.</q> If something's off, ask Claude to update the skill.</li>
-              </ol></div>
-          </div>
-          <p class="muted" style="font-size:.92rem;margin-top:10px">Using Gemini or ChatGPT? Save your setup as a Gem or a custom GPT.</p></div></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- 9d -->
-<section class="deco flipdeco" id="gas-guide" data-speaker="W" data-name="Apps Script guide">
-  <div class="wrap">
-    <div class="stack" style="max-width:72ch">
-      <p class="eyebrow">Teacher guide · hosting with Google Apps Script</p>
-      <h2>Transforming AI Artifacts into Live Canvas Assets</h2>
-      <p class="credit">Guide by <b>Taylor Stevens, Ed.S.</b> · Instructional Designer, Forsyth Virtual Academy</p>
-      <p class="lede">When Claude, Gemini or ChatGPT builds an interactive tool, like a simulation, a calculator or a dashboard, it gives you raw HTML, CSS and JavaScript code. To make it live for students inside Canvas, you need a host. Google Apps Script hosts it for free, securely and with no ads. The steps are the same whichever AI built it.</p>
-    </div>
-    <ol class="guide">
-      <li><span class="g-n">1</span><div><h3>Prepare your code from the AI</h3>
-        <ul><li>In your AI chat, find the code for the interactive tool.</li><li>Click the <b>Copy</b> icon.</li><li>Make sure you have the full code. It usually starts with <code>&lt;!DOCTYPE html&gt;</code> and ends with <code>&lt;/html&gt;</code>.</li></ul></div></li>
-      <li><span class="g-n">2</span><div><h3>Create an Apps Script project</h3>
-        <ul><li>Go to <a href="https://script.google.com" target="_blank" rel="noopener">script.google.com</a>.</li><li>Click <b>+ New project</b> in the top left.</li><li>Rename the project at the top, for example "WWI Home Front Simulation."</li></ul></div></li>
-      <li><span class="g-n">3</span><div><h3>Set up the backend (Code.gs)</h3>
-        <p>Every Google web app needs a small "server" instruction that tells Google how to show the file. In <b>Code.gs</b>, delete the existing code and paste this exactly:</p>
-        <div class="codebox"><button type="button" class="chip code-copy" data-target="gsCode">Copy</button><pre id="gsCode">function doGet() {
-  return HtmlService.createHtmlOutputFromFile('index')
-         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-}</pre></div>
-        <p class="why"><b>Why this matters:</b> the <code>.setXFrameOptionsMode</code> line is the "magic" command that lets your app be embedded in an iframe in Canvas. Without it, the browser blocks the connection.</p></div></li>
-      <li><span class="g-n">4</span><div><h3>Set up the frontend (index.html)</h3>
-        <ul><li>Click the <b>+</b> next to <b>Files</b> in the left sidebar and choose <b>HTML</b>.</li><li>Name the file <b>index</b>. Google adds <code>.html</code> for you.</li><li>Delete the template code and paste the entire code you copied from the AI.</li><li>Save your work: <b>Cmd+S</b> or <b>Ctrl+S</b>.</li></ul></div></li>
-      <li><span class="g-n">5</span><div><h3>Deploy the web app</h3>
-        <ul><li>Click the blue <b>Deploy</b> button at the top right and choose <b>New deployment</b>.</li><li>Click the gear icon next to "Select type" and choose <b>Web app</b>.</li><li><b>Description:</b> for example, "Initial launch."</li><li><b>Execute as:</b> Me (your email).</li><li><b>Who has access: Anyone.</b> This is critical, so students can open it without logging into the script editor.</li><li>Click <b>Deploy</b> and copy the <b>Web app URL</b>. It ends in <code>/exec</code>.</li></ul></div></li>
-      <li><span class="g-n">6</span><div><h3>Embed it in Canvas</h3>
-        <ul><li>Open your Canvas page or assignment.</li><li>Switch to the <b>HTML editor</b> (the <b>&lt;/&gt;</b> icon).</li><li>Paste this code, replacing the URL with your link from step 5:</li></ul>
-        <div class="codebox"><button type="button" class="chip code-copy" data-target="ifCode">Copy</button><pre id="ifCode">&lt;iframe src="YOUR_WEB_APP_URL_HERE" width="100%" height="700px" style="border:none;"&gt;&lt;/iframe&gt;</pre></div>
-        <p>Save the page. Your interactive asset is now live.</p></div></li>
-    </ol>
-    <h3 style="margin-top:36px">Important tips for teachers</h3>
-    <div class="g-tips">
-      <div class="tile"><b>The "New Version" rule</b><span>Saving your script doesn't change what students see. Go to <b>Deploy › Manage deployments</b>, edit your active deployment, and choose <b>New version</b> to push updates live. The link stays the same.</span></div>
-      <div class="tile"><b>Test it like a student</b><span>Open the link in a private or Incognito window. If it asks for a sign-in, check that <b>Who has access</b> is set to Anyone. If you're signed into several Google accounts, Apps Script can show "page not found," so test in a private window.</span></div>
-      <div class="tile"><b>Security</b><span>These apps are sandboxed by Google. They can't access your personal files or the student's computer unless you specifically write code to do so.</span></div>
-      <div class="tile"><b>Persistence</b><span>Apps hosted on your Google account stay active as long as the account exists, with no third-party hosting fees. Apps on a school account go away if that account is closed, so keep a copy of your code.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 9e -->
-<section class="deco" id="pick" data-speaker="WL" data-name="You pick the live demo">
-  <div class="wrap">
-    <div class="room-head">
-      <div class="stack" style="gap:12px">
-        <p class="eyebrow">Live demo · you choose</p>
-        <h2>What should we build live?</h2>
-        <p class="lede">Tell us an activity or handout you'd love to turn into an app. We'll pick one and Claude will build it while we walk you through two we made earlier.</p>
-      </div>
-      <div class="qr-card" id="qrPickCard">
-        <div class="qr" id="qrPick" aria-hidden="true"></div>
-        <p><b>Scan to send an idea</b><span id="qrPickUrl" class="muted"></span></p>
-      </div>
-    </div>
-    <div class="checkin">
-      <form class="ci-form" id="ideaForm" autocomplete="off">
-        <div class="field"><label for="ideaText" class="ci-label">What do you want to build?</label>
-          <textarea id="ideaText" maxlength="160" placeholder="Example: a sorting game for the causes of the American Revolution"></textarea>
-          <small class="muted"><span id="ideaCount">0</span>/160</small></div>
-        <div class="row2">
-          <div class="field"><label for="ideaSubject" class="ci-label">Content</label>
-            <select id="ideaSubject"><option value="">Choose one</option><option>ELA</option><option>Math</option><option>Science</option><option>Social Studies</option><option>World Languages</option><option>Fine Arts</option><option>CTE</option><option>Special Education</option><option>Media / Tech Coach</option><option>Other</option></select></div>
-          <div class="field"><label for="ideaGrade" class="ci-label">Grade</label>
-            <select id="ideaGrade"><option value="">Choose one</option><option>K–2</option><option>3–5</option><option>6–8</option><option>9–12</option><option value="Other">Admin / other</option></select></div>
-        </div>
-        <button class="btn amber" id="ideaSubmit" type="submit">Send my idea</button>
-        <p class="ci-msg" id="ideaMsg" aria-live="polite">You can send up to 3 ideas.</p>
-      </form>
-      <div class="ci-results">
-        <div class="ci-total"><span class="big" id="ideaTotal">0</span><span>ideas so far</span><span class="live" id="ideaLive">waiting</span></div>
-        <ol class="ideas" id="ideaList"><li class="muted idea-empty">Ideas will show up here as they come in.</li></ol>
-        <p class="muted ideas-tip">Presenters: in Present mode, click <b>Build this</b> on an idea. It copies a ready prompt and opens Claude. Paste and send, then move on to the demos.</p>
-        <div class="ci-admin">
-          <button type="button" class="chip" data-clear-open="ideas">Clear the ideas</button>
-          <form data-clear-form="ideas" hidden>
-            <label for="clearPin-ideas" class="ci-label">Presenter PIN</label>
-            <div class="clear-row"><input type="text" id="clearPin-ideas" inputmode="numeric" autocomplete="off"><button class="btn" type="submit" style="background:var(--bad);color:#2a0d05">Clear</button><button type="button" class="btn ghost" data-clear-cancel>Cancel</button></div>
-            <p class="ci-msg" aria-live="polite">This deletes every idea on this page. Check-ins on page 2 stay.</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10 -->
-<section id="demo" data-speaker="L" data-name="Live demo">
+<section id="demo" data-speaker="L" data-name="Demo: cell organelles">
   <div class="wrap">
     <div class="split">
       <div class="art"><img src="img/lab.webp" alt="A dinosaur scientist looks into a microscope beneath a glowing plant cell in a jungle research lab" width="760" height="1300" style="max-height:min(52vh,600px)"></div>
       <div class="stack">
-        <p class="eyebrow">Live demo · 7th grade science · Georgia standard S7L2</p>
+        <p class="eyebrow"><span class="phase ph-i">I do</span> 7th grade science · S7L2</p>
         <h2>Cell organelles matching game</h2>
-        <div class="demo-steps">
+        <div class="pr3"><div><span class="ds-tag">Plan</span><span>Students mix up which organelle does which job.</span></div><div><span class="ds-tag hatch">Hatch</span><span>AI built a first draft. We asked for hints, never the answer.</span></div><div><span class="ds-tag rel">Release</span><span>Published with Google Apps Script.</span></div></div>
+        <details class="more"><summary>All 6 steps</summary><div class="more-body"><div class="demo-steps">
           <div><span class="ds-tag">Plan</span><b>1 · Choose the dig site</b><span>Students mix up which organelle does which job.</span></div>
           <div><span class="ds-tag">Plan</span><b>2 · Pack the field kit</b><span>Standard S7L2a, 7th grade, the seven cell structures and their jobs.</span></div>
           <div><span class="ds-tag hatch">Hatch</span><b>3 · Hatch it</b><span>Paste the prompt and let the AI build a first draft.</span></div>
           <div><span class="ds-tag hatch">Hatch</span><b>4 · Evolve it</b><span>Play it like a student, check every answer, then ask for a hint, never the answer.</span></div>
           <div><span class="ds-tag rel">Release</span><b>5 · Release it</b><span>Publish with Google Apps Script and share the link.</span></div>
           <div><span class="ds-tag rel">Release</span><b>6 · Leave your tracks</b><span>Save the prompt as a skill for the next unit.</span></div>
-        </div>
-        <div class="cta-row"><a class="btn" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude to build it live ↗</a><a class="btn ghost" href="#turn">Get the starter prompt</a></div>
-        <p class="muted">Try the finished game below. Pick a wrong answer to see the hint rule from step 4.</p>
+        </div></div></details>
+        <p class="muted">Play it below. Pick a wrong answer to see the hint.</p>
       </div>
     </div>
 
@@ -1078,23 +962,23 @@ html.present .pager{padding-block:10px 14px}
   </div>
 </section>
 
-<!-- 10b -->
-<section class="deco flipdeco" id="silk" data-speaker="W" data-name="Live demo: Silk Road">
+<section class="deco flipdeco" id="silk" data-speaker="W" data-name="Demo: Silk Road">
   <div class="wrap">
     <div class="split flip">
       <div class="art"><img class="keep" src="img/silk.webp" alt="A young green dinosaur holding a glowing trade-route map leads a caravan of long-necked dinosaurs loaded with silk, porcelain and spice sacks across desert dunes toward a domed caravanserai below snowy mountains at sunset" width="760" height="1140" style="max-height:min(calc(100vh - 190px),880px)"></div>
       <div class="stack">
-      <p class="eyebrow">Live demo · AP World History · Unit 2, Topic 2.1</p>
+      <p class="eyebrow"><span class="phase ph-i">I do</span> AP World History · Topic 2.1</p>
         <h2>Silk Road caravan</h2>
-        <p class="lede">Lead a caravan from Xi'an to Constantinople, c. 1200–1450. Answer right at each city to move on.</p>
-        <div class="demo-steps">
+        <p class="lede">Lead a caravan from Xi'an to Constantinople. Answer right to move on.</p>
+        <div class="pr3"><div><span class="ds-tag">Plan</span><span>Students list Silk Road goods but can't explain why trade grew.</span></div><div><span class="ds-tag hatch">Hatch</span><span>AI built the route-map game. We asked for feedback on every wrong answer.</span></div><div><span class="ds-tag rel">Release</span><span>Published with Apps Script, linked in Canvas.</span></div></div>
+        <details class="more"><summary>All 6 steps</summary><div class="more-body"><div class="demo-steps">
         <div><span class="ds-tag">Plan</span><b>1 · Choose the dig site</b><span>Students can list Silk Road goods but can't explain why trade grew.</span></div>
         <div><span class="ds-tag">Plan</span><b>2 · Pack the field kit</b><span>AP World Topic 2.1, six cities, our questions and answer key.</span></div>
         <div><span class="ds-tag hatch">Hatch</span><b>3 · Hatch it</b><span>Paste the prompt and let the AI build the route-map game.</span></div>
         <div><span class="ds-tag hatch">Hatch</span><b>4 · Evolve it</b><span>Check every date and fact, then ask for feedback that explains each wrong answer.</span></div>
         <div><span class="ds-tag rel">Release</span><b>5 · Release it</b><span>Publish with Google Apps Script and add the link to the Canvas module.</span></div>
         <div><span class="ds-tag rel">Release</span><b>6 · Leave your tracks</b><span>Save it as a skill and reuse it for Indian Ocean trade next.</span></div>
-      </div>
+      </div></div></details>
       </div>
     </div>
 
@@ -1127,90 +1011,127 @@ html.present .pager{padding-block:10px 14px}
       </div>
       <div class="clue" id="silkClue" aria-live="polite"></div>
     </div>
-    <div class="reveal" role="note"><span class="star" aria-hidden="true">✱</span><p>Now let's see what Claude has built for us!</p><a class="btn amber" href="https://claude.ai/recents" target="_blank" rel="noopener">Back to Claude ↗</a></div>
   </div>
 </section>
 
-<!-- 12 -->
-<section id="tips" data-speaker="W" data-name="Tips & tricks">
-  <div class="wrap split flip">
-    <div class="art"><img class="keep whole" src="img/lantern.webp" alt="An adult T. rex with a lantern guides a young dinosaur down a jungle path past signs reading Courage, Patience and Kindness" width="760" height="1221"></div>
-    <div class="stack">
-      <p class="eyebrow">Field notes</p>
-      <h2>Tips &amp; tricks: what we learned the hard way</h2>
-      <div class="tips">
-        <div><b>Use the copy button</b><span>It grabs all the code. Selecting by hand misses pieces, and one missing line can break the whole app.</span></div>
-        <div><b>Apps won't save work</b><span>Ask the AI to add a "Copy my results" button so students can paste their answers into the assignment. You can also end with a "screenshot your result" screen, or send results to a Google Form or Sheet.</span></div>
-        <div><b>One change at a time</b><span>Asking for five fixes at once often breaks something that worked. Test after every change.</span></div>
-        <div><b>Check every fact</b><span>AI can get content wrong. Play it yourself and check every answer before students see it.</span></div>
-        <div><b>Test it like a student</b><span>Open the link in a private browser window or a student account to make sure it opens without a sign-in. In Apps Script, check "Who has access" in your deployment settings.</span></div>
+<section class="deco" id="recipe" data-speaker="L" data-name="The recipe">
+  <div class="wrap">
+    <p class="eyebrow"><span class="phase ph-we">We do</span> The recipe</p>
+    <h2>From egg to apex in 6 steps</h2>
+    <div class="recipe">
+      <div class="rc"><span class="ds-tag">Plan</span><ol start="1"><li><b>Choose your dig site</b><span>One activity to improve</span></li><li><b>Pack your field kit</b><span>Topic, standard, grade, answer key</span></li></ol></div>
+      <div class="rc"><span class="ds-tag hatch">Hatch</span><ol start="3"><li><b>Hatch it</b><span>Paste the prompt, get a first draft</span></li><li><b>Evolve it</b><span>Test like a student, one change at a time</span></li></ol></div>
+      <div class="rc"><span class="ds-tag rel">Release</span><ol start="5"><li><b>Share it</b><span>A link students can open</span></li><li><b>Save your recipe</b><span>Reuse your prompt next unit</span></li></ol></div>
+    </div>
+    <div class="cta-row"><a class="btn ghost" href="media/From-Egg-to-Apex.pdf" target="_blank" rel="noopener" download>Print all 6 steps (PDF) ↓</a></div>
+    <details class="more"><summary>More info</summary><div class="more-body"><div class="more-grid">
+      <div><h3>1 · Choose your dig site</h3><p>One problem, one small app: a worksheet students rush through, a review that falls flat, or a concept they always mix up.</p></div>
+      <div><h3>2 · Pack your field kit</h3><p>Your topic, standard and goal; your vocab, questions and answer key (or paste in the handout); grade, reading level, devices and accessibility needs.</p></div>
+      <div><h3>3 · Hatch it</h3><p>Paste your prompt and let the AI build a first draft. Don't expect perfect.</p></div>
+      <div><h3>4 · Evolve it</h3><p>Play it like a student and check every fact. Ask for one change at a time, like "Add a hint when they get it wrong." If something breaks, describe what you see.</p></div>
+      <div><h3>5 · Share it</h3><p>Google Apps Script, Netlify, or your LMS. Each gives students a plain link with no AI account needed. See <a href="#release">Share it with students</a>.</p></div>
+      <div><h3>6 · Save your recipe</h3><p>Keep your best prompt as a template, put it in a Claude Project, or make it a Claude skill.</p></div>
+    </div>
+    <div class="tracks" style="margin-top:16px"><div class="tile skill" id="skill"><b>Make it a Claude skill</b><span>A skill teaches Claude your recipe once. After that, Claude uses it on its own whenever you ask for that kind of app. Our One Prompt, Every Learner setup is one.</span>
+              <ol>
+                <li>Start a new chat and say: <q>I want to create a skill for building review games for my class.</q> Attach your best prompt and an app you liked.</li>
+                <li>Answer Claude's questions about how you build: your theme, levels, hints and accessibility rules.</li>
+                <li>Claude packages it as a skill. Save it, then check it's turned on in <b>Settings › Capabilities › Skills</b>.</li>
+                <li>Next time, just ask: <q>Make a review game for Unit 4.</q> If something's off, ask Claude to update the skill.</li>
+              </ol></div></div></div></details>
+  </div>
+</section>
+
+<section class="deco flipdeco" id="tools" data-speaker="W" data-name="Pick your tool">
+  <div class="wrap">
+    <p class="eyebrow"><span class="phase ph-we">We do</span> Pick your tool</p>
+    <h2>Any of these will work</h2>
+    <div class="envs">
+      <div class="env lead"><span class="pick">Our pick</span><h3>Claude</h3><p class="env-1">Polished design. Builds in a window beside the chat (Artifacts).</p></div>
+      <div class="env"><h3>Gemini</h3><p class="env-1">Fast first drafts. Choose <b>Canvas</b> under the chat box. Often in district Google accounts.</p></div>
+      <div class="env"><h3>ChatGPT</h3><p class="env-1">One many teachers already use. Builds in <b>Canvas</b>.</p></div>
+    </div>
+    <p class="fine"><b>Heads up:</b> "Canvas" in Gemini and ChatGPT is their build window, not Canvas the LMS.</p>
+    <details class="more"><summary>More info</summary><div class="more-body"><div class="more-grid">
+      <div><h3>Claude</h3><p>Best for polished, professional design and a setup that remembers your style (Projects, settings, skills). We built this presentation in Claude. Free or paid.</p></div>
+      <div><h3>Gemini</h3><p>Builds fast in a side-by-side Canvas panel. Save your setup as a Gem. Free or paid; included with many district Google accounts.</p></div>
+      <div><h3>ChatGPT</h3><p>Canvas opens beside the chat to show and edit what it builds. Save your setup as a custom GPT or project. Free or paid.</p></div>
+    </div><p>The prompts on this site work in all three. Features change often, so confirm before you build.</p></div></details>
+  </div>
+</section>
+
+<section class="deco" id="pick" data-speaker="WL" data-name="Build one together">
+  <div class="wrap">
+    <div class="room-head">
+      <div class="stack" style="gap:12px">
+        <p class="eyebrow"><span class="phase ph-we">We do</span> Build one together</p>
+        <h2>Let's build one together</h2>
+        <p class="lede">Send an idea. We'll pick one, fill in the prompt together, and watch Claude build it.</p>
+      </div>
+      <div class="qr-card" id="qrPickCard">
+        <div class="qr" id="qrPick" aria-hidden="true"></div>
+        <p><b>Scan to send an idea</b><span id="qrPickUrl" class="muted"></span></p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 13 -->
-<section class="deco" id="fairer" data-speaker="L" data-name="One prompt, every learner">
-  <div class="wrap">
-    <p class="eyebrow">Apex build</p>
-    <h2>One Prompt, Every Learner</h2>
-    <p class="lede" style="margin-top:12px">One reusable Claude prompt builds themed web apps for any subject that are differentiated, accessible, and harder to cheat on.</p>
-    <h3 style="margin-top:32px">The student journey</h3>
-    <div class="journey">
-      <div><span class="n">1</span><b>Type name</b><span>Tracking notice shown</span></div>
-      <div><span class="n">2</span><b>3 warm-ups</b><span>Not scored</span></div>
-      <div><span class="n">3</span><b>Pick a level</b><span>App recommends</span></div>
-      <div><span class="n">4</span><b>Themed activity</b><span>Hints and read-aloud</span></div>
-      <div><span class="n">5</span><b>Student report</b><span>Score and time</span></div>
-      <div><span class="n">6</span><b>Teacher Sheet</b><span>Flags sorted to top</span></div>
+    <div class="checkin">
+      <form class="ci-form" id="ideaForm" autocomplete="off">
+        <div class="field"><label for="ideaText" class="ci-label">What do you want to build?</label>
+          <textarea id="ideaText" maxlength="160" placeholder="Example: a sorting game for the causes of the American Revolution"></textarea>
+          <small class="muted"><span id="ideaCount">0</span>/160</small></div>
+        <div class="row2">
+          <div class="field"><label for="ideaSubject" class="ci-label">Content</label>
+            <select id="ideaSubject"><option value="">Choose one</option><option>ELA</option><option>Math</option><option>Science</option><option>Social Studies</option><option>World Languages</option><option>Fine Arts</option><option>CTE</option><option>Special Education</option><option>Media / Tech Coach</option><option>Other</option></select></div>
+          <div class="field"><label for="ideaGrade" class="ci-label">Grade</label>
+            <select id="ideaGrade"><option value="">Choose one</option><option>K–2</option><option>3–5</option><option>6–8</option><option>9–12</option><option value="Other">Admin / other</option></select></div>
+        </div>
+        <button class="btn amber" id="ideaSubmit" type="submit">Send my idea</button>
+        <p class="ci-msg" id="ideaMsg" aria-live="polite">You can send up to 3 ideas.</p>
+      </form>
+      <div class="ci-results">
+        <div class="ci-total"><span class="big" id="ideaTotal">0</span><span>ideas so far</span><span class="live" id="ideaLive">waiting</span></div>
+        <ol class="ideas" id="ideaList"><li class="muted idea-empty">Ideas will show up here as they come in.</li></ol>
+        <p class="muted ideas-tip">Presenters: click <b>Use this idea</b> to fill in the prompt below. <button type="button" class="chip" id="sampleIdea">Or use our sample idea</button></p>
+        <div class="ci-admin">
+          <button type="button" class="chip" data-clear-open="ideas">Clear the ideas</button>
+          <form data-clear-form="ideas" hidden>
+            <label for="clearPin-ideas" class="ci-label">Presenter PIN</label>
+            <div class="clear-row"><input type="text" id="clearPin-ideas" inputmode="numeric" autocomplete="off"><button class="btn" type="submit" style="background:var(--bad);color:#2a0d05">Clear</button><button type="button" class="btn ghost" data-clear-cancel>Cancel</button></div>
+            <p class="ci-msg" aria-live="polite">This deletes every idea on this page. Check-ins stay.</p>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="pillars">
-      <div class="pillar"><h3>Differentiated</h3><p>3 warm-ups recommend a level. The student chooses: Support, On-Level or Challenge.</p><p>Same content and number of questions. Only wording and scaffolds change. Tiered hints, vocab pop-ups, retry with a new version.</p></div>
-      <div class="pillar"><h3>Engaging</h3><p>A theme built from the topic, like a mission inside the cell or a caravan on the Silk Road. Simulations, drag-and-drop, data and graphs.</p><p>Theme progress map and specific feedback. Same look at every level.</p></div>
-      <div class="pillar"><h3>Dyslexia-friendly</h3><p>Clear font, 18px+, extra spacing, soft backgrounds. Read-aloud with word highlighting.</p><p>Reading settings any student can open. Spelling isn't penalized. Voice typing allowed.</p></div>
-      <div class="pillar"><h3>Academic integrity</h3><p>Students are told up front what's tracked. Copying questions and pasting answers is blocked, so it's harder to hand the work to AI.</p><p>Leaving the page is counted and timed. Inactivity check-in: "Why were you away?"</p></div>
-      <div class="pillar"><h3>Clear reports</h3><p>Student: score, time on task, times away.</p><p>Teacher: results go automatically to a Google Sheet, most-flagged first.</p>
-        <div class="flags"><span class="flag r">Red · away 5+ times</span><span class="flag y">Yellow · away 1–4 times</span><span class="flag b">Blue · accommodation</span></div></div>
-    </div>
-    <p class="fine"><b>Same rigor at every level.</b> Flags are signals, not proof. Use them to start a conversation. No student names are shared with AI; they go only to your Sheet.</p>
-  </div>
-</section>
-
-<!-- 14 -->
-<section class="deco flipdeco" id="beyond" data-speaker="W" data-name="Beyond apps">
-  <div class="wrap">
-    <p class="eyebrow">Same skill, bigger territory</p>
-    <h2>Beyond apps: the same skill builds your whole course</h2>
-    <div class="grid3">
-      <div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2"/><path d="M12 9v12M8 17l4 4 4-4"/></svg><div><h3>H5P-style activities</h3><p>Drag-and-drops, hotspots and flip cards.</p><p class="bx">H5P is a popular tool for small interactive activities. AI can build the same kinds of activities as a web app, with no H5P account needed, and you embed them in your lesson.</p><p class="try"><span>Try asking</span>"Make a drag-and-drop where students sort causes and effects of the Silk Road trade."</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="2.5"/><path d="M13 5.5h6v6h-6zM13 5.5l6 6M19 5.5l-6 6M6 15h12M6 18h8"/></svg><div><h3>Canvas page design</h3><p>Code that makes your pages look professional.</p><p class="bx">AI writes the HTML for banners, colored boxes and buttons. Paste it into the HTML editor on any Canvas (LMS) page, so every module looks polished and matches.</p><p class="try"><span>Try asking</span>"Write Canvas-friendly HTML for a Week 3 overview page with a banner, a goals box and a due-dates table."</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><h3>Tabbed pages</h3><p>Organize a whole lesson on one page.</p><p class="bx">Tabs like Overview, Notes, Practice and Check put a full lesson in one place, so students click less and scroll less. Canvas removes some code, so preview the page after you paste it in.</p><p class="try"><span>Try asking</span>"Build a tabbed lesson page for Unit 2 with Overview, Notes, Practice and Check tabs."</p></div></div>
-      <div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/></svg><div><h3>Interactive presentations</h3><p>Slides that come alive, like this one.</p><p class="bx">Turn a slide deck into a web page your audience can use: live check-ins, embedded demos, videos and copy buttons, all from one link.</p><p class="try"><span>Try asking</span>"Turn my slides into an interactive web presentation with a live poll on the first page and Next / Previous buttons."</p></div></div>
+    <div class="wedo" id="wedo" hidden>
+      <div class="wedo-head"><p class="step-h" style="margin:0"><span>✓</span>The prompt, step by step</p><button class="btn amber" id="wedoGo" type="button">Copy prompt and open Claude ↗</button></div>
+      <div class="wedo-parts">
+        <div class="wp"><span class="ds-tag">1 · Dig site</span><p id="wpDig"></p></div>
+        <div class="wp"><span class="ds-tag">2 · Field kit</span><p id="wpKit"></p></div>
+        <div class="wp"><span class="ds-tag hatch">3 · Hatch rules</span><ul id="wpRules"></ul></div>
+      </div>
+      <div class="reveal" role="note"><span class="star" aria-hidden="true">✱</span><p>Now let's see what Claude built for us!</p><a class="btn ghost" href="https://claude.ai/recents" target="_blank" rel="noopener">Back to Claude ↗</a></div>
     </div>
   </div>
 </section>
 
-<!-- 15 -->
-<section id="turn" data-speaker="WL" data-name="Your turn: hatch your first app">
+<section id="turn" data-speaker="WL" data-name="Your turn">
   <div class="wrap">
     <div class="split flip">
       <div class="art"><img class="raw" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg while an adult T. rex watches from the jungle behind" width="760" height="1035" style="max-height:min(60vh,620px);width:auto;margin-left:auto;transform:none"></div>
       <div class="stack">
-        <p class="eyebrow">Your turn · 8 minutes</p>
+        <p class="eyebrow"><span class="phase ph-you">You do</span> Work session · 12 minutes</p>
         <h2>Hatch your first app</h2>
-        <p class="lede" style="margin:0">Eight minutes. One idea. Let's see what you build.</p>
+        <p class="lede" style="margin:0">One idea. Fill in the prompt, paste it into your AI, and play what you get.</p>
         <div class="timer">
-          <span class="clock" id="clock" role="timer" aria-live="off">8:00</span>
+          <span class="clock" id="clock" role="timer" aria-live="off">12:00</span>
           <button class="btn amber" id="timerBtn">Start timer</button>
           <button class="btn ghost" id="timerReset">Reset</button>
         </div>
         <ol class="turn-steps">
-          <li><span class="ds-tag">Plan</span><b>1 · Choose your dig site:</b> pick an activity or handout you want to improve.</li>
-          <li><span class="ds-tag">Plan</span><b>2 · Pack your field kit:</b> fill in your topic, standard, grade and content below.</li>
-          <li><span class="ds-tag hatch">Hatch</span><b>3 · Hatch it:</b> copy the prompt and paste it into Claude, Gemini or ChatGPT.</li>
-          <li><span class="ds-tag hatch">Hatch</span><b>4 · Evolve it:</b> play it like a student, then ask for one change.</li>
+          <li><span class="ds-tag">Plan</span><b>1 · Dig site:</b> one activity to improve</li>
+          <li><span class="ds-tag">Plan</span><b>2 · Field kit:</b> fill in the form below</li>
+          <li><span class="ds-tag hatch">Hatch</span><b>3 · Hatch it:</b> copy, paste into your AI</li>
+          <li><span class="ds-tag hatch">Hatch</span><b>4 · Evolve it:</b> play it, ask for one change</li>
         </ol>
-        <p class="muted" style="font-size:.92rem">After today: <b style="color:var(--bone)">5 · Release it</b> to students and <b style="color:var(--bone)">6 · Leave your tracks</b> by saving your prompt.</p>
       </div>
     </div>
 
@@ -1256,36 +1177,116 @@ html.present .pager{padding-block:10px 14px}
   </div>
 </section>
 
-<!-- 16 -->
-<section class="deco" id="takeaways" data-speaker="L" data-name="Key takeaways">
+<section class="deco" id="release" data-speaker="L" data-name="Share it with students">
   <div class="wrap">
-    <p class="eyebrow">The playbook for progress</p>
-    <h2>Key takeaways</h2>
-    <div class="aaa">
-      <div><b>Agency</b><span>You build the exact resource your students need, no code or budget required.</span></div>
-      <div><b>Aesthetics</b><span>Polished tools that look and feel like professional software.</span></div>
-      <div><b>Academics</b><span>Standards-aligned practice with feedback that reteaches.</span></div>
+    <p class="eyebrow"><span class="phase ph-you">You do</span> After you build</p>
+    <h2>Share it with students</h2>
+    <p class="lede" style="margin-top:10px">Each option gives students a plain link. No AI account needed.</p>
+    <div class="rel-opts big">
+      <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M14 18v3"/></svg></div><div><b>Google Apps Script</b><span>Free, inside your Google account. Our go-to.</span></div></div>
+      <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-.5-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1-1 9z"/></svg></div><div><b>Netlify</b><span>Drag and drop your file for a free website.</span></div></div>
+      <div class="tile"><div class="badge"><svg viewBox="0 0 24 24"><path d="M9 4c-2 0-3 1-3 3v2c0 1.5-1 2.5-2 3 1 .5 2 1.5 2 3v2c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2c0 1.5 1 2.5 2 3-1 .5-2 1.5-2 3v2c0 2-1 3-3 3"/></svg></div><div><b>Your LMS</b><span>Embed the link on a Canvas page.</span></div></div>
+    </div>
+    <details class="more" id="gas-guide"><summary>Step-by-step: Apps Script into Canvas</summary><div class="more-body">
+      <h3>Transforming AI Artifacts into Live Canvas Assets</h3>
+      <p class="credit">Guide by <b>Taylor Stevens, Ed.S.</b> · Instructional Designer, Forsyth Virtual Academy</p>
+<ol class="guide">
+      <li><span class="g-n">1</span><div><h3>Prepare your code from the AI</h3>
+        <ul><li>In your AI chat, find the code for the interactive tool.</li><li>Click the <b>Copy</b> icon.</li><li>Make sure you have the full code. It usually starts with <code>&lt;!DOCTYPE html&gt;</code> and ends with <code>&lt;/html&gt;</code>.</li></ul></div></li>
+      <li><span class="g-n">2</span><div><h3>Create an Apps Script project</h3>
+        <ul><li>Go to <a href="https://script.google.com" target="_blank" rel="noopener">script.google.com</a>.</li><li>Click <b>+ New project</b> in the top left.</li><li>Rename the project at the top, for example "WWI Home Front Simulation."</li></ul></div></li>
+      <li><span class="g-n">3</span><div><h3>Set up the backend (Code.gs)</h3>
+        <p>Every Google web app needs a small "server" instruction that tells Google how to show the file. In <b>Code.gs</b>, delete the existing code and paste this exactly:</p>
+        <div class="codebox"><button type="button" class="chip code-copy" data-target="gsCode">Copy</button><pre id="gsCode">function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index')
+         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}</pre></div>
+        <p class="why"><b>Why this matters:</b> the <code>.setXFrameOptionsMode</code> line is the "magic" command that lets your app be embedded in an iframe in Canvas. Without it, the browser blocks the connection.</p></div></li>
+      <li><span class="g-n">4</span><div><h3>Set up the frontend (index.html)</h3>
+        <ul><li>Click the <b>+</b> next to <b>Files</b> in the left sidebar and choose <b>HTML</b>.</li><li>Name the file <b>index</b>. Google adds <code>.html</code> for you.</li><li>Delete the template code and paste the entire code you copied from the AI.</li><li>Save your work: <b>Cmd+S</b> or <b>Ctrl+S</b>.</li></ul></div></li>
+      <li><span class="g-n">5</span><div><h3>Deploy the web app</h3>
+        <ul><li>Click the blue <b>Deploy</b> button at the top right and choose <b>New deployment</b>.</li><li>Click the gear icon next to "Select type" and choose <b>Web app</b>.</li><li><b>Description:</b> for example, "Initial launch."</li><li><b>Execute as:</b> Me (your email).</li><li><b>Who has access: Anyone.</b> This is critical, so students can open it without logging into the script editor.</li><li>Click <b>Deploy</b> and copy the <b>Web app URL</b>. It ends in <code>/exec</code>.</li></ul></div></li>
+      <li><span class="g-n">6</span><div><h3>Embed it in Canvas</h3>
+        <ul><li>Open your Canvas page or assignment.</li><li>Switch to the <b>HTML editor</b> (the <b>&lt;/&gt;</b> icon).</li><li>Paste this code, replacing the URL with your link from step 5:</li></ul>
+        <div class="codebox"><button type="button" class="chip code-copy" data-target="ifCode">Copy</button><pre id="ifCode">&lt;iframe src="YOUR_WEB_APP_URL_HERE" width="100%" height="700px" style="border:none;"&gt;&lt;/iframe&gt;</pre></div>
+        <p>Save the page. Your interactive asset is now live.</p></div></li>
+    </ol>
+    <h3 style="margin-top:36px">Important tips for teachers</h3>
+    <div class="g-tips">
+      <div class="tile"><b>The "New Version" rule</b><span>Saving your script doesn't change what students see. Go to <b>Deploy › Manage deployments</b>, edit your active deployment, and choose <b>New version</b> to push updates live. The link stays the same.</span></div>
+      <div class="tile"><b>Test it like a student</b><span>Open the link in a private or Incognito window. If it asks for a sign-in, check that <b>Who has access</b> is set to Anyone. If you're signed into several Google accounts, Apps Script can show "page not found," so test in a private window.</span></div>
+      <div class="tile"><b>Security</b><span>These apps are sandboxed by Google. They can't access your personal files or the student's computer unless you specifically write code to do so.</span></div>
+      <div class="tile"><b>Persistence</b><span>Apps hosted on your Google account stay active as long as the account exists, with no third-party hosting fees. Apps on a school account go away if that account is closed, so keep a copy of your code.</span></div>
+    </div>
+
+    </div></details>
+  </div>
+</section>
+
+<section class="deco flipdeco" id="beyond" data-speaker="W" data-name="Beyond apps">
+  <div class="wrap">
+    <p class="eyebrow">If we have time</p>
+    <h2>Beyond apps</h2>
+    <div class="grid2"><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2"/><path d="M12 9v12M8 17l4 4 4-4"/></svg><div><h3>H5P-style activities</h3><p>Drag-and-drops, hotspots and flip cards.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="2.5"/><path d="M13 5.5h6v6h-6zM13 5.5l6 6M19 5.5l-6 6M6 15h12M6 18h8"/></svg><div><h3>Canvas page design</h3><p>Code that makes your pages look professional.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><h3>Tabbed pages</h3><p>Organize a whole lesson on one page.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/></svg><div><h3>Interactive presentations</h3><p>Slides that come alive, like this one.</p></div></div></div>
+    <details class="more"><summary>More info</summary><div class="more-body"><div class="more-grid"><div><h3>H5P-style activities</h3><p>H5P is a popular tool for small interactive activities. AI can build the same kinds of activities as a web app, with no H5P account needed, and you embed them in your lesson.</p><p class="try"><span>Try asking</span>"Make a drag-and-drop where students sort causes and effects of the Silk Road trade."</p></div><div><h3>Canvas page design</h3><p>AI writes the HTML for banners, colored boxes and buttons. Paste it into the HTML editor on any Canvas (LMS) page, so every module looks polished and matches.</p><p class="try"><span>Try asking</span>"Write Canvas-friendly HTML for a Week 3 overview page with a banner, a goals box and a due-dates table."</p></div><div><h3>Tabbed pages</h3><p>Tabs like Overview, Notes, Practice and Check put a full lesson in one place, so students click less and scroll less. Canvas removes some code, so preview the page after you paste it in.</p><p class="try"><span>Try asking</span>"Build a tabbed lesson page for Unit 2 with Overview, Notes, Practice and Check tabs."</p></div><div><h3>Interactive presentations</h3><p>Turn a slide deck into a web page your audience can use: live check-ins, embedded demos, videos and copy buttons, all from one link.</p><p class="try"><span>Try asking</span>"Turn my slides into an interactive web presentation with a live poll on the first page and Next / Previous buttons."</p></div></div></div></details>
+  </div>
+</section>
+
+<section class="deco" id="fairer" data-speaker="L" data-name="One prompt, every learner">
+  <div class="wrap">
+    <p class="eyebrow">If we have time · our apex build</p>
+    <h2>One Prompt, Every Learner</h2>
+    <p class="lede" style="margin-top:10px">One reusable prompt that builds themed apps for any subject.</p>
+    <div class="journey">
+      <div><span class="n">1</span><b>Type name</b><span>Tracking notice shown</span></div>
+      <div><span class="n">2</span><b>3 warm-ups</b><span>Not scored</span></div>
+      <div><span class="n">3</span><b>Pick a level</b><span>App recommends</span></div>
+      <div><span class="n">4</span><b>Themed activity</b><span>Hints and read-aloud</span></div>
+      <div><span class="n">5</span><b>Student report</b><span>Score and time</span></div>
+      <div><span class="n">6</span><b>Teacher Sheet</b><span>Flags sorted to top</span></div>
+    </div>
+    <div class="chips5"><span>Differentiated</span><span>Engaging</span><span>Dyslexia-friendly</span><span>Academic integrity</span><span>Clear reports</span></div>
+    <details class="more"><summary>More info</summary><div class="more-body"><div class="pillars">
+      <div class="pillar"><h3>Differentiated</h3><p>3 warm-ups recommend a level. The student chooses: Support, On-Level or Challenge.</p><p>Same content and number of questions. Only wording and scaffolds change. Tiered hints, vocab pop-ups, retry with a new version.</p></div>
+      <div class="pillar"><h3>Engaging</h3><p>A theme built from the topic, like a mission inside the cell or a caravan on the Silk Road. Simulations, drag-and-drop, data and graphs.</p><p>Theme progress map and specific feedback. Same look at every level.</p></div>
+      <div class="pillar"><h3>Dyslexia-friendly</h3><p>Clear font, 18px+, extra spacing, soft backgrounds. Read-aloud with word highlighting.</p><p>Reading settings any student can open. Spelling isn't penalized. Voice typing allowed.</p></div>
+      <div class="pillar"><h3>Academic integrity</h3><p>Students are told up front what's tracked. Copying questions and pasting answers is blocked, so it's harder to hand the work to AI.</p><p>Leaving the page is counted and timed. Inactivity check-in: "Why were you away?"</p></div>
+      <div class="pillar"><h3>Clear reports</h3><p>Student: score, time on task, times away.</p><p>Teacher: results go automatically to a Google Sheet, most-flagged first.</p>
+        <div class="flags"><span class="flag r">Red · away 5+ times</span><span class="flag y">Yellow · away 1–4 times</span><span class="flag b">Blue · accommodation</span></div></div>
+    </div>
+    <p class="fine"><b>Same rigor at every level.</b> Flags are signals, not proof. Use them to start a conversation. No student names are shared with AI; they go only to your Sheet.</p></div></details>
+  </div>
+</section>
+
+<section id="tips" data-speaker="W" data-name="Tips & tricks">
+  <div class="wrap split flip">
+    <div class="art"><img class="keep whole" src="img/lantern.webp" alt="An adult T. rex with a lantern guides a young dinosaur down a jungle path past signs reading Courage, Patience and Kindness" width="760" height="1221"></div>
+    <div class="stack">
+      <p class="eyebrow">If we have time · field notes</p>
+      <h2>Tips &amp; tricks</h2>
+      <div class="tips">
+        <div><b>Use the copy button</b><span>Selecting by hand misses code.</span></div>
+        <div><b>Apps won't save work</b><span>Add a "Copy my results" button or a screenshot screen.</span></div>
+        <div><b>One change at a time</b><span>Test after every change.</span></div>
+        <div><b>Check every fact</b><span>Play it before students do.</span></div>
+        <div><b>Test it like a student</b><span>Open your link in an Incognito window.</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 17 -->
-<section id="kit" data-speaker="W" data-name="Take the tool kit"><canvas class="flies" aria-hidden="true"></canvas>
+<section id="kit" data-speaker="W" data-name="Take it with you"><canvas class="flies" aria-hidden="true"></canvas>
   <div class="wrap split flip">
     <div class="art"><img class="keep" src="img/kit.webp" alt="An open leather field kit glowing green on a jungle trail lined with dinosaur footprints" width="760" height="1221"></div>
     <div class="stack">
-      <p class="eyebrow">Your new ecosystem awaits</p>
-      <h2>Take the tool kit</h2>
-      <p class="lede">Everything from today, one tap away. Scan the code to keep this page.</p>
+      <p class="eyebrow">Key takeaways</p>
+      <h2>Take it with you</h2>
+      <div class="aaa mini"><div><b>Agency</b><span>Build exactly what your students need.</span></div><div><b>Aesthetics</b><span>Tools that look professional.</span></div><div><b>Academics</b><span>Practice with feedback that reteaches.</span></div></div>
       <div class="kit">
-        <a href="media/From-Egg-to-Apex.pdf" target="_blank" rel="noopener" download><b>From Egg to Apex printable (PDF)</b><small>All six steps on one page to print and keep by your desk</small><span>print</span></a>
-        <a href="#plan"><b>From Egg to Apex map</b><small>The six steps, from choosing your dig site to leaving your tracks</small><span>steps</span></a>
-        <a href="#turn"><b>Vibe-Check starter kit</b><small>Fill in the starter prompt, copy it and hatch your first app</small><span>prompt</span></a>
-        <a href="#demo"><b>Live demos</b><small>The cell organelles game and the Silk Road caravan</small><span>play</span></a>
-        <a href="#gas-guide"><b>Apps Script teacher guide</b><small>Turn AI-built code into a live app and embed it in Canvas</small><span>guide</span></a>
-        <a href="#release"><b>Apps Script, Netlify and LMS options</b><small>Three ways to get your app to students</small><span>share</span></a>
-        <a href="#skill"><b>Make it a Claude skill</b><small>Save your recipe so the next app takes minutes</small><span>reuse</span></a>
-        <a href="#tips"><b>Tips &amp; tricks</b><small>What we learned the hard way</small><span>tips</span></a>
+        <a href="media/From-Egg-to-Apex.pdf" target="_blank" rel="noopener" download><b>Printable 6 steps (PDF)</b><span>print</span></a>
+        <a href="#turn"><b>Starter prompt</b><span>prompt</span></a>
+        <a href="#gas-guide"><b>Apps Script guide</b><span>guide</span></a>
+        <a href="#examples"><b>Our examples and demos</b><span>play</span></a>
       </div>
       <div class="qr-card" style="align-self:flex-start"><div class="qr" id="qrKit" aria-hidden="true"></div><p><b>Scan to take the tool kit home</b><span id="qrKitUrl" class="muted"></span></p></div>
       <p class="closer">Stop searching for the fossil. Start vibing the future.</p>
@@ -1297,14 +1298,14 @@ html.present .pager{padding-block:10px 14px}
     </div>
   </div>
 </section>
-<!-- 18 -->
+
 <section class="deco" id="share" data-speaker="WL" data-name="Share &amp; questions">
   <div class="wrap">
     <div class="room-head">
       <div class="stack" style="gap:12px">
         <p class="eyebrow">Share &amp; questions</p>
         <h2>What do you need help with?</h2>
-        <p class="lede">Pick up to three. Ask us anything below, and we'll answer as many as we can before you go.</p>
+        <p class="lede">Pick up to three, and ask us anything.</p>
       </div>
       <div class="qr-card" id="qrShareCard">
         <div class="qr" id="qrShare" aria-hidden="true"></div>
@@ -1345,7 +1346,7 @@ html.present .pager{padding-block:10px 14px}
           <form data-clear-form="share" hidden>
             <label for="clearPin-share" class="ci-label">Presenter PIN</label>
             <div class="clear-row"><input type="text" id="clearPin-share" inputmode="numeric" autocomplete="off"><button class="btn" type="submit" style="background:var(--bad);color:#2a0d05">Clear</button><button type="button" class="btn ghost" data-clear-cancel>Cancel</button></div>
-            <p class="ci-msg" aria-live="polite">This deletes every help pick and question on this page. Check-ins on page 2 stay.</p>
+            <p class="ci-msg" aria-live="polite">This deletes every help pick and question on this page. Check-ins stay.</p>
           </form>
         </div>
       </div>
@@ -1396,11 +1397,12 @@ html.present .pager{padding-block:10px 14px}
       if(prev){$('#pgPrev').href='#'+prev.id;$('#pgPrevName').textContent=prev.dataset.name}
       if(next){$('#pgNext').href='#'+next.id;$('#pgNextName').textContent=next.dataset.name}
       $('#pgCount').textContent='Page '+(i+1)+' of '+sections.length;
+      const pn=$('#pgNum');if(pn)pn.innerHTML='<b>'+(i+1)+'</b> / '+sections.length;
       const sp=$('#speaker');if(sp){const who=sections[i].dataset.speaker||'';sp.innerHTML=who.split('').map(c=>'<span class="sp-'+c+'">'+c+'</span>').join('');sp.title=who?('Speaking: '+who.split('').map(c=>c==='W'?'Wendy':'Lindsay').join(' and ')):''}
       document.title=(i===0?'':sections[i].dataset.name+' · ')+'Stop Searching, Start Vibing';
       window.scrollTo(0,0);
     }
-    if(target&&target!==sections[i]){setTimeout(()=>target.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}),30)}
+    if(target&&target!==sections[i]){let d=target.closest('details');while(d){d.open=true;d=d.parentElement&&d.parentElement.closest('details')}setTimeout(()=>target.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}),30)}
     const m=$('#pageMenu');if(m)m.open=false;
   }
   function route(){
@@ -1430,9 +1432,14 @@ html.present .pager{padding-block:10px 14px}
     else if(document.fullscreenElement&&document.exitFullscreen){document.exitFullscreen().catch(()=>{})}
   });
 
+  /* ---------- example apps: open with the school Google account when presenting ---------- */
+  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="https://script.google.com/macros/s/"]');
+    if(!a||!document.documentElement.classList.contains('present'))return;
+    e.preventDefault();window.open(a.href.replace('https://script.google.com/macros/s/','https://script.google.com/a/macros/forsythk12.org/s/'),'_blank','noopener')});
+
   /* ---------- pacing timer (Present mode): budgets add up to 55 minutes ---------- */
   (function(){
-    const BUDGET={start:1,room:3,why:2,vibe:2,now:2,uses:2,examples:3,tools:2,plan:2,hatch:2,release:2,'gas-guide':2,pick:3,demo:3,silk:3,tips:2,fairer:2,beyond:1,turn:9,takeaways:1,kit:2,share:4};
+    const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:3,demo:3,silk:3,recipe:2,tools:1,pick:7,turn:15,release:2,beyond:1,fairer:1,tips:1,kit:3,share:4};
     const TOTAL=sections.reduce((a,s)=>a+(BUDGET[s.id]||0),0)*60;
     const el=$('#pacer');if(!el)return;
     const KEY='vibe-pacer';let st={total:0,pages:{},running:false};
@@ -1735,7 +1742,7 @@ html.present .pager{padding-block:10px 14px}
       const li=document.createElement('li');li.className='idea';
       const t=document.createElement('span');t.className='i-text';t.textContent=it.text;
       const m=document.createElement('span');m.className='i-meta';m.textContent=[it.subject,it.grade==='Other'?'Admin / other':it.grade].filter(Boolean).join(' · ')||' ';
-      const b=document.createElement('button');b.type='button';b.className='btn i-build';b.textContent='Build this ↗';
+      const b=document.createElement('button');b.type='button';b.className='btn i-build';b.textContent='Use this idea';
       b.addEventListener('click',()=>buildIdea(it,li));
       li.append(t,m,b);list.appendChild(li);
     });
@@ -1753,12 +1760,21 @@ html.present .pager{padding-block:10px 14px}
       '- End with a results screen showing score and time, plus a "Copy my results" button.',
       '- Make it work on Chromebooks and phones.','',
       'Build the first draft now.'].join('\n')}
+  let wedoIdea=null;
   function buildIdea(it,li){
-    $$('#ideaList li.idea').forEach(x=>x.classList.remove('picked'));li.classList.add('picked');
-    const text=ideaPrompt(it);
-    window.open('https://claude.ai/new','_blank','noopener');
-    try{navigator.clipboard.writeText(text).then(()=>toast('Prompt copied. Paste it into Claude and send.'),()=>toast('Couldn\'t copy. Use the starter prompt page instead.'))}catch(e){toast('Couldn\'t copy. Use the starter prompt page instead.')}
+    $$('#ideaList li.idea').forEach(x=>x.classList.remove('picked'));if(li)li.classList.add('picked');
+    wedoIdea=it;const w=$('#wedo');w.hidden=false;
+    $('#wpDig').textContent=it.text;
+    const who=[it.grade&&it.grade!=='Other'?it.grade+' grade':'',it.subject].filter(Boolean).join(' · ');
+    $('#wpKit').textContent=(who||'Grade and subject from the idea')+'. In your own builds, add your standard and answer key here.';
+    const ul=$('#wpRules');ul.innerHTML='';
+    ['Must get it right to move on, with a hint','Fun theme and a progress bar','Dyslexia-friendly and read-aloud','Results screen with "Copy my results"','Works on Chromebooks and phones'].forEach(t=>{const x=document.createElement('li');x.textContent=t;ul.appendChild(x)});
+    setTimeout(()=>w.scrollIntoView({behavior:'smooth',block:'nearest'}),30);
   }
+  $('#wedoGo').addEventListener('click',()=>{if(!wedoIdea)return;const text=ideaPrompt(wedoIdea);
+    window.open('https://claude.ai/new','_blank','noopener');
+    try{navigator.clipboard.writeText(text).then(()=>toast('Prompt copied. Paste it into Claude and send.'),()=>toast('Couldn\'t copy. Use the starter prompt page instead.'))}catch(e){toast('Couldn\'t copy. Use the starter prompt page instead.')}});
+  $('#sampleIdea').addEventListener('click',()=>buildIdea({text:'A sorting game where students match causes and effects of the American Revolution',subject:'Social Studies',grade:'6–8'},null));
   $('#ideaForm').addEventListener('submit',async e=>{
     e.preventDefault();
     const text=ideaText.value.trim();
@@ -1879,15 +1895,15 @@ html.present .pager{padding-block:10px 14px}
     const b=$('#qSubmit');b.disabled=true;if(await sendShare({action:'question',text},'#qMsg','Sent! Watch for it on the big screen.'))$('#qText').value='';b.disabled=false});
 
   /* ---------- 8-minute timer ---------- */
-  let left=480,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
+  let left=720,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
   function draw(){clock.textContent=fmt(left);clock.classList.toggle('out',left===0)}
   tb.addEventListener('click',()=>{
     if(timer){clearInterval(timer);timer=null;tb.textContent='Resume';return}
-    if(left===0)left=480;
+    if(left===0)left=720;
     tb.textContent='Pause';
     timer=setInterval(()=>{left=Math.max(0,left-1);draw();if(left===0){clearInterval(timer);timer=null;tb.textContent='Start again';toast("Time's up! Share what you built.")}},1000);
   });
-  $('#timerReset').addEventListener('click',()=>{clearInterval(timer);timer=null;left=480;tb.textContent='Start timer';draw()});
+  $('#timerReset').addEventListener('click',()=>{clearInterval(timer);timer=null;left=720;tb.textContent='Start timer';draw()});
 
   /* ---------- prompt builder ---------- */
   const F=id=>{const el=$('#'+id);return el.type==='checkbox'?el.checked:el.value.trim()};
