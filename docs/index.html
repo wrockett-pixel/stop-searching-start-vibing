@@ -664,6 +664,17 @@ details.more[open]>summary::before{content:"–"}
 }
 /* tips: show the whole picture, lantern included (no torn edge) */
 .split.flip .art img.keep.whole{-webkit-mask-image:none;mask-image:none;border-radius:var(--r);object-position:center 30%}
+
+/* ---- depth: lit backdrop + raised surfaces ---- */
+body{background:
+  radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.35) 100%),
+  radial-gradient(1100px 700px at 8% -10%,rgba(24,165,148,.20),transparent 60%),
+  radial-gradient(900px 650px at 105% 110%,rgba(243,180,67,.13),transparent 60%),
+  radial-gradient(1400px 900px at 50% 40%,#16314a 0%,var(--night) 62%,#0a1825 100%);
+  background-attachment:fixed}
+.tile,.panel,.guide>li,.pillar,form.builder,.aaa div,.ci-results,.six li,.where-card,.rc,.wedo,.route,.env,.tips details,.flow3 span,details.more{
+  background-image:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,0) 55%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 28px -10px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.25)}
 </style>
 
 <header class="trail">
@@ -1017,11 +1028,11 @@ details.more[open]>summary::before{content:"–"}
     <div class="split flip">
       <div class="art"><img class="raw" src="img/hatch.webp" alt="A baby dinosaur bursts out of a glowing green egg while an adult T. rex watches from the jungle behind" width="760" height="1035" style="max-height:min(60vh,620px);width:auto;margin-left:auto;transform:none"></div>
       <div class="stack">
-        <p class="eyebrow"><span class="phase ph-you">You do</span> Work session · 15 minutes</p>
+        <p class="eyebrow"><span class="phase ph-you">You do</span> Work session · 10 minutes</p>
         <h2>Hatch your first app</h2>
         <p class="lede" style="margin:0">One idea. Fill in the prompt, paste it into your AI, and play what you get.</p>
         <div class="timer">
-          <span class="clock" id="clock" role="timer" aria-live="off">15:00</span>
+          <span class="clock" id="clock" role="timer" aria-live="off">10:00</span>
           <button class="btn amber" id="timerBtn">Start timer</button>
           <button class="btn ghost" id="timerReset">Reset</button>
         </div>
@@ -1339,7 +1350,7 @@ details.more[open]>summary::before{content:"–"}
 
   /* ---------- pacing timer (Present mode): budgets add up to 55 minutes ---------- */
   (function(){
-    const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:4,recipe:3,tools:1,pick:8,turn:18,release:2,beyond:1,fairer:1,tips:1,kit:3,share:4};
+    const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:4,recipe:3,tools:1,pick:8,turn:13,release:2,beyond:2,fairer:2,tips:2,kit:3,share:6};
     const TOTAL=sections.reduce((a,s)=>a+(BUDGET[s.id]||0),0)*60;
     const el=$('#pacer');if(!el)return;
     const KEY='vibe-pacer';let st={total:0,pages:{},running:false};
@@ -1796,15 +1807,15 @@ details.more[open]>summary::before{content:"–"}
     const b=$('#qSubmit');b.disabled=true;if(await sendShare({action:'question',text},'#qMsg','Sent! Watch for it on the big screen.'))$('#qText').value='';b.disabled=false});
 
   /* ---------- 8-minute timer ---------- */
-  let left=900,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
+  let left=600,timer=null;const clock=$('#clock'),tb=$('#timerBtn');
   function draw(){clock.textContent=fmt(left);clock.classList.toggle('out',left===0)}
   tb.addEventListener('click',()=>{
     if(timer){clearInterval(timer);timer=null;tb.textContent='Resume';return}
-    if(left===0)left=900;
+    if(left===0)left=600;
     tb.textContent='Pause';
     timer=setInterval(()=>{left=Math.max(0,left-1);draw();if(left===0){clearInterval(timer);timer=null;tb.textContent='Start again';toast("Time's up! Share what you built.")}},1000);
   });
-  $('#timerReset').addEventListener('click',()=>{clearInterval(timer);timer=null;left=900;tb.textContent='Start timer';draw()});
+  $('#timerReset').addEventListener('click',()=>{clearInterval(timer);timer=null;left=600;tb.textContent='Start timer';draw()});
 
   /* ---------- prompt builder ---------- */
   const F=id=>{const el=$('#'+id);return el.type==='checkbox'?el.checked:el.value.trim()};
