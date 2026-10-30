@@ -2,7 +2,7 @@
  * Stop Searching, Start Vibing: Apps Script backup of the presentation.
  *
  * SETUP (once):
- *  1. Upload the folder "Vibing Backup Assets" to your Google Drive (keep the name).
+ *  1. The images, videos and PDFs are in your Drive folder (its ID is set below as ASSET_FOLDER_ID).
  *  2. Paste this file into Code.gs and the presentation into a file named Index (Index.html).
  *  3. Run the function "setup" once and approve the permissions. Check the log: every file should say "found".
  *  4. Deploy > New deployment > Web app. Execute as: Me. Who has access: Anyone.
@@ -10,7 +10,8 @@
  * OPTIONAL: if you make a short link for this web app (for example on tinyurl), put it below
  * so the title page and the QR codes show it.
  */
-const ASSET_FOLDER = 'Vibing Backup Assets';
+const ASSET_FOLDER_ID = '1GamcwK1i7UYErCxX9nN-wdd9w_sgb4WC'; // Wendy's Drive folder with the images, videos and PDFs
+const ASSET_FOLDER = 'Vibing Backup Assets';                    // used only if the ID above doesn't work
 const SHORT_LINK = '';            // e.g. 'https://tinyurl.com/Vibing-FVA-backup'  (leave '' to use the web app link)
 const SHORT_LABEL = '';           // e.g. 'tinyurl.com/Vibing-FVA-backup'
 const DEFAULT_PIN = '110393';     // presenter PIN for clearing the live surveys
@@ -64,9 +65,10 @@ function imageData_(file) {
 
 function assetFiles_() {
   const out = {};
-  const folders = DriveApp.getFoldersByName(ASSET_FOLDER);
-  if (!folders.hasNext()) return out;
-  const it = folders.next().getFiles();
+  let folder = null;
+  try { if (ASSET_FOLDER_ID) folder = DriveApp.getFolderById(ASSET_FOLDER_ID); } catch (err) {}
+  if (!folder) { const folders = DriveApp.getFoldersByName(ASSET_FOLDER); if (!folders.hasNext()) return out; folder = folders.next(); }
+  const it = folder.getFiles();
   while (it.hasNext()) { const f = it.next(); out[f.getName()] = f; }
   return out;
 }
@@ -74,7 +76,7 @@ function assetFiles_() {
 /** Run once from the editor: checks every file and lets audience members open the PDFs. */
 function setup() {
   const files = assetFiles_();
-  if (!Object.keys(files).length) { Logger.log('Could not find a Drive folder named "' + ASSET_FOLDER + '". Upload it first.'); return; }
+  if (!Object.keys(files).length) { Logger.log('Could not open the assets folder. Make sure this script is made with the same Google account that owns the folder.'); return; }
   IMAGES.concat(VIDEOS, PDFS).forEach(function (n) { Logger.log((files[n] ? 'found    ' : 'MISSING  ') + n); });
   PDFS.concat(VIDEOS).forEach(function (n) {
     const f = files[n]; if (!f) return;
