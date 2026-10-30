@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
-</head><body>
+</head><body><div id="bgfx" aria-hidden="true"><span class="glow g1"></span><span class="glow g2"></span><span class="glow g3"></span><span class="fly" style="left:6%;--dx:40px;animation-duration:26s;animation-delay:-3s"></span><span class="fly" style="left:14%;--dx:-30px;animation-duration:31s;animation-delay:-17s"></span><span class="fly" style="left:23%;--dx:25px;animation-duration:23s;animation-delay:-9s"></span><span class="fly" style="left:31%;--dx:-45px;animation-duration:34s;animation-delay:-22s"></span><span class="fly" style="left:42%;--dx:30px;animation-duration:28s;animation-delay:-5s"></span><span class="fly" style="left:51%;--dx:-20px;animation-duration:25s;animation-delay:-14s"></span><span class="fly" style="left:60%;--dx:45px;animation-duration:33s;animation-delay:-27s"></span><span class="fly" style="left:68%;--dx:-35px;animation-duration:29s;animation-delay:-8s"></span><span class="fly" style="left:77%;--dx:20px;animation-duration:24s;animation-delay:-19s"></span><span class="fly" style="left:85%;--dx:-40px;animation-duration:32s;animation-delay:-2s"></span><span class="fly" style="left:93%;--dx:30px;animation-duration:27s;animation-delay:-12s"></span><span class="fly" style="left:37%;--dx:-25px;animation-duration:36s;animation-delay:-30s"></span></div>
 <style>
 /* Layout: field-journal expedition. Alternating art/text bands with the deck's wavy edge, one section per slide-idea, sticky trail nav. Deliberately dark, matching the GaETC deck. */
 :root{
@@ -621,6 +621,17 @@ details.more[open]>summary::before{content:"–"}
 .pr3{display:grid;gap:12px}
 .pr3>div{display:grid;gap:2px;border-left:3px solid var(--line);padding-left:14px}
 .pr3>div span:last-child{font-size:1.05rem}
+.fair-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:32px;align-items:center;margin-top:22px}
+.fair-wrap .journey{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:18px}
+.fair-wrap .journey div{padding:0 0 0 38px;min-height:26px}
+.fair-wrap .journey div::before{top:24px;bottom:-12px;left:11px;right:auto;width:2px;height:auto}
+.fair-wrap .journey div:last-child::before{display:none}
+.fair-wrap .journey b{display:inline;margin:0 8px 0 0}
+.fair-wrap .chips5{margin-top:18px}
+.fair-vid{margin:0}
+.fair-vid video{border:3px solid #e9dfc8;border-radius:12px;box-shadow:0 0 0 6px rgba(233,223,200,.12),0 18px 40px rgba(0,0,0,.55)}
+.fair-vid figcaption{color:#c9d6e0}
+@media (max-width:900px){.fair-wrap{grid-template-columns:minmax(0,1fr)}}
 .recipe-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:28px;align-items:center;margin-top:28px}
 .recipe-wrap .recipe{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:0}
 .recipe-wrap .rc{padding:14px 20px}
@@ -666,15 +677,29 @@ details.more[open]>summary::before{content:"–"}
 .split.flip .art img.keep.whole{-webkit-mask-image:none;mask-image:none;border-radius:var(--r);object-position:center 30%}
 
 /* ---- depth: lit backdrop + raised surfaces ---- */
-body{background:
+html{background:
   radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.35) 100%),
   radial-gradient(1100px 700px at 8% -10%,rgba(24,165,148,.20),transparent 60%),
   radial-gradient(900px 650px at 105% 110%,rgba(243,180,67,.13),transparent 60%),
   radial-gradient(1400px 900px at 50% 40%,#16314a 0%,var(--night) 62%,#0a1825 100%);
   background-attachment:fixed}
+body{background:transparent}
 .tile,.panel,.guide>li,.pillar,form.builder,.aaa div,.ci-results,.six li,.where-card,.rc,.wedo,.route,.env,.tips details,.flow3 span,details.more{
   background-image:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,0) 55%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 28px -10px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.25)}
+
+/* ---- moving background: drifting glows + fireflies ---- */
+#bgfx{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+#bgfx .glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;will-change:transform}
+#bgfx .g1{width:46vw;height:46vw;left:-10vw;top:-12vw;background:radial-gradient(circle,rgba(24,165,148,.45),transparent 70%);animation:drift1 38s ease-in-out infinite alternate}
+#bgfx .g2{width:40vw;height:40vw;right:-12vw;bottom:-14vw;background:radial-gradient(circle,rgba(243,180,67,.32),transparent 70%);animation:drift2 46s ease-in-out infinite alternate}
+#bgfx .g3{width:30vw;height:30vw;left:40vw;top:30vh;background:radial-gradient(circle,rgba(90,150,210,.22),transparent 70%);animation:drift3 54s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(18vw,14vh) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-20vw,-12vh) scale(1.2)}}
+@keyframes drift3{to{transform:translate(-16vw,18vh) scale(.85)}}
+#bgfx .fly{position:absolute;bottom:-10px;width:5px;height:5px;border-radius:50%;background:#ffe39a;box-shadow:0 0 10px 3px rgba(255,214,120,.55);opacity:0;animation:fly linear infinite}
+@keyframes fly{0%{transform:translate(0,0);opacity:0}10%{opacity:.85}50%{transform:translate(var(--dx),-55vh);opacity:.6}90%{opacity:.8}100%{transform:translate(calc(var(--dx) * -1),-110vh);opacity:0}}
+@media (prefers-reduced-motion:reduce){#bgfx .glow,#bgfx .fly{animation:none}#bgfx .fly{display:none}}
 </style>
 
 <header class="trail">
@@ -1134,20 +1159,13 @@ body{background:
   </div>
 </section>
 
-<section class="deco flipdeco" id="beyond" data-speaker="W" data-name="Beyond apps">
-  <div class="wrap">
-    <p class="eyebrow">If we have time</p>
-    <h2>Beyond apps</h2>
-    <div class="grid2"><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2"/><path d="M12 9v12M8 17l4 4 4-4"/></svg><div><h3>H5P-style activities</h3><p>Drag-and-drops, hotspots and flip cards.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="2.5"/><path d="M13 5.5h6v6h-6zM13 5.5l6 6M19 5.5l-6 6M6 15h12M6 18h8"/></svg><div><h3>Canvas page design</h3><p>Code that makes your pages look professional.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><h3>Tabbed pages</h3><p>Organize a whole lesson on one page.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/></svg><div><h3>Interactive presentations</h3><p>Slides that come alive, like this one.</p></div></div></div>
-    <details class="more"><summary>More info</summary><div class="more-body"><div class="more-grid"><div><h3>H5P-style activities</h3><p>H5P is a popular tool for small interactive activities. AI can build the same kinds of activities as a web app, with no H5P account needed, and you embed them in your lesson.</p><p class="try"><span>Try asking</span>"Make a drag-and-drop where students sort causes and effects of the Silk Road trade."</p></div><div><h3>Canvas page design</h3><p>AI writes the HTML for banners, colored boxes and buttons. Paste it into the HTML editor on any Canvas (LMS) page, so every module looks polished and matches.</p><p class="try"><span>Try asking</span>"Write Canvas-friendly HTML for a Week 3 overview page with a banner, a goals box and a due-dates table."</p></div><div><h3>Tabbed pages</h3><p>Tabs like Overview, Notes, Practice and Check put a full lesson in one place, so students click less and scroll less. Canvas removes some code, so preview the page after you paste it in.</p><p class="try"><span>Try asking</span>"Build a tabbed lesson page for Unit 2 with Overview, Notes, Practice and Check tabs."</p></div><div><h3>Interactive presentations</h3><p>Turn a slide deck into a web page your audience can use: live check-ins, embedded demos, videos and copy buttons, all from one link.</p><p class="try"><span>Try asking</span>"Turn my slides into an interactive web presentation with a live poll on the first page and Next / Previous buttons."</p></div></div></div></details>
-  </div>
-</section>
-
 <section class="deco" id="fairer" data-speaker="L" data-name="One prompt, every learner">
   <div class="wrap">
     <p class="eyebrow">If we have time · our apex build</p>
     <h2>One Prompt, Every Learner</h2>
-    <p class="lede" style="margin-top:10px">One reusable prompt that builds themed apps for any subject.</p>
+    <div class="fair-wrap">
+    <div class="fair-left">
+    <p class="lede" style="margin-top:0">One reusable prompt that builds themed apps for any subject.</p>
     <div class="journey">
       <div><span class="n">1</span><b>Type name</b><span>Tracking notice shown</span></div>
       <div><span class="n">2</span><b>3 warm-ups</b><span>Not scored</span></div>
@@ -1157,6 +1175,12 @@ body{background:
       <div><span class="n">6</span><b>Teacher Sheet</b><span>Flags sorted to top</span></div>
     </div>
     <div class="chips5"><span>Differentiated</span><span>Engaging</span><span>Dyslexia-friendly</span><span>Academic integrity</span><span>Clear reports</span></div>
+    </div>
+    <figure class="showcase fair-vid">
+      <video src="media/one-prompt-every-learner.mp4" poster="media/one-prompt-every-learner-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of One Prompt, Every Learner shown in Solution Lab: Light the Bulb: the app recommends a level, a themed simulation, dyslexia-friendly reading tools, academic integrity tracking, and one Google Sheet for the teacher with flagged students sorted to the top"></video>
+      <figcaption>See it in action: Solution Lab: Light the Bulb, built from one reusable prompt.</figcaption>
+    </figure>
+    </div>
     <details class="more"><summary>More info</summary><div class="more-body"><div class="pillars">
       <div class="pillar"><h3>Differentiated</h3><p>3 warm-ups recommend a level. The student chooses: Support, On-Level or Challenge.</p><p>Same content and number of questions. Only wording and scaffolds change. Tiered hints, vocab pop-ups, retry with a new version.</p></div>
       <div class="pillar"><h3>Engaging</h3><p>A theme built from the topic, like a mission inside the cell or a caravan on the Silk Road. Simulations, drag-and-drop, data and graphs.</p><p>Theme progress map and specific feedback. Same look at every level.</p></div>
@@ -1168,6 +1192,16 @@ body{background:
     <p class="fine"><b>Same rigor at every level.</b> Flags are signals, not proof. Use them to start a conversation. No student names are shared with AI; they go only to your Sheet.</p></div></details>
   </div>
 </section>
+
+<section class="deco flipdeco" id="beyond" data-speaker="W" data-name="Beyond apps">
+  <div class="wrap">
+    <p class="eyebrow">If we have time</p>
+    <h2>Beyond apps</h2>
+    <div class="grid2"><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2"/><path d="M12 9v12M8 17l4 4 4-4"/></svg><div><h3>H5P-style activities</h3><p>Drag-and-drops, hotspots and flip cards.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="2.5"/><path d="M13 5.5h6v6h-6zM13 5.5l6 6M19 5.5l-6 6M6 15h12M6 18h8"/></svg><div><h3>Canvas page design</h3><p>Code that makes your pages look professional.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><h3>Tabbed pages</h3><p>Organize a whole lesson on one page.</p></div></div><div class="ico-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/></svg><div><h3>Interactive presentations</h3><p>Slides that come alive, like this one.</p></div></div></div>
+    <details class="more"><summary>More info</summary><div class="more-body"><div class="more-grid"><div><h3>H5P-style activities</h3><p>H5P is a popular tool for small interactive activities. AI can build the same kinds of activities as a web app, with no H5P account needed, and you embed them in your lesson.</p><p class="try"><span>Try asking</span>"Make a drag-and-drop where students sort causes and effects of the Silk Road trade."</p></div><div><h3>Canvas page design</h3><p>AI writes the HTML for banners, colored boxes and buttons. Paste it into the HTML editor on any Canvas (LMS) page, so every module looks polished and matches.</p><p class="try"><span>Try asking</span>"Write Canvas-friendly HTML for a Week 3 overview page with a banner, a goals box and a due-dates table."</p></div><div><h3>Tabbed pages</h3><p>Tabs like Overview, Notes, Practice and Check put a full lesson in one place, so students click less and scroll less. Canvas removes some code, so preview the page after you paste it in.</p><p class="try"><span>Try asking</span>"Build a tabbed lesson page for Unit 2 with Overview, Notes, Practice and Check tabs."</p></div><div><h3>Interactive presentations</h3><p>Turn a slide deck into a web page your audience can use: live check-ins, embedded demos, videos and copy buttons, all from one link.</p><p class="try"><span>Try asking</span>"Turn my slides into an interactive web presentation with a live poll on the first page and Next / Previous buttons."</p></div></div></div></details>
+  </div>
+</section>
+
 
 <section id="tips" data-speaker="W" data-name="Tips & tricks">
   <div class="wrap split flip">
