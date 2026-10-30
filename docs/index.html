@@ -621,6 +621,11 @@ details.more[open]>summary::before{content:"–"}
 .pr3{display:grid;gap:12px}
 .pr3>div{display:grid;gap:2px;border-left:3px solid var(--line);padding-left:14px}
 .pr3>div span:last-child{font-size:1.05rem}
+.benefits{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.benefits li{border-left:4px solid var(--teal);padding:6px 0 6px 14px}
+.benefits li:nth-child(2){border-color:var(--amber)}.benefits li:nth-child(3){border-color:#7fb2e5}.benefits li:nth-child(4){border-color:#e98a6b}.benefits li:nth-child(5){border-color:#b9a6f0}
+.benefits b{display:block;font-size:var(--s1)}
+.benefits span{color:#c9d6e0}
 .fair-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:32px;align-items:center;margin-top:22px}
 .fair-wrap .journey{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:18px}
 .fair-wrap .journey div{padding:0 0 0 38px;min-height:26px}
@@ -1165,16 +1170,14 @@ body{background:transparent}
     <h2>One Prompt, Every Learner</h2>
     <div class="fair-wrap">
     <div class="fair-left">
-    <p class="lede" style="margin-top:0">One reusable prompt that builds themed apps for any subject.</p>
-    <div class="journey">
-      <div><span class="n">1</span><b>Type name</b><span>Tracking notice shown</span></div>
-      <div><span class="n">2</span><b>3 warm-ups</b><span>Not scored</span></div>
-      <div><span class="n">3</span><b>Pick a level</b><span>App recommends</span></div>
-      <div><span class="n">4</span><b>Themed activity</b><span>Hints and read-aloud</span></div>
-      <div><span class="n">5</span><b>Student report</b><span>Score and time</span></div>
-      <div><span class="n">6</span><b>Teacher Sheet</b><span>Flags sorted to top</span></div>
-    </div>
-    <div class="chips5"><span>Differentiated</span><span>Engaging</span><span>Dyslexia-friendly</span><span>Academic integrity</span><span>Clear reports</span></div>
+    <p class="lede" style="margin-top:0">Write one prompt once, and every app it builds helps you reach every student.</p>
+    <ul class="benefits">
+      <li><b>Differentiated</b><span>Warm-ups recommend Support, On-Level or Challenge. Same content, same rigor.</span></li>
+      <li><b>Engaging</b><span>A theme built from your topic, with simulations and instant feedback.</span></li>
+      <li><b>Dyslexia-friendly</b><span>Clear font, extra spacing, read-aloud, and no penalty for spelling.</span></li>
+      <li><b>Academic integrity</b><span>Pasting is blocked, and leaving the page is counted and timed.</span></li>
+      <li><b>Clear reports</b><span>Students see their score. You get one Google Sheet, flagged students on top.</span></li>
+    </ul>
     </div>
     <figure class="showcase fair-vid">
       <video src="media/one-prompt-every-learner.mp4" poster="media/one-prompt-every-learner-poster.jpg" controls muted playsinline preload="metadata" width="1280" height="720" aria-label="Video tour of One Prompt, Every Learner shown in Solution Lab: Light the Bulb: the app recommends a level, a themed simulation, dyslexia-friendly reading tools, academic integrity tracking, and one Google Sheet for the teacher with flagged students sorted to the top"></video>
