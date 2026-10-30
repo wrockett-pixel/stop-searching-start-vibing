@@ -478,10 +478,12 @@ html.present .pacer{display:block}
 .pacer .p-left{color:var(--bone);font-weight:700;font-size:1.15em;min-width:2.9em;text-align:right;font-variant-numeric:tabular-nums}
 .pacer .p-lbl{color:var(--fog);font-size:.8em;margin-left:-4px}
 .pacer.over .p-lbl{color:var(--bad)}
-.pacer .p-drift{opacity:.85}
+.pacer .p-drift{opacity:.95;font-weight:600}
+.pacer .p-drift.onpace{color:#5fd3b5}
+.pacer .p-drift.ahead{color:var(--amber)}
 .pacer.warn .p-ring .fg{stroke:var(--amber)}.pacer.warn .p-left{color:var(--amber)}
 .pacer.over .p-ring .fg{stroke:var(--bad)}.pacer.over .p-left{color:var(--bad)}
-.pacer .p-drift.behind{color:var(--amber)}
+.pacer .p-drift.behind{color:#ff8a7a}
 .pacer.paused>summary{opacity:.6}
 .pacer .p-panel{position:absolute;right:0;top:calc(100% + 8px);width:270px;background:var(--night-2,#14263a);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;z-index:40;box-shadow:0 12px 30px rgba(0,0,0,.35)}
 .pacer .p-row{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--fog)}
@@ -1409,9 +1411,11 @@ body{background:transparent}
       el.classList.toggle('paused',!st.running);
       const d=$('#pDrift');d.className='p-drift';
       if(!st.running&&st.total===0){d.textContent='tap to start'}
-      else if(drift>30){d.textContent=fmt(drift)+' behind';d.classList.add('behind')}
-      else if(drift<-30){d.textContent=fmt(-drift)+' ahead'}
-      else d.textContent=st.running?'on time':'paused';if(!st.running&&st.total)d.textContent='paused';
+      else if(!st.running){d.textContent='paused'}
+      else if(left<0){d.textContent='time to move on';d.classList.add('behind')}
+      else if(drift>60){d.textContent='behind '+fmt(drift)+' · speed up';d.classList.add('behind')}
+      else if(drift<-60){d.textContent='ahead '+fmt(-drift)+' · slow down';d.classList.add('ahead')}
+      else{d.textContent='on pace';d.classList.add('onpace')}
       $('#pPage').textContent=fmt(used)+' of '+fmt(bud);
       $('#pTotal').textContent=fmt(st.total)+' of '+fmt(TOTAL);
       $('#pPlan').textContent=fmt(plan);
