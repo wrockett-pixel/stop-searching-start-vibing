@@ -1,0 +1,39 @@
+STOP SEARCHING, START VIBING — APPS SCRIPT BACKUP
+Use this if netlify.app is blocked. It runs on Google, so it only needs Google to work.
+
+WHAT'S IN THIS FOLDER
+  Code.gs                   -> paste into the Apps Script file named Code.gs
+  Index.html                -> paste into a new HTML file named Index
+  Vibing Backup Assets/     -> upload this whole folder to your Google Drive (keep the name exactly)
+                               11 dinosaur images, 6 videos, 2 PDFs (19 files)
+
+STEPS (about 10 minutes)
+ 1. Unzip this file on your computer.
+ 2. Google Drive (school account) > New > Folder upload > choose "Vibing Backup Assets".
+    Leave it in My Drive and don't rename it or the files.
+ 3. Go to script.google.com > New project. Name it "Stop Searching, Start Vibing (backup)".
+ 4. In Code.gs, delete what's there and paste everything from Code.gs in this folder.
+ 5. Click + next to Files > HTML. Name it Index (it becomes Index.html).
+    Delete what's there and paste everything from Index.html in this folder. Click Save.
+ 6. Choose the function "setup" in the toolbar and click Run. Approve the permissions.
+    Open the Execution log: all 19 files should say "found".
+    (setup also shares the videos and PDFs so they open for others.)
+ 7. Deploy > New deployment > gear icon > Web app.
+      Execute as: Me
+      Who has access: Anyone
+    Click Deploy and copy the Web app URL. That is your backup presentation link.
+ 8. Open the link in your school Chrome, click Present, and check that the videos play.
+
+OPTIONAL: SHORT LINK
+  Make a tinyurl for the Web app URL (for example tinyurl.com/Vibing-FVA-backup).
+  In Code.gs, fill in SHORT_LINK and SHORT_LABEL at the top, save, then
+  Deploy > Manage deployments > edit (pencil) > Version: New version > Deploy.
+  The title page and QR codes will then show the short link.
+
+GOOD TO KNOW
+  - Everything works like the website: pacing timer, Present mode, live check-in, ideas,
+    help poll and questions. Survey answers are stored in this script; "Clear the room"
+    uses the same PIN (110393).
+  - QR codes point to the Apps Script link, so the audience joins the backup, not Netlify.
+  - Videos play in Google Drive's player. The first time may take a few seconds.
+  - If you change Code.gs or Index.html later, deploy a New version so the link updates.
