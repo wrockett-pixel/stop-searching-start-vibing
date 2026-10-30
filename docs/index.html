@@ -621,6 +621,12 @@ details.more[open]>summary::before{content:"–"}
 .pr3{display:grid;gap:12px}
 .pr3>div{display:grid;gap:2px;border-left:3px solid var(--line);padding-left:14px}
 .pr3>div span:last-child{font-size:1.05rem}
+.recipe-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:28px;align-items:center;margin-top:28px}
+.recipe-wrap .recipe{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:0}
+.recipe-wrap .rc{padding:14px 20px}
+.recipe-wrap .rc ol{margin-top:6px;gap:8px}
+.recipe-vid{margin:0}
+@media (max-width:900px){.recipe-wrap{grid-template-columns:minmax(0,1fr)}}
 .recipe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:32px}
 .rc{background:var(--deep);border-radius:var(--r);padding:22px 24px}
 .rc ol{margin:8px 0 0;padding-left:1.4em;display:grid;gap:14px}
@@ -898,10 +904,16 @@ details.more[open]>summary::before{content:"–"}
   <div class="wrap">
     <p class="eyebrow"><span class="phase ph-we">We do</span> The recipe</p>
     <h2>From egg to apex in 6 steps</h2>
+    <div class="recipe-wrap">
     <div class="recipe">
       <div class="rc"><span class="ds-tag">Plan</span><ol start="1"><li><b>Choose your dig site</b><span>One activity to improve</span></li><li><b>Pack your field kit</b><span>Topic, standard, grade, answer key</span></li></ol></div>
       <div class="rc"><span class="ds-tag hatch">Hatch</span><ol start="3"><li><b>Hatch it</b><span>Paste the prompt, get a first draft</span></li><li><b>Evolve it</b><span>Test like a student, one change at a time</span></li></ol></div>
       <div class="rc"><span class="ds-tag rel">Release</span><ol start="5"><li><b>Share it</b><span>A link students can open</span></li><li><b>Save your recipe</b><span>Reuse your prompt next unit</span></li></ol></div>
+    </div>
+    <figure class="showcase recipe-vid">
+      <video src="media/night-vision-build.mp4" poster="media/night-vision-build-poster.jpg" controls muted playsinline preload="metadata" width="1920" height="1080" aria-label="One-minute video of Mrs. Rockett building Night Vision, an AP Psychology sleep review app, in Claude with five plain-English prompts: hatch it, evolve it with scenario checks, flashcards and a night-sky theme, then share it with Apps Script in Canvas"></video>
+      <figcaption>Watch the steps in action: Night Vision, an AP Psych review app built in five prompts.</figcaption>
+    </figure>
     </div>
     <div class="cta-row"><a class="btn ghost" href="media/From-Egg-to-Apex.pdf" target="_blank" rel="noopener" download>Print all 6 steps (PDF) ↓</a></div>
     <details class="more"><summary>More info</summary><div class="more-body"><div class="more-grid">
