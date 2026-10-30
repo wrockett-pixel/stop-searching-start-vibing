@@ -475,7 +475,9 @@ html.present .pacer{display:block}
 .pacer .p-ring circle{fill:none;stroke-width:4}
 .pacer .p-ring .bg{stroke:var(--line)}
 .pacer .p-ring .fg{stroke:var(--teal);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .9s linear,stroke .3s}
-.pacer .p-left{color:var(--bone);font-weight:600;min-width:3.4em}
+.pacer .p-left{color:var(--bone);font-weight:700;font-size:1.15em;min-width:2.9em;text-align:right;font-variant-numeric:tabular-nums}
+.pacer .p-lbl{color:var(--fog);font-size:.8em;margin-left:-4px}
+.pacer.over .p-lbl{color:var(--bad)}
 .pacer .p-drift{opacity:.85}
 .pacer.warn .p-ring .fg{stroke:var(--amber)}.pacer.warn .p-left{color:var(--amber)}
 .pacer.over .p-ring .fg{stroke:var(--bad)}.pacer.over .p-left{color:var(--bad)}
@@ -713,7 +715,7 @@ body{background:transparent}
     <nav class="steps" id="dots" aria-label="Pages"></nav>
     <span class="pgnum" id="pgNum" aria-live="polite"><b>1</b> / 20</span>
     <div class="speaker" id="speaker" aria-hidden="true"></div>
-    <details class="pacer" id="pacer"><summary title="Pacing timer: time left on this page"><svg class="p-ring" viewBox="0 0 24 24" aria-hidden="true"><circle class="bg" cx="12" cy="12" r="9"/><circle class="fg" id="pRing" cx="12" cy="12" r="9" stroke-dasharray="56.55" stroke-dashoffset="0"/></svg><span class="p-left" id="pLeft">0:00</span><span class="p-drift" id="pDrift">on time</span></summary>
+    <details class="pacer" id="pacer"><summary title="Pacing timer: time left on this page"><svg class="p-ring" viewBox="0 0 24 24" aria-hidden="true"><circle class="bg" cx="12" cy="12" r="9"/><circle class="fg" id="pRing" cx="12" cy="12" r="9" stroke-dasharray="56.55" stroke-dashoffset="0"/></svg><span class="p-left" id="pLeft">0:00</span><span class="p-lbl" id="pLbl">left</span><span class="p-drift" id="pDrift">on time</span></summary>
       <div class="p-panel">
         <div class="p-row"><span>This page</span><b id="pPage">0:00 of 0:00</b></div>
         <div class="p-row"><span>Session</span><b id="pTotal">0:00 of 55:00</b></div>
@@ -1390,7 +1392,7 @@ body{background:transparent}
     const BUDGET={start:1,room:3,about:1,vibe:1,why:1,anywhere:1,journey:1,examples:4,recipe:3,tools:1,pick:8,turn:13,release:2,beyond:2,fairer:2,tips:2,kit:3,share:6};
     const TOTAL=sections.reduce((a,s)=>a+(BUDGET[s.id]||0),0)*60;
     const el=$('#pacer');if(!el)return;
-    const KEY='vibe-pacer';let st={total:0,pages:{},running:false};
+    const KEY='vibe-pacer';let st={total:0,pages:{},running:false,held:false};
     try{const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v&&typeof v.total==='number')st=Object.assign(st,v,{running:false})}catch(e){}
     const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
     const fmt=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
@@ -1401,7 +1403,7 @@ body{background:transparent}
       const bud=(BUDGET[sec.id]||1)*60,used=st.pages[sec.id]||0,left=bud-used;
       const before=sections.slice(0,sections.indexOf(sec)).reduce((a,s)=>a+(BUDGET[s.id]||0)*60,0);
       const plan=before+Math.min(used,bud),drift=st.total-plan;
-      $('#pLeft').textContent=left>=0?fmt(left):'+'+fmt(-left);
+      $('#pLeft').textContent=left>=0?fmt(left):'+'+fmt(-left);$('#pLbl').textContent=left>=0?'left':'over';
       $('#pRing').style.strokeDashoffset=(56.55*Math.min(1,used/bud)).toFixed(2);
       el.classList.toggle('over',left<0);el.classList.toggle('warn',left>=0&&left<=Math.max(20,bud*.2));
       el.classList.toggle('paused',!st.running);
@@ -1409,7 +1411,7 @@ body{background:transparent}
       if(!st.running&&st.total===0){d.textContent='tap to start'}
       else if(drift>30){d.textContent=fmt(drift)+' behind';d.classList.add('behind')}
       else if(drift<-30){d.textContent=fmt(-drift)+' ahead'}
-      else d.textContent=st.running?'on time':'paused';
+      else d.textContent=st.running?'on time':'paused';if(!st.running&&st.total)d.textContent='paused';
       $('#pPage').textContent=fmt(used)+' of '+fmt(bud);
       $('#pTotal').textContent=fmt(st.total)+' of '+fmt(TOTAL);
       $('#pPlan').textContent=fmt(plan);
@@ -1419,12 +1421,12 @@ body{background:transparent}
     setInterval(()=>{const now=Date.now(),dt=(now-last)/1000;last=now;
       if(st.running&&present()&&dt<5){const id=(sections[current]||{}).id;st.total+=dt;if(id)st.pages[id]=(st.pages[id]||0)+dt;save()}
       draw()},1000);
-    $('#pPause').addEventListener('click',()=>{st.running=!st.running;last=Date.now();save();draw()});
+    $('#pPause').addEventListener('click',()=>{st.running=!st.running;st.held=!st.running;last=Date.now();save();draw()});
     const rb=$('#pReset');let armed=null;
     rb.addEventListener('click',()=>{if(!armed){rb.textContent='Tap again to reset';armed=setTimeout(()=>{armed=null;rb.textContent='Reset'},3000);return}
-      clearTimeout(armed);armed=null;rb.textContent='Reset';st={total:0,pages:{},running:false};save();draw()});
+      clearTimeout(armed);armed=null;rb.textContent='Reset';st={total:0,pages:{},running:present(),held:false};last=Date.now();save();draw()});
     // starts on its own the first time you go to Present; pauses when you leave it
-    new MutationObserver(()=>{if(present()){if(!st.total&&!st.running){st.running=true;last=Date.now()}}else st.running=false;draw()}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+    new MutationObserver(()=>{if(present()){if(!st.running&&!st.held){st.running=true;last=Date.now()}}else st.running=false;draw()}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
     document.addEventListener('click',e=>{if(el.open&&!el.contains(e.target))el.open=false});
     window.addEventListener('hashchange',()=>setTimeout(draw,30));draw();
   })();
