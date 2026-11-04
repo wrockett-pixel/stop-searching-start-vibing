@@ -895,7 +895,7 @@ section .art::before{content:"";position:absolute;inset:-8% -10%;z-index:-1;poin
       <h2>Who we are (and why dinosaurs)</h2>
       <div class="big3">
         <div><b>Virtual teachers</b><span>Forsyth Virtual Academy: online, self-paced classes.</span></div>
-        <div><b>Years of building</b><span>We've made our own apps with AI for years, and we're still learning.</span></div>
+        <div><b>A year of building</b><span>We've spent the past year refining this process in our own classes, and we're still learning.</span></div>
         <div><b>Why dinosaurs?</b><span>Our school mascot is a dinosaur. Today you go from Egg to Apex.</span></div>
       </div>
       <details class="more"><summary>More info</summary><div class="more-body"><p><b>Lindsay</b> teaches physical science, chemistry and forensics. <b>Wendy</b> teaches AP World History and AP Psychology.</p><p>Our students work online and on their own schedule, so every activity has to teach, check and give feedback without us in the room. That is why we started building our own apps.</p></div></details>
